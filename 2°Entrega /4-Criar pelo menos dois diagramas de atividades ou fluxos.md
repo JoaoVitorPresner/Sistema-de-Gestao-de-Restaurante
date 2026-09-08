@@ -23,9 +23,9 @@ Caso existam ingredientes suficientes, o pedido é confirmado, registrado com st
 
 ### Diagrama de Atividades
 
-![Diagrama de Atividades - Realizar Pedido](./imagens/diagrama-atividade-realizar-pedido.png)
+![Diagrama de Atividades - Realizar Pedido](./imagens/diagrama-atividade-realizar-pedido.jpeg)
 
-[🔎 Abrir diagrama de Realizar Pedido em tamanho original](./imagens/diagrama-atividade-realizar-pedido.png)
+[🔎 Abrir diagrama de Realizar Pedido em tamanho original](./imagens/diagrama-atividade-realizar-pedido.jpeg)
 
 ### Fluxo representado
 
@@ -68,9 +68,9 @@ Nesse momento, o sistema realiza a baixa dos ingredientes utilizados no estoque 
 
 ### Diagrama de Atividades
 
-![Diagrama de Atividades - Processar Pedido na Cozinha](./imagens/diagrama-atividade-processar-pedido.png)
+![Diagrama de Atividades - Processar Pedido na Cozinha](./imagens/diagrama-atividade-processar-pedido.jpeg)
 
-[🔎 Abrir diagrama de Processar Pedido na Cozinha em tamanho original](./imagens/diagrama-atividade-processar-pedido.png)
+[🔎 Abrir diagrama de Processar Pedido na Cozinha em tamanho original](./imagens/diagrama-atividade-processar-pedido.jpeg)
 
 ### Fluxo representado
 
