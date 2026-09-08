@@ -105,7 +105,7 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 O documento completo da segunda entrega pode ser acessado pelo link abaixo:
 
 [📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**]
-
+[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](./Entrega_2_Sistema_Gestao_Restaurante_Final%20(2).pdf)
 ---
 
 ## Conteúdo da 2ª Entrega
