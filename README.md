@@ -88,8 +88,6 @@ Apresenta as condições e restrições que deverão ser respeitadas pelo sistem
 
 # 2ª Entrega — Modelagem do Software e Banco de Dados
 
-Esta pasta contém os artefatos desenvolvidos para a **2ª Entrega** do projeto **Sistema de Gestão de Restaurante**, dando continuidade ao levantamento e à documentação realizados na primeira etapa.
-
 O objetivo desta entrega é transformar os requisitos definidos anteriormente em modelos que representem o comportamento do sistema e sua estrutura de dados.
 
 ---
@@ -106,20 +104,8 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 
 ---
 
-## Conteúdo da 2ª Entrega
-
-1. [**Revisar a Entrega 1**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/1-Revisar%20a%20Entrega%201.md)
-2. [**Construir o diagrama de casos de uso**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/2-Construir%20o%20diagrama%20de%20casos%20de%20uso.md)
-3. [**Especificar pelo menos cinco casos de uso ou histórias de usuário**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/3-Especificar%20pelo%20menos%20cinco%20casos%20de%20uso%20ou%20hist%C3%B3rias%20de%20usu%C3%A1rio.md)
-4. [**Criar pelo menos dois diagramas de atividades ou fluxos**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/4-Criar%20pelo%20menos%20dois%20diagramas%20de%20atividades%20ou%20fluxos.md)
-5. [**Construir o modelo conceitual do banco de dados**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/5-Construir%20o%20modelo%20conceitual%20do%20banco%20de%20dados.md)
-6. [**Transformar o modelo conceitual em modelo lógico**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/6-Transformar%20o%20modelo%20conceitual%20em%20modelo%20l%C3%B3gico.md)
-7. [**Criar o dicionário de dados**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/7-Criar%20o%20dicion%C3%A1rio%20de%20dados.md)
-8. [**Montar a matriz de rastreabilidade**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/8-Montar%20a%20matriz%20de%20rastreabilidade.md)
-9. [**Fazer a revisão cruzada dos modelos**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/9-Fazer%20a%20revis%C3%A3o%20cruzada%20dos%20modelos.md)
-
 ## 1. Revisão da Entrega 1
-
+Acessar: [**Revisar a Entrega 1**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/1-Revisar%20a%20Entrega%201.md)
 A documentação inicial foi revisada para garantir consistência entre:
 
 - contexto e problema;
@@ -135,7 +121,7 @@ Também foram realizados ajustes de nomenclatura e coerência para que os modelo
 ---
 
 ## 2. Diagrama de Casos de Uso
-
+Acessar: [**Construir o diagrama de casos de uso**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/2-Construir%20o%20diagrama%20de%20casos%20de%20uso.md)
 O diagrama de casos de uso apresenta os principais atores do sistema e suas interações com as funcionalidades disponíveis.
 
 Os principais atores identificados são:
@@ -163,7 +149,7 @@ Entre os principais casos de uso estão:
 ---
 
 ## 3. Especificação dos Casos de Uso
-
+Acessar: [**Especificar pelo menos cinco casos de uso ou histórias de usuário**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/3-Especificar%20pelo%20menos%20cinco%20casos%20de%20uso%20ou%20hist%C3%B3rias%20de%20usu%C3%A1rio.md)
 Foram especificados cinco casos de uso principais:
 
 | Código | Caso de uso | Ator principal |
@@ -187,7 +173,7 @@ Cada caso de uso possui:
 ---
 
 ## 4. Diagramas de Atividades
-
+Acessar: [**Criar pelo menos dois diagramas de atividades ou fluxos**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/4-Criar%20pelo%20menos%20dois%20diagramas%20de%20atividades%20ou%20fluxos.md)
 Foram desenvolvidos dois diagramas de atividades principais.
 
 ### Realizar Pedido
@@ -221,7 +207,7 @@ O processo inclui:
 ---
 
 ## 5. Modelo Conceitual do Banco de Dados
-
+Acessar: [**Construir o modelo conceitual do banco de dados**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/5-Construir%20o%20modelo%20conceitual%20do%20banco%20de%20dados.md)
 O modelo conceitual representa as principais entidades e seus relacionamentos.
 
 As principais entidades identificadas são:
@@ -249,7 +235,7 @@ A entidade **ReservaIngrediente** representa os ingredientes reservados para ped
 ---
 
 ## 6. Modelo Lógico do Banco de Dados
-
+Acessar: [**Transformar o modelo conceitual em modelo lógico**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/6-Transformar%20o%20modelo%20conceitual%20em%20modelo%20l%C3%B3gico.md)
 O modelo conceitual foi transformado em um modelo lógico relacional.
 
 As entidades foram convertidas em tabelas e foram definidas:
@@ -283,7 +269,7 @@ USUARIO → HISTORICO_ALTERACAO
 ---
 
 ## 7. Dicionário de Dados
-
+Acessar: [**Criar o dicionário de dados**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/7-Criar%20o%20dicion%C3%A1rio%20de%20dados.md)
 O dicionário de dados apresenta os detalhes das tabelas e campos do banco.
 
 Para cada campo são apresentados:
@@ -300,7 +286,7 @@ Também são apresentadas as referências entre as chaves estrangeiras.
 ---
 
 ## 8. Matriz de Rastreabilidade
-
+Acessar: [**Montar a matriz de rastreabilidade**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/8-Montar%20a%20matriz%20de%20rastreabilidade.md)
 A matriz de rastreabilidade relaciona os requisitos funcionais aos demais modelos desenvolvidos.
 
 Ela permite acompanhar o caminho:
@@ -322,7 +308,7 @@ Dessa forma, é possível verificar se as funcionalidades definidas nos requisit
 ---
 
 ## 9. Revisão Cruzada dos Modelos
-
+Acessar: [**Fazer a revisão cruzada dos modelos**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/9-Fazer%20a%20revis%C3%A3o%20cruzada%20dos%20modelos.md)
 Ao final da entrega foi realizada uma revisão cruzada para verificar a consistência entre os diferentes modelos.
 
 Foram analisadas as seguintes questões:
