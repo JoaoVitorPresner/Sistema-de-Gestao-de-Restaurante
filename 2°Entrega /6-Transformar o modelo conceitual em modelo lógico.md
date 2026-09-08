@@ -12,9 +12,9 @@ Os relacionamentos entre as entidades também são representados por meio das ch
 
 O modelo lógico do **Sistema de Gestão de Restaurante** é apresentado abaixo.
 
-![Modelo Lógico do Banco de Dados](./imagens/modelo-logico-banco-de-dados.png)
+![Modelo Lógico do Banco de Dados](./imagens/modelo-logico-banco-de-dados.jpeg)
 
-[🔎 Abrir Modelo Lógico em tamanho original](./imagens/modelo-logico-banco-de-dados.png)
+[🔎 Abrir Modelo Lógico em tamanho original](./imagens/modelo-logico-banco-de-dados.jpeg)
 
 ---
 
