@@ -85,3 +85,284 @@ Apresenta as condições e restrições que deverão ser respeitadas pelo sistem
 ├── 8-Regras de Negócio.md
 └── Sistema de Gestao de Restaurante.pdf
 ```
+
+# 2ª Entrega — Modelagem do Software e Banco de Dados
+
+Esta pasta contém os artefatos desenvolvidos para a **2ª Entrega** do projeto **Sistema de Gestão de Restaurante**, dando continuidade ao levantamento e à documentação realizados na primeira etapa.
+
+O objetivo desta entrega é transformar os requisitos definidos anteriormente em modelos que representem o comportamento do sistema e sua estrutura de dados.
+
+---
+
+## Projeto
+
+[**Sistema-de-Gestao-de-Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/tree/main)
+
+---
+
+## PDF da Entrega
+
+O documento completo da segunda entrega pode ser acessado pelo link abaixo:
+
+[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/Entrega_2_Sistema_Gestao_Restaurante_Final%20(2).pdf)
+
+---
+
+## Conteúdo da 2ª Entrega
+
+A segunda entrega é composta pelas seguintes etapas:
+
+1. [**Revisar a Entrega 1**](./1%20-%20Revisar%20a%20Entrega%201.md)
+2. [**Construir o diagrama de casos de uso**](./2%20-%20Construir%20o%20diagrama%20de%20casos%20de%20uso.md)
+3. [**Especificar pelo menos cinco casos de uso ou histórias de usuário**](./3%20-%20Especificar%20pelo%20menos%20cinco%20casos%20de%20uso%20ou%20histórias%20de%20usuário.md)
+4. [**Criar pelo menos dois diagramas de atividades ou fluxos**](./4%20-%20Criar%20pelo%20menos%20dois%20diagramas%20de%20atividades%20ou%20fluxos.md)
+5. [**Construir o modelo conceitual do banco de dados**](./5%20-%20Construir%20o%20modelo%20conceitual%20do%20banco%20de%20dados.md)
+6. [**Transformar o modelo conceitual em modelo lógico**](./6%20-%20Transformar%20o%20modelo%20conceitual%20em%20modelo%20lógico.md)
+7. [**Criar o dicionário de dados**](./7%20-%20Criar%20o%20dicionário%20de%20dados.md)
+8. [**Montar a matriz de rastreabilidade**](./8%20-%20Montar%20a%20matriz%20de%20rastreabilidade.md)
+9. [**Fazer a revisão cruzada dos modelos**](./9%20-%20Fazer%20a%20revisão%20cruzada%20dos%20modelos.md)
+
+---
+
+## 1. Revisão da Entrega 1
+
+A documentação inicial foi revisada para garantir consistência entre:
+
+- contexto e problema;
+- objetivos;
+- público-alvo;
+- escopo;
+- requisitos funcionais;
+- requisitos não funcionais;
+- regras de negócio.
+
+Também foram realizados ajustes de nomenclatura e coerência para que os modelos da segunda entrega utilizem os mesmos conceitos definidos anteriormente.
+
+---
+
+## 2. Diagrama de Casos de Uso
+
+O diagrama de casos de uso apresenta os principais atores do sistema e suas interações com as funcionalidades disponíveis.
+
+Os principais atores identificados são:
+
+- Administrador;
+- Gerente;
+- Atendente;
+- Cozinheiro/Chef;
+- Estoquista;
+- Cliente.
+
+Entre os principais casos de uso estão:
+
+- realizar autenticação;
+- registrar pedido;
+- acompanhar pedido;
+- atualizar status do pedido;
+- registrar pagamento;
+- registrar movimentação de estoque;
+- consultar cardápio;
+- consultar estoque;
+- gerenciar usuários;
+- consultar relatórios.
+
+---
+
+## 3. Especificação dos Casos de Uso
+
+Foram especificados cinco casos de uso principais:
+
+| Código | Caso de uso | Ator principal |
+|---|---|---|
+| **UC01** | Realizar autenticação | Usuário interno |
+| **UC02** | Registrar pedido | Atendente ou Cliente |
+| **UC03** | Atualizar status do pedido | Cozinheiro/Chef |
+| **UC04** | Registrar pagamento | Atendente |
+| **UC05** | Registrar movimentação de estoque | Estoquista |
+
+Cada caso de uso possui:
+
+- objetivo;
+- ator principal;
+- pré-condições;
+- fluxo principal;
+- fluxos alternativos;
+- pós-condições;
+- requisitos relacionados.
+
+---
+
+## 4. Diagramas de Atividades
+
+Foram desenvolvidos dois diagramas de atividades principais.
+
+### Realizar Pedido
+
+Representa o fluxo desde a identificação da mesa e seleção dos produtos até a confirmação e envio do pedido para a cozinha.
+
+O processo inclui:
+
+- seleção da mesa;
+- seleção dos produtos;
+- verificação da disponibilidade dos ingredientes;
+- confirmação do pedido;
+- registro do pedido;
+- reserva dos ingredientes;
+- disponibilização para a cozinha.
+
+### Processar Pedido na Cozinha
+
+Representa o fluxo utilizado pela equipe da cozinha.
+
+O processo inclui:
+
+- visualização dos pedidos recebidos;
+- seleção do pedido;
+- alteração para **Em preparo**;
+- preparação;
+- alteração para **Pronto**;
+- baixa dos ingredientes;
+- registro no histórico.
+
+---
+
+## 5. Modelo Conceitual do Banco de Dados
+
+O modelo conceitual representa as principais entidades e seus relacionamentos.
+
+As principais entidades identificadas são:
+
+- Perfil;
+- Usuario;
+- Cliente;
+- Categoria;
+- Produto;
+- Ingrediente;
+- ProdutoIngrediente;
+- Mesa;
+- Conta;
+- Pedido;
+- ItemPedido;
+- Pagamento;
+- MovimentacaoEstoque;
+- HistoricoAlteracao;
+- ReservaIngrediente.
+
+A entidade **ProdutoIngrediente** representa a relação entre produtos e ingredientes.
+
+A entidade **ReservaIngrediente** representa os ingredientes reservados para pedidos confirmados.
+
+---
+
+## 6. Modelo Lógico do Banco de Dados
+
+O modelo conceitual foi transformado em um modelo lógico relacional.
+
+As entidades foram convertidas em tabelas e foram definidas:
+
+- chaves primárias;
+- chaves estrangeiras;
+- relacionamentos;
+- restrições;
+- tabelas associativas.
+
+Entre as principais relações estão:
+
+```text
+PERFIL → USUARIO
+
+CATEGORIA → PRODUTO
+
+PRODUTO → PRODUTO_INGREDIENTE ← INGREDIENTE
+
+MESA → CONTA → PEDIDO → ITEM_PEDIDO
+
+CONTA → PAGAMENTO
+
+PEDIDO → RESERVA_INGREDIENTE ← INGREDIENTE
+
+INGREDIENTE → MOVIMENTACAO_ESTOQUE
+
+USUARIO → HISTORICO_ALTERACAO
+```
+
+---
+
+## 7. Dicionário de Dados
+
+O dicionário de dados apresenta os detalhes das tabelas e campos do banco.
+
+Para cada campo são apresentados:
+
+- nome;
+- tipo;
+- tamanho;
+- obrigatoriedade;
+- chave;
+- descrição.
+
+Também são apresentadas as referências entre as chaves estrangeiras.
+
+---
+
+## 8. Matriz de Rastreabilidade
+
+A matriz de rastreabilidade relaciona os requisitos funcionais aos demais modelos desenvolvidos.
+
+Ela permite acompanhar o caminho:
+
+```text
+Requisito
+   ↓
+Caso de Uso
+   ↓
+Processo
+   ↓
+Modelo de Dados
+   ↓
+Futura Interface
+```
+
+Dessa forma, é possível verificar se as funcionalidades definidas nos requisitos possuem representação nos demais artefatos do projeto.
+
+---
+
+## 9. Revisão Cruzada dos Modelos
+
+Ao final da entrega foi realizada uma revisão cruzada para verificar a consistência entre os diferentes modelos.
+
+Foram analisadas as seguintes questões:
+
+- Todo caso de uso importante possui origem em um requisito funcional?
+- Os nomes utilizados nos diagramas correspondem aos nomes usados no documento?
+- As entidades necessárias aos processos aparecem no modelo de dados?
+- As chaves estrangeiras representam corretamente os relacionamentos?
+- Os fluxos respeitam as regras de negócio?
+- É possível explicar o caminho requisito → caso de uso → processo → dados → futura tela?
+
+A revisão permitiu verificar a rastreabilidade e a coerência entre os artefatos desenvolvidos.
+
+---
+
+## Considerações Finais
+
+A segunda entrega consolida a passagem da etapa de levantamento de requisitos para a modelagem da solução.
+
+Os diagramas e modelos apresentados foram elaborados para manter coerência com os requisitos funcionais, não funcionais e regras de negócio definidos na documentação inicial.
+
+A modelagem comportamental demonstra como os diferentes perfis interagem com o sistema e como os processos principais são executados.
+
+A modelagem estrutural apresenta as classes e entidades necessárias para representar o domínio do problema.
+
+Por fim, os modelos conceitual e lógico, o dicionário de dados e a matriz de rastreabilidade demonstram como as funcionalidades previstas podem ser sustentadas por uma estrutura de dados relacional.
+
+Com os ajustes e modelos apresentados, o projeto busca atender aos critérios de revisão, modelagem comportamental, modelagem de dados, rastreabilidade e legibilidade estabelecidos para a segunda entrega.
+
+---
+
+## Equipe
+
+- João Vitor Barros Presner
+- Guilhermy Martineli Brenny
+- Matheus Borges
+- Mateus Henrique Presner
