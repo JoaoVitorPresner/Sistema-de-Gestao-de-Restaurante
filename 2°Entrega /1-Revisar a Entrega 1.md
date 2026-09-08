@@ -138,8 +138,6 @@ Para o desenvolvimento do Sistema de Gestão de Restaurante serão utilizadas as
 - **Spring Security:** utilizado para implementar autenticação, controle de acesso e permissões de acordo com os diferentes perfis de usuário.
 - **API REST:** utilizada para realizar a comunicação entre a interface da aplicação e o back-end.
 - **MySQL:** Sistema Gerenciador de Banco de Dados (SGBD) relacional utilizado para armazenar usuários, clientes, produtos, ingredientes, mesas, contas, pedidos, pagamentos, movimentações de estoque e demais informações do sistema.
-- **Git:** utilizado para o controle de versão dos arquivos e do código-fonte do projeto.
-- **GitHub:** utilizado para armazenar o repositório do projeto, organizar a documentação e acompanhar as alterações realizadas pela equipe.
 
 A aplicação será executada como um **sistema web**, acessível por navegadores modernos, como Google Chrome, Mozilla Firefox e Safari. A interface será responsiva para permitir sua utilização em diferentes tamanhos de tela, incluindo os dispositivos utilizados pela equipe de atendimento e cozinha.
 
