@@ -110,7 +110,7 @@ O diagrama apresenta as principais classes do sistema, seus atributos e os relac
 O diagrama contempla as principais classes relacionadas ao funcionamento do sistema, incluindo usuários, clientes, produtos, ingredientes, mesas, contas, pedidos, pagamentos, estoque e histórico de alterações.
 
 ---
-## 4.4 Relação entre os Diagramas
+## 4.4 Relação entre os Diagramas de Atividades
 
 Os dois diagramas representam etapas consecutivas do processo de atendimento.
 
