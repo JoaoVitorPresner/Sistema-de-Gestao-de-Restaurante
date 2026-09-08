@@ -104,7 +104,7 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 
 O documento completo da segunda entrega pode ser acessado pelo link abaixo:
 
-[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/Entrega_2_Sistema_Gestao_Restaurante_Final%20(2).pdf)
+[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**]
 
 ---
 
