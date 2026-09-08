@@ -1,4 +1,4 @@
-# 6. Requisitos Funcionais
+# Requisitos Funcionais
 
 | **Código** | **Categoria** | **Prioridade** | **Requisito funcional** |
 |---|---|---|---|
