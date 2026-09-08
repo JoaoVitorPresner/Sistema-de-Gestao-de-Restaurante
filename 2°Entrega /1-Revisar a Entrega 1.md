@@ -33,7 +33,7 @@ Também possibilitará o acompanhamento dos pedidos entre o atendimento e a cozi
 
 Restaurantes precisam administrar diversas atividades simultaneamente, como atendimento aos clientes, registro de pedidos, organização das mesas, preparação dos alimentos, controle de estoque, vendas e pagamentos.
 
-Minha equipe notou que, quando essas atividades são realizadas manualmente ou por meio de ferramentas separadas, ocorrem erros no registro dos pedidos, falhas na comunicação entre atendimento e cozinha, atrasos no preparo e dificuldades no controle de estoque e vendas.
+Nossa equipe notou que, quando essas atividades são realizadas manualmente ou por meio de ferramentas separadas, ocorrem erros no registro dos pedidos, falhas na comunicação entre atendimento e cozinha, atrasos no preparo e dificuldades no controle de estoque e vendas.
 
 A partir disso, surge a necessidade de centralizar essas informações em um único sistema, permitindo integrar as atividades do estabelecimento e facilitar seu gerenciamento.
 
