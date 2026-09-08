@@ -126,10 +126,22 @@ O sistema será desenvolvido de forma incremental durante o cronograma estabelec
 
 #### Tecnologia
 
-- O sistema será desenvolvido como aplicação web.
-- Será utilizado um banco de dados relacional.
-- A aplicação deverá funcionar em navegadores modernos.
-- A interface deverá ser responsiva.
+Para o desenvolvimento do Sistema de Gestão de Restaurante serão utilizadas as seguintes tecnologias:
+
+- **HTML5:** utilizado para estruturar as páginas e os elementos da interface da aplicação web.
+- **CSS3:** utilizado para estilização e organização visual das páginas.
+- **JavaScript:** utilizado para implementar interações e comportamentos dinâmicos na interface.
+- **Bootstrap:** utilizado para auxiliar na criação de uma interface responsiva, permitindo a utilização do sistema em computadores, tablets e dispositivos móveis.
+- **Java:** linguagem utilizada para o desenvolvimento do back-end e implementação das regras de negócio do sistema.
+- **Spring Boot:** framework utilizado para desenvolver a aplicação web e organizar os serviços responsáveis pelas funcionalidades do sistema.
+- **Spring Data JPA / Hibernate:** utilizados para realizar o mapeamento e a persistência dos dados entre as classes da aplicação e o banco de dados relacional.
+- **Spring Security:** utilizado para implementar autenticação, controle de acesso e permissões de acordo com os diferentes perfis de usuário.
+- **API REST:** utilizada para realizar a comunicação entre a interface da aplicação e o back-end.
+- **MySQL:** Sistema Gerenciador de Banco de Dados (SGBD) relacional utilizado para armazenar usuários, clientes, produtos, ingredientes, mesas, contas, pedidos, pagamentos, movimentações de estoque e demais informações do sistema.
+- **Git:** utilizado para o controle de versão dos arquivos e do código-fonte do projeto.
+- **GitHub:** utilizado para armazenar o repositório do projeto, organizar a documentação e acompanhar as alterações realizadas pela equipe.
+
+A aplicação será executada como um **sistema web**, acessível por navegadores modernos, como Google Chrome, Mozilla Firefox e Safari. A interface será responsiva para permitir sua utilização em diferentes tamanhos de tela, incluindo os dispositivos utilizados pela equipe de atendimento e cozinha.
 
 #### Acesso
 
