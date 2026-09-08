@@ -97,7 +97,20 @@ Nesse momento, o sistema realiza a baixa dos ingredientes utilizados no estoque 
 
 ---
 
-## 4.3 Relação entre os Diagramas
+## 4.3 Diagrama de Classes
+
+Além dos diagramas de atividades, foi elaborado um **diagrama de classes** para representar a estrutura do domínio do Sistema de Gestão de Restaurante.
+
+O diagrama apresenta as principais classes do sistema, seus atributos e os relacionamentos existentes entre elas, auxiliando na representação estrutural da solução e servindo como apoio para a construção dos modelos de dados.
+
+![Diagrama de Classes](./imagens/diagrama-de-classes.jpeg)
+
+[🔎 Abrir Diagrama de Classes em tamanho original](./imagens/diagrama-de-classes.jpeg)
+
+O diagrama contempla as principais classes relacionadas ao funcionamento do sistema, incluindo usuários, clientes, produtos, ingredientes, mesas, contas, pedidos, pagamentos, estoque e histórico de alterações.
+
+---
+## 4.4 Relação entre os Diagramas
 
 Os dois diagramas representam etapas consecutivas do processo de atendimento.
 
