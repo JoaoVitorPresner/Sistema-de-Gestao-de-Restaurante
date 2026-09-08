@@ -34,9 +34,9 @@ Foram identificadas as seguintes entidades principais:
 
 O modelo abaixo apresenta as entidades e seus principais relacionamentos dentro do sistema.
 
-![Modelo Conceitual do Banco de Dados](./imagens/modelo-conceitual-banco-de-dados.png)
+![Modelo Conceitual do Banco de Dados](./imagens/modelo-conceitual-banco-de-dados.jpeg)
 
-[🔎 Abrir Modelo Conceitual em tamanho original](./imagens/modelo-conceitual-banco-de-dados.png)
+[🔎 Abrir Modelo Conceitual em tamanho original](./imagens/modelo-conceitual-banco-de-dados.jpeg)
 
 ---
 
