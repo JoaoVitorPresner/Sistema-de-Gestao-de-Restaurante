@@ -96,7 +96,7 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 
 ## Projeto
 
-[**Sistema-de-Gestao-de-Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/tree/main)
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
 
 ---
 
@@ -104,23 +104,23 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 
 O documento completo da segunda entrega pode ser acessado pelo link abaixo:
 
-[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega/Entrega_2_Sistema_Gestao_Restaurante_Final%20(2).pdf)
+[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](./Entrega2doSistemadeGestaodeRestaurante.pdf)
+
 ---
 
 ## Conteúdo da 2ª Entrega
 
 A segunda entrega é composta pelas seguintes etapas:
 
-1. [**Revisar a Entrega 1**](./1%20-%20Revisar%20a%20Entrega%201.md)
-2. [**Construir o diagrama de casos de uso**](./2%20-%20Construir%20o%20diagrama%20de%20casos%20de%20uso.md)
-3. [**Especificar pelo menos cinco casos de uso ou histórias de usuário**](./3%20-%20Especificar%20pelo%20menos%20cinco%20casos%20de%20uso%20ou%20histórias%20de%20usuário.md)
-4. [**Criar pelo menos dois diagramas de atividades ou fluxos**](./4%20-%20Criar%20pelo%20menos%20dois%20diagramas%20de%20atividades%20ou%20fluxos.md)
-5. [**Construir o modelo conceitual do banco de dados**](./5%20-%20Construir%20o%20modelo%20conceitual%20do%20banco%20de%20dados.md)
-6. [**Transformar o modelo conceitual em modelo lógico**](./6%20-%20Transformar%20o%20modelo%20conceitual%20em%20modelo%20lógico.md)
-7. [**Criar o dicionário de dados**](./7%20-%20Criar%20o%20dicionário%20de%20dados.md)
-8. [**Montar a matriz de rastreabilidade**](./8%20-%20Montar%20a%20matriz%20de%20rastreabilidade.md)
-9. [**Fazer a revisão cruzada dos modelos**](./9%20-%20Fazer%20a%20revisão%20cruzada%20dos%20modelos.md)
-
+1. [**Revisar a Entrega 1**](./1-Revisar%20a%20Entrega%201.md)
+2. [**Construir o diagrama de casos de uso**](./2-Construir%20o%20diagrama%20de%20casos%20de%20uso.md)
+3. [**Especificar pelo menos cinco casos de uso ou histórias de usuário**](./3-Especificar%20pelo%20menos%20cinco%20casos%20de%20uso%20ou%20histórias%20de%20usuário.md)
+4. [**Criar pelo menos dois diagramas de atividades ou fluxos**](./4-Criar%20pelo%20menos%20dois%20diagramas%20de%20atividades%20ou%20fluxos.md)
+5. [**Construir o modelo conceitual do banco de dados**](./5-Construir%20o%20modelo%20conceitual%20do%20banco%20de%20dados.md)
+6. [**Transformar o modelo conceitual em modelo lógico**](./6-Transformar%20o%20modelo%20conceitual%20em%20modelo%20lógico.md)
+7. [**Criar o dicionário de dados**](./7-Criar%20o%20dicionário%20de%20dados.md)
+8. [**Montar a matriz de rastreabilidade**](./8-Montar%20a%20matriz%20de%20rastreabilidade.md)
+9. [**Fazer a revisão cruzada dos modelos**](./9-Fazer%20a%20revisão%20cruzada%20dos%20modelos.md)
 ---
 
 ## 1. Revisão da Entrega 1
