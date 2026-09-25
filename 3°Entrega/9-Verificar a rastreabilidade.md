@@ -22,3 +22,9 @@ Dessa forma, os artefatos do projeto ficam relacionados entre si:
 **Requisitos → Funcionalidades → Entidades → Telas → MVP**
 
 O fluxo principal começa na autenticação, passa pelo atendimento e pedido, utiliza a verificação e reserva dos ingredientes, segue para a cozinha e termina com o pagamento e encerramento da conta.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
