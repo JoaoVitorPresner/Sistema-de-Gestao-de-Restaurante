@@ -256,3 +256,9 @@ Cada caso de uso apresenta o ator responsável, objetivo, pré-condições, flux
 A especificação dos casos de uso detalha o comportamento esperado das principais funcionalidades do sistema.
 
 Esses casos de uso servem como base para a construção dos diagramas de atividades, definição das entidades do sistema e desenvolvimento da matriz de rastreabilidade.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
