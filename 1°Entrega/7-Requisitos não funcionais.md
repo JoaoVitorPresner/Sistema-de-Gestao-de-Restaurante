@@ -11,3 +11,6 @@
 | **RNF09**  | Responsividade  | A interface deve adaptar-se a computadores, tablets e smartphones, considerando telas a partir de 360 pixels de largura.   |
 | **RNF10**  | Disponibilidade | Os dados do sistema devem possuir mecanismo de backup periódico para permitir sua recuperação em caso de falha.            |
 | **RNF11**  | Usabilidade     | A interface da cozinha deve ser adequada para utilização em tablets e monitores, facilitando a visualização dos pedidos.   |
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
