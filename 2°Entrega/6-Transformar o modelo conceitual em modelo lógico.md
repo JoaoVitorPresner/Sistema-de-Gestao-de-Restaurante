@@ -470,3 +470,9 @@ As entidades foram transformadas em tabelas e seus relacionamentos passaram a se
 Também foram representadas as relações entre produtos e ingredientes, pedidos e itens, contas e pagamentos, usuários e perfis, movimentações de estoque e reservas de ingredientes.
 
 O modelo lógico servirá como base para a definição detalhada dos campos no **dicionário de dados** e para uma futura implementação do banco de dados em um SGBD relacional.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
