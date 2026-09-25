@@ -225,6 +225,9 @@ A primeira versão não possuirá integração com plataformas externas de deliv
 A revisão da primeira entrega preservou a estrutura e a numeração dos requisitos definidos anteriormente, realizando correções de redação e padronização da documentação.
 
 As informações revisadas servem como base para os artefatos de modelagem desenvolvidos na segunda entrega, permitindo manter a consistência entre requisitos, casos de uso, processos, classes e estruturas do banco de dados.
+
+---
+
 ## Voltar Para:
 
 [**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
