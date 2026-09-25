@@ -10,3 +10,6 @@
 | **Cliente**         | Consultar o cardápio e realizar pedidos.          | Selecionar produtos e acompanhar seus próprios pedidos.     | Acessar o cardápio e realizar pedidos por meio da identificação da mesa.              |
 
 > **Observação:** Na primeira versão do sistema, o cliente não terá uma conta pessoal. Seu acesso será realizado por meio da identificação da mesa e ficará limitado às funcionalidades destinadas ao atendimento presencial. Futuramente, poderão ser implementadas funcionalidades de acesso externo, incluindo um aplicativo mobile nativo e um sistema próprio de delivery.
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
