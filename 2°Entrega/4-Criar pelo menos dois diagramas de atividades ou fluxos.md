@@ -144,3 +144,9 @@ Os diagramas de atividades permitem visualizar de forma sequencial o comportamen
 O primeiro demonstra a seleção dos produtos, a verificação do estoque, a confirmação do pedido e a reserva dos ingredientes. O segundo representa o processamento realizado pela cozinha, incluindo a atualização dos status, a baixa dos ingredientes e o registro das alterações no histórico.
 
 Os fluxos foram elaborados de forma consistente com os requisitos funcionais, regras de negócio e casos de uso definidos anteriormente.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
