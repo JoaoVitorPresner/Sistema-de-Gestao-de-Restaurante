@@ -187,6 +187,12 @@ As principais telas que deverão ser prototipadas são:
 
 ![Protótipo da Tela de Estoque](./imagens/tela-estoque.png)
 
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
+
 [🔎 Abrir protótipo da Tela de Estoque em tamanho original](./imagens/tela-estoque.png)
 
 ---
