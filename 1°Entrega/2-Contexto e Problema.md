@@ -9,3 +9,6 @@ Os principais afetados são os funcionários responsáveis pelo atendimento, coz
 ## Justificativa: por que vale a pena desenvolver esse sistema?
 
 O desenvolvimento do sistema se justifica pela necessidade de centralizar as principais informações e atividades do restaurante, com a integração entre pedidos, cozinha e estoque, facilitando o acompanhamento destas operações, reduzindo erros de comunicação e auxiliando no controle dos ingredientes utilizados na preparação dos produtos. Além disso, a utilização de diferentes perfis de acesso permitirá que cada funcionário use somente as funcionalidades necessárias às suas atividades, contribuindo para a organização, o gerenciamento e a segurança das informações do estabelecimento.
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
