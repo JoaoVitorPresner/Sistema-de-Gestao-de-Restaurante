@@ -38,10 +38,17 @@ O sistema será desenvolvido de forma incremental durante o cronograma estabelec
 
 ### Tecnologia
 
-* O sistema será desenvolvido como aplicação web.
-* Será utilizado um banco de dados relacional.
-* A aplicação deverá funcionar em navegadores modernos.
-* A interface deverá ser responsiva.
+O sistema será desenvolvido como uma aplicação web, utilizando as seguintes tecnologias:
+
+- **HTML, CSS e JavaScript:** utilizados no desenvolvimento da interface web e na criação de uma interface responsiva.
+- **Java e Spring Boot:** utilizados no desenvolvimento do backend, permitindo implementar as regras de negócio, autenticação, controle de acesso e comunicação com o banco de dados.
+- **MySQL:** utilizado como sistema gerenciador de banco de dados relacional para armazenar as informações do sistema.
+- **Git:** utilizado para o controle de versão dos arquivos e do código-fonte do projeto.
+- **GitHub:** utilizado para armazenar o repositório, organizar os artefatos do projeto e acompanhar as contribuições da equipe.
+- **Figma:** utilizado para criação e visualização dos protótipos das telas antes da implementação.
+- **Hospedagem:** será definida posteriormente, de acordo com a evolução do projeto e as necessidades de implantação.
+
+A aplicação deverá funcionar em navegadores modernos e possuir interface responsiva, permitindo sua utilização em diferentes tamanhos de tela.
 
 ### Acesso
 
@@ -52,4 +59,6 @@ O sistema será desenvolvido de forma incremental durante o cronograma estabelec
 ### Integrações
 
 A primeira versão não irá possuir integração com plataformas externas de delivery, sistemas bancários, gateways de pagamento ou emissores fiscais.
+## Voltar Para:
 
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
