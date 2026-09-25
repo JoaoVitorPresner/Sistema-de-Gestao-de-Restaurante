@@ -59,6 +59,9 @@ A aplicação deverá funcionar em navegadores modernos e possuir interface resp
 ### Integrações
 
 A primeira versão não irá possuir integração com plataformas externas de delivery, sistemas bancários, gateways de pagamento ou emissores fiscais.
+
+---
+
 ## Voltar Para:
 
 [**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
