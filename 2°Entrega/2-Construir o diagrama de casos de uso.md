@@ -135,6 +135,7 @@ Essas operações garantem que o sistema somente confirme pedidos quando houver 
 O diagrama abaixo apresenta visualmente os atores, os casos de uso e suas relações dentro do Sistema de Gestão de Restaurante.
 
 ![Diagrama de Casos de Uso](./imagens/diagrama-casos-de-uso.png)
+[🔎 Abrir Diagrama de Casos de Uso em tamanho original](./imagens/diagrama-casos-de-uso.png)
 
 > **Observação:** O arquivo da imagem do diagrama deve ser armazenado na pasta `imagens` dentro da pasta `2°Entrega`.
 
