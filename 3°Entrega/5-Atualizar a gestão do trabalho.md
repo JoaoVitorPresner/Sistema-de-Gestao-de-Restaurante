@@ -32,3 +32,9 @@ Para organizar o desenvolvimento do Sistema de Gestão de Restaurante, foi defin
 Os estados utilizados serão **A fazer, Em andamento e Concluída**.
 
 A divisão das tarefas será utilizada para organizar o trabalho, porém todos os integrantes deverão conhecer o funcionamento geral do sistema e saber explicar como suas contribuições se relacionam com as demais partes do projeto.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
