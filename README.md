@@ -92,15 +92,10 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 
 ---
 
-## Projeto
-
-[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
-
----
 
 ## PDF da Entrega
 
-[📄 **Entrega 2 — Sistema de Gestão de Restaurante — PDF Final**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/%20Entrega2doSistemadeGestaodeRestaurante.pdf)
+[📄 Entrega 2 — Sistema de Gestão de Restaurante — PDF Final](./2%C2%B0Entrega/Entrega2doSistemadeGestaodeRestaurante.pdf)
 
 ---
 
