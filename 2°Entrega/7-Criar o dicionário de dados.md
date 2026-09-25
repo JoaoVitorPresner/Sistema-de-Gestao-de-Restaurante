@@ -314,3 +314,9 @@ Quando o pedido atingir o status **Pronto**, os ingredientes utilizados são bai
 O dicionário de dados detalha a estrutura das tabelas definidas no modelo lógico do **Sistema de Gestão de Restaurante**, especificando os campos, tipos de dados, obrigatoriedade, chaves e finalidade de cada informação armazenada.
 
 A estrutura mantém a consistência com os requisitos, regras de negócio e modelos desenvolvidos anteriormente, incluindo o controle de usuários, clientes, cardápio, mesas, contas, pedidos, pagamentos, estoque, histórico de alterações e reserva de ingredientes.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
