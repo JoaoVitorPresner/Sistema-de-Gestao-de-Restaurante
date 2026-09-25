@@ -190,7 +190,17 @@ Os protótipos desenvolvidos representam as principais interfaces do fluxo do MV
 - Tela de Pagamento;
 - Tela de Estoque.
 
-> Os links individuais da documentação da 3ª Entrega devem ser adicionados aqui após os respectivos arquivos serem enviados para a pasta `3°Entrega`.
+### Documentação
+
+1. [📄 Atualizar a Gestão do Trabalho](./3%C2%B0Entrega/1-Atualizar%20a%20gest%C3%A3o%20do%20trabalho.md)
+2. [📄 Definir Arquitetura e Tecnologias Previstas](./3%C2%B0Entrega/2-Definir%20arquitetura%20e%20tecnologias%20previstas.md)
+3. [📄 Elaborar o Mapa de Navegação e os Protótipos](./3%C2%B0Entrega/3-Elaborar%20o%20mapa%20de%20navega%C3%A7%C3%A3o%20e%20os%20prot%C3%B3tipos.md)
+4. [📄 Definir o Produto Mínimo Viável (MVP)](./3%C2%B0Entrega/4-Definir%20o%20Produto%20M%C3%ADnimo%20Vi%C3%A1vel%20%28MVP%29.md)
+5. [📄 Verificar a Rastreabilidade](./3%C2%B0Entrega/5-Verificar%20a%20rastreabilidade.md)
+
+### Documento completo
+
+[📑 Visualizar PDF da 3ª Entrega](./3%C2%B0Entrega/6-3%C2%B0entrega%20Sistema%20de%20Gest%C3%A3o%20de%20Restaurante.pdf)
 
 ---
 
