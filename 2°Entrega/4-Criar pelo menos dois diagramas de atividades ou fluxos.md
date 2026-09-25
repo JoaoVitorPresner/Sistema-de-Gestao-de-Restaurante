@@ -23,9 +23,9 @@ Caso existam ingredientes suficientes, o pedido é confirmado, registrado com st
 
 ### Diagrama de Atividades
 
-![Diagrama de Atividades - Realizar Pedido](./imagens/diagrama-atividade-realizar-pedido.jpeg)
+![Diagrama de Atividades - Realizar Pedido](./imagens/diagrama-atividade-realizar-pedido.png)
 
-[🔎 Abrir diagrama de Realizar Pedido em tamanho original](./imagens/diagrama-atividade-realizar-pedido.jpeg)
+[🔎 Abrir diagrama de Realizar Pedido em tamanho original](./imagens/diagrama-atividade-realizar-pedido.png)
 
 ### Fluxo representado
 
@@ -68,9 +68,9 @@ Nesse momento, o sistema realiza a baixa dos ingredientes utilizados no estoque 
 
 ### Diagrama de Atividades
 
-![Diagrama de Atividades - Processar Pedido na Cozinha](./imagens/diagrama-atividade-processar-pedido.jpeg)
+![Diagrama de Atividades - Processar Pedido na Cozinha](./imagens/diagrama-atividade-processar-pedido.png)
 
-[🔎 Abrir diagrama de Processar Pedido na Cozinha em tamanho original](./imagens/diagrama-atividade-processar-pedido.jpeg)
+[🔎 Abrir diagrama de Processar Pedido na Cozinha em tamanho original](./imagens/diagrama-atividade-processar-pedido.png)
 
 ### Fluxo representado
 
@@ -103,9 +103,9 @@ Além dos diagramas de atividades, foi elaborado um **diagrama de classes** para
 
 O diagrama apresenta as principais classes do sistema, seus atributos e os relacionamentos existentes entre elas, auxiliando na representação estrutural da solução e servindo como apoio para a construção dos modelos de dados.
 
-![Diagrama de Classes](./imagens/diagrama-de-classes.jpeg)
+![Diagrama de Classes](./imagens/diagrama-de-classes.png)
 
-[🔎 Abrir Diagrama de Classes em tamanho original](./imagens/diagrama-de-classes.jpeg)
+[🔎 Abrir Diagrama de Classes em tamanho original](./imagens/diagrama-de-classes.png)
 
 O diagrama contempla as principais classes relacionadas ao funcionamento do sistema, incluindo usuários, clientes, produtos, ingredientes, mesas, contas, pedidos, pagamentos, estoque e histórico de alterações.
 
