@@ -13,6 +13,7 @@ As tecnologias específicas abaixo serão utilizadas como proposta para a implem
 
 ## 6.1 Diagrama simples de arquitetura
 
+```text
 ┌──────────────┐
 │   USUÁRIO    │
 └──────┬───────┘
@@ -31,7 +32,7 @@ As tecnologias específicas abaixo serão utilizadas como proposta para a implem
 │ BANCO DE DADOS          │
 │ MySQL                   │
 └─────────────────────────┘
-
+```text
 ---
 
 ## Voltar Para:
