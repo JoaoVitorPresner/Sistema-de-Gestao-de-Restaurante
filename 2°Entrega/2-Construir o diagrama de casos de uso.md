@@ -166,11 +166,15 @@ Entre as principais relações estão:
 | Reservar ingredientes | RF13 |
 
 ---
-## Voltar Para:
 
-[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
 ## Resultado
 
 O diagrama de casos de uso permite visualizar de forma geral como os diferentes perfis interagem com o sistema e quais funcionalidades estão disponíveis para cada um.
 
 Essa modelagem serve como base para a especificação detalhada dos casos de uso e para os demais modelos desenvolvidos na segunda entrega.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
