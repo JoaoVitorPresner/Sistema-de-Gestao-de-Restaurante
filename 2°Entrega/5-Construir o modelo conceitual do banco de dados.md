@@ -364,3 +364,9 @@ A modelagem representa os usuários e seus perfis, clientes, cardápio, mesas, c
 O relacionamento muitos-para-muitos entre produtos e ingredientes foi resolvido pela entidade **ProdutoIngrediente**, enquanto a entidade **ReservaIngrediente** permite representar as reservas realizadas para pedidos confirmados.
 
 Esse modelo será utilizado como base para a construção do **modelo lógico do banco de dados**, no qual serão definidos os atributos, chaves primárias, chaves estrangeiras e tipos de dados.
+
+---
+
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
