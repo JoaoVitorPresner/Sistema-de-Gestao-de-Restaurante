@@ -23,3 +23,6 @@
 | **RF19** | Vendas / Permissões | Alta | O sistema deve permitir a aplicação de descontos e o estorno de vendas conforme as permissões dos usuários. |
 | **RF20** | Vendas / Relatórios | Média | O sistema deve emitir comprovantes de venda não fiscais e gerar relatórios básicos de vendas por período. |
 | **RF21** | Auditoria | Média | O sistema deve registrar o histórico de alterações relevantes realizadas no sistema, incluindo alterações de status dos pedidos e movimentações de estoque. |
+## Voltar Para:
+
+[**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
