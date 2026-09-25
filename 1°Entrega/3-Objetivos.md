@@ -9,6 +9,9 @@ Desenvolver um sistema web para gerenciar e otimizar as principais operações d
 * Disponibilizar recursos para controle de mesas, estoque, vendas e pagamentos.
 * Facilitar a comunicação entre atendimento, cozinha e estoque por meio da centralização das informações.
 * Desenvolver uma interface intuitiva e responsiva para utilização em diferentes dispositivos.
+
+---
+
 ## Voltar Para:
 
 [**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
