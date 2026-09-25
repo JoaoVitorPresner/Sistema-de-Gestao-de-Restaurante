@@ -14,6 +14,9 @@
 | **RN12**   | Se um pedido for cancelado antes do início do preparo, os ingredientes reservados deverão ser liberados.                                                                     |
 | **RN13**   | Todo produto que utilizar ingredientes controlados pelo estoque deverá possuir sua composição cadastrada com os respectivos ingredientes e quantidades.                      |
 | **RN14**   | O acesso do cliente vinculado a uma mesa deverá permitir somente operações relacionadas àquela mesa enquanto ela estiver ativa.                                              |
+
+---
+
 ## Voltar Para:
 
 [**Sistema de Gestão de Restaurante**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante)
