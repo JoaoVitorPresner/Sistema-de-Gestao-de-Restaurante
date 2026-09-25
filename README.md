@@ -105,7 +105,7 @@ O objetivo desta entrega é transformar os requisitos definidos anteriormente em
 ---
 
 ## 1. Revisão da Entrega 1
-Acessar: [**Revisar a Entrega 1**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/2%C2%B0Entrega%20/1-Revisar%20a%20Entrega%201.md)
+Acessar: [**Revisar a Entrega 1**](https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante/blob/main/1%C2%B0Entrega%20/1-Revisar%20a%20Entrega%201.md)
 
 A documentação inicial foi revisada para garantir consistência entre:
 
