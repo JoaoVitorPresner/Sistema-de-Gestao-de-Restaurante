@@ -140,15 +140,31 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 ### CT05 — Persistência após reinicialização
 
-- **Requisito:** RF05.
-- **Pré-condições:** registros previamente cadastrados no MySQL.
-- **Passos relatados:** encerrar e reiniciar a aplicação; consultar novamente os registros.
-- **Entrada:** registros cadastrados nos testes anteriores.
-- **Resultado esperado:** registros permanecem disponíveis após reiniciar a aplicação.
-- **Resultado observado informado:** categoria e produto continuaram armazenados no MySQL após reinicialização.
-- **Situação:** **APROVADO (relato de execução manual)**.
-- **Data/hora exata e commit testado:** **a confirmar**.
-- **Evidência a anexar:** `evidencias/CT05-persistencia-apos-reinicio.png`.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot disponível; conexão com MySQL estabelecida; categorias `Bebidas` e `Sobremesas` e produtos `Suco de Laranja` e `Pudim de Leite` previamente cadastrados.
+- **Passos executados:**
+  1. Iniciar a aplicação com `java -jar target\restaurante-0.1.0.jar`.
+  2. Acessar `http://localhost:8080`.
+  3. Consultar as categorias e os produtos cadastrados.
+  4. Confirmar a presença dos quatro registros e capturar a evidência anterior à reinicialização.
+  5. Encerrar a aplicação utilizando `Ctrl + C` no PowerShell.
+  6. Reiniciar a aplicação utilizando o mesmo comando.
+  7. Aguardar a inicialização do servidor e atualizar a página no navegador.
+  8. Consultar novamente os registros, sem realizar novos cadastros.
+  9. Capturar a evidência posterior à reinicialização.
+- **Dados de entrada:** categorias `Bebidas` e `Sobremesas`; produtos `Suco de Laranja` e `Pudim de Leite`, previamente armazenados no MySQL.
+- **Resultado esperado:** os quatro registros devem permanecer armazenados e disponíveis para consulta após encerrar e reiniciar a aplicação.
+- **Resultado observado:** após a reinicialização, as duas categorias e os dois produtos continuaram disponíveis na interface, sem necessidade de novos cadastros, conforme execução manual confirmada.
+- **Situação:** **APROVADO**.
+- **Data da execução:** 20/10/2026.
+- **Horário da execução:** não registrado.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript; servidor local na porta 8080.
+- **Commit exato testado:** `0ab2af6`.
+- **Evidências anexadas:**
+  - `../evidencias/EV05-Antes-Reinicio.png`
+  - `../evidencias/EV05-Persistencia-Apos-Reinicio.png`
+- **Limitação:** o teste confirma a permanência dos registros após reiniciar a aplicação, mas não verifica recuperação de dados após falhas do banco de dados ou outras situações excepcionais.
 
 ### CT06 — Alteração de registro (pendente)
 
