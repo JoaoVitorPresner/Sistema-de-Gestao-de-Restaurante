@@ -97,10 +97,6 @@ Funcionalidades complementares poderão ser desenvolvidas posteriormente, após 
 
 ---
 
-# Organização do projeto
-
-O repositório está organizado por etapas de desenvolvimento. Cada entrega possui sua própria pasta com os documentos e artefatos correspondentes.
-
 ```text
 Sistema-de-Gestao-de-Restaurante/
 │
@@ -112,6 +108,15 @@ Sistema-de-Gestao-de-Restaurante/
 │
 ├── 3°Entrega/
 │   └── Planejamento, arquitetura, protótipos e MVP
+│
+├── 2-Bimestre/
+│   └── Entrega-20-10/
+│       ├── implementacao/
+│       │   └── Aplicação Java com Spring Boot
+│       ├── documentacao/
+│       │   └── Documentação técnica, backlog e testes
+│       └── evidencias/
+│           └── Capturas de tela dos testes
 │
 └── README.md
 ```
@@ -204,6 +209,123 @@ Os protótipos desenvolvidos representam as principais interfaces do fluxo do MV
 
 ---
 
+# 2º Bimestre — Primeira Entrega (20/10/2026)
+
+## Implementação inicial do sistema
+
+Nesta etapa, a equipe iniciou a implementação executável do Sistema de Gestão de Restaurante, priorizando o **RF05 — Gerenciamento do Cardápio**.
+
+O objetivo desta primeira entrega é demonstrar a evolução do planejamento para uma aplicação funcional, acompanhada de documentação técnica, backlog, testes e evidências.
+
+### Funcionalidades implementadas
+
+- Cadastro de categorias do cardápio.
+- Cadastro de produtos associados a categorias.
+- Consulta das categorias cadastradas.
+- Consulta dos produtos cadastrados.
+- Persistência dos registros no banco de dados MySQL.
+- Validações de campos obrigatórios e de preço na interface.
+
+### Funcionalidades pendentes
+
+As operações de edição e exclusão de produtos ainda não estão implementadas. Essas limitações foram registradas nos casos de teste CT06 e CT07 e deverão ser tratadas nas próximas etapas.
+
+A implementação apresentada em 20/10/2026 corresponde a um recorte inicial do RF05 e não representa a conclusão do MVP.
+
+## Tecnologias utilizadas na implementação
+
+| Componente | Tecnologia |
+|---|---|
+| Linguagem | Java 17 |
+| Framework | Spring Boot 3.3.5 |
+| Gerenciamento de dependências | Maven |
+| Banco de dados da aplicação | MySQL |
+| Banco dos testes automatizados | H2 em memória |
+| Interface | HTML, CSS e JavaScript |
+| Controle de versão | Git e GitHub |
+
+## Como executar a implementação
+
+### Pré-requisitos
+
+- Java 17 instalado e configurado.
+- Maven disponível no terminal.
+- MySQL instalado e em execução.
+- Banco de dados e variáveis de conexão configurados conforme a documentação da implementação.
+
+As variáveis de configuração utilizadas são `DB_URL`, `DB_USER` e `DB_PASSWORD`. Não devem ser publicadas senhas ou outras credenciais no repositório.
+
+### Compilar a aplicação
+
+Na raiz do repositório, acessar a pasta da implementação:
+
+```powershell
+cd "2-Bimestre/Entrega-20-10/implementacao"
+```
+
+Executar:
+
+```powershell
+mvn clean package -DskipTests
+```
+
+### Iniciar a aplicação
+
+```powershell
+java -jar target\restaurante-0.1.0.jar
+```
+
+Após a inicialização, acessar:
+
+`http://localhost:8080`
+
+Para encerrar o servidor, utilizar `Ctrl + C` no terminal.
+
+### Executar os testes automatizados
+
+Na pasta da implementação:
+
+```powershell
+mvn clean test
+```
+
+A execução registrada na entrega de 20/10/2026 apresentou dois testes aprovados, sem falhas ou erros, utilizando H2 em memória.
+
+## Testes e evidências
+
+Foram documentados oito casos de teste relacionados ao RF05:
+
+| Situação | Quantidade |
+|---|---:|
+| Aprovados | 6 |
+| Bloqueados | 2 |
+| Total | 8 |
+
+Os casos CT01 a CT05 e CT08 foram aprovados dentro dos respectivos escopos de verificação.
+
+Os casos CT06 e CT07 ficaram bloqueados porque as funcionalidades de edição e exclusão ainda não foram implementadas.
+
+As verificações do CT08 foram realizadas na interface web; a validação direta da API não foi executada.
+
+## Documentação da entrega
+
+- [Documentação técnica](./2-Bimestre/Entrega-20-10/documentacao/Documentacao-Tecnica-Entrega-20-10.md)
+- [Backlog e planejamento](./2-Bimestre/Entrega-20-10/documentacao/Backlog-e-Planejamento-20-10.md)
+- [Testes e evidências](./2-Bimestre/Entrega-20-10/documentacao/Testes-e-Evidencias-20-10.md)
+- [Código-fonte da implementação](./2-Bimestre/Entrega-20-10/implementacao/)
+- [Capturas de tela dos testes](./2-Bimestre/Entrega-20-10/evidencias/)
+
+## Identificação da entrega
+
+- **Data:** 20/10/2026.
+- **Branch:** `entrega-20-10-2026`.
+- **Commit de referência:** `2f96830`.
+- **Situação:** implementação inicial executável, com testes e pendências documentadas.
+
+A equipe continuará o desenvolvimento para a entrega de 06/11/2026, ampliando as funcionalidades e a integração do sistema.
+
+---
+
 ## Fluxo de evolução do projeto
 
 ```text
@@ -225,4 +347,6 @@ Cada etapa utiliza os artefatos produzidos anteriormente, mantendo a rastreabili
 
 ## Repositório
 
-Este repositório reúne a documentação, os diagramas, os modelos de banco de dados, os protótipos e, posteriormente, o código-fonte desenvolvido durante a evolução do projeto **Sistema de Gestão de Restaurante**.
+Este repositório reúne a documentação, os diagramas, os modelos de banco de dados, os protótipos e o código-fonte desenvolvido durante a evolução do projeto **Sistema de Gestão de Restaurante**.
+
+A implementação inicial foi disponibilizada na entrega de 20/10/2026, juntamente com os registros de testes, evidências e planejamento das próximas etapas.
