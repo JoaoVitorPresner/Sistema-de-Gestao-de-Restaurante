@@ -34,7 +34,7 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 | ID | Requisito | Verificação | Situação | Evidência |
 |---|---|---|---|---|
-| CT01 | RF05 | Execução dos testes automatizados via Maven | **APROVADO** — 2 testes, 0 falhas, 0 erros, 0 ignorados | `../evidencias/EV01-Testes-Automatizados.png` |
+| CT01 | RF05 | Execução dos testes automatizados via Maven | **APROVADO** — 2 testes, 0 falhas, 0 erros, 0 ignorados | [EV01-Testes-Automatizados.png](../evidencias/EV01-Testes-Automatizados.png) |
 | CT02 | RF05 | Cadastro da categoria `Sobremesas` | **APROVADO** — categoria cadastrada e apresentada na listagem | `../evidencias/EV02-Cadastro-Categoria.png` |
 | CT03 | RF05 | Cadastro do produto `Pudim de Leite` | **APROVADO** — produto cadastrado e apresentado na listagem | `../evidencias/EV03-Cadastro-Produto.png` |
 | CT04 | RF05 | Consulta de categorias e produtos | **APROVADO** — registros apresentados corretamente | `../evidencias/EV04-Consulta-Cardapio.png` |
@@ -93,7 +93,7 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Testador:** a confirmar.
 - **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript; servidor local na porta 8080.
 - **Commit exato testado:** `6e0eb6b`.
-- **Evidência anexada:** `../evidencias/EV02-Cadastro-Categoria.png`.
+- **Evidência anexada:** [EV02-Cadastro-Categoria.png](../evidencias/EV02-Cadastro-Categoria.png).
 - **Limitação:** este teste confirma o cadastro e a visualização da categoria na interface. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT03 — Cadastro de produto
@@ -117,7 +117,8 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Testador:** a confirmar.
 - **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
 - **Commit exato testado:** `dc41aa1`.
-- **Evidência anexada:** `../evidencias/EV03-Cadastro-Produto.png`.
+- **Evidência anexada:** [EV03-Cadastro-Produto.png](../evidencias/EV03-Cadastro-Produto.png)
+.
 - **Limitação:** este teste verifica o cadastro e a visualização inicial do produto. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT04 — Consulta de registros
@@ -140,7 +141,7 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Testador:** a confirmar.
 - **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
 - **Commit exato testado:** `a2d801b`.
-- **Evidência anexada:** `../evidencias/EV04-Consulta-Cardapio.png`.
+- **Evidência anexada:** [EV04-Consulta-Cardapio.png](../evidencias/EV04-Consulta-Cardapio.png).
 - **Limitação:** este teste confirma a consulta dos registros existentes. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT05 — Persistência após reinicialização
@@ -167,8 +168,8 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript; servidor local na porta 8080.
 - **Commit exato testado:** `0ab2af6`.
 - **Evidências anexadas:**
-  - `../evidencias/EV05-Antes-Reinicio.png`
-  - `../evidencias/EV05-Persistencia-Apos-Reinicio.png`
+  - [EV05-Antes-Reinicio.png](../evidencias/EV05-Antes-Reinicio.png)
+  - [EV05-Persistencia-Apos-Reinicio.png](../evidencias/EV05-Persistencia-Apos-Reinicio.png)
 - **Limitação:** o teste confirma a permanência dos registros após reiniciar a aplicação, mas não verifica recuperação de dados após falhas do banco de dados ou outras situações excepcionais.
 
 ### CT06 — Alteração de registro (bloqueado)
@@ -235,7 +236,7 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Resultado esperado:** impedir o cadastro de produto sem nome.
 - **Resultado observado:** o navegador exibiu a mensagem `Preencha este campo` e impediu o envio do formulário.
 - **Situação:** APROVADO.
-- **Evidência:** `../evidencias/EV08-Validacao-Nome-Obrigatorio.png`.
+- **Evidência:** [EV08-Validacao-Nome-Obrigatorio.png](../evidencias/EV08-Validacao-Nome-Obrigatorio.png).
 
 **Verificação 2 — Preço negativo**
 
@@ -243,7 +244,8 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Resultado esperado:** impedir o cadastro de produto com preço negativo.
 - **Resultado observado:** o navegador impediu o envio do formulário e apresentou uma mensagem de validação.
 - **Situação:** APROVADO.
-- **Evidência:** `../evidencias/EV08-Validacao-Preco-Negativo.png`.
+- **Evidência:** [EV08-Validacao-Preco-Negativo.png](../evidencias/EV08-Validacao-Preco-Negativo.png)
+.
 
 **Verificação 3 — Preço obrigatório**
 
@@ -251,7 +253,8 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Resultado esperado:** impedir o cadastro de produto sem preço.
 - **Resultado observado:** o navegador exibiu a mensagem `Preencha este campo` e impediu o envio do formulário.
 - **Situação:** APROVADO.
-- **Evidência:** `../evidencias/EV08-Validacao-Preco-Obrigatorio.png`.
+- **Evidência:** [EV08-Validacao-Preco-Obrigatorio.png](../evidencias/EV08-Validacao-Preco-Obrigatorio.png)
+.
 
 **Verificação 4 — Categoria obrigatória**
 
@@ -259,7 +262,7 @@ Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua id
 - **Resultado esperado:** impedir o cadastro de produto sem categoria.
 - **Resultado observado:** o navegador impediu o envio do formulário e solicitou a seleção de uma categoria.
 - **Situação:** APROVADO.
-- **Evidência:** `../evidencias/EV08-Validacao-Categoria-Obrigatoria.png`.
+- **Evidência:** [EV08-Validacao-Categoria-Obrigatoria.png](../evidencias/EV08-Validacao-Categoria-Obrigatoria.png).
 
 **Resultado consolidado:** quatro verificações executadas e aprovadas na interface.
 
