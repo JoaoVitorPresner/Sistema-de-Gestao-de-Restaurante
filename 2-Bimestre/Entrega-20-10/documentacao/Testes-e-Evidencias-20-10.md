@@ -93,15 +93,27 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 ### CT03 — Cadastro de produto
 
-- **Requisito:** RF05.
-- **Pré-condições:** aplicação e MySQL disponíveis; categoria de exemplo cadastrada.
-- **Passos relatados:** acessar a interface; preencher os dados de um produto; salvar o cadastro.
-- **Dados de entrada conhecidos:** nome `Suco de Laranja`; demais campos e valores usados **a confirmar**.
-- **Resultado esperado:** produto gravado e disponível no cardápio.
-- **Resultado observado informado:** cadastro de `Suco de Laranja` realizado com sucesso.
-- **Situação:** **APROVADO (relato de execução manual)**.
-- **Data/hora exata e commit testado:** **a confirmar**.
-- **Evidência a anexar:** `evidencias/CT03-produto-suco.png`.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada; conexão com MySQL disponível; categoria `Sobremesas` previamente cadastrada; interface acessível em `http://localhost:8080`.
+- **Passos executados:**
+  1. Iniciar a aplicação com `java -jar target\restaurante-0.1.0.jar`.
+  2. Acessar a interface pelo navegador.
+  3. Localizar o formulário de cadastro de produtos.
+  4. Preencher os dados do produto `Pudim de Leite`.
+  5. Selecionar a categoria `Sobremesas`.
+  6. Salvar o cadastro.
+  7. Verificar se o produto aparece na listagem.
+- **Dados de entrada:** produto `Pudim de Leite`; categoria `Sobremesas`; preço sugerido de R$ 12,90 e descrição sugerida `Pudim de leite condensado` (confirmar os valores efetivamente utilizados).
+- **Resultado esperado:** produto cadastrado com sucesso, associado à categoria selecionada e disponível para consulta.
+- **Resultado observado:** o produto `Pudim de Leite` apareceu corretamente na listagem após o cadastro, conforme confirmação da execução manual.
+- **Situação:** **APROVADO**.
+- **Data da execução:** 20/10/2026.
+- **Horário da execução:** não registrado.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
+- **Commit exato testado:** `dc41aa1`.
+- **Evidência anexada:** `../evidencias/EV03-Cadastro-Produto.png`.
+- **Limitação:** este teste verifica o cadastro e a visualização inicial do produto. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT04 — Consulta de registros
 
