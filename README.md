@@ -203,6 +203,119 @@ Os protótipos desenvolvidos representam as principais interfaces do fluxo do MV
 [📑 Visualizar PDF da 3ª Entrega](./3%C2%B0Entrega/6-3%C2%B0entrega%20Sistema%20de%20Gest%C3%A3o%20de%20Restaurante.pdf)
 
 ---
+---
+
+# 2º Bimestre — Primeira Entrega (20/10/2026)
+
+## Implementação inicial
+
+Nesta etapa, a equipe iniciou a implementação do Sistema de Gestão de Restaurante, priorizando o **RF05 — Gerenciamento do Cardápio**.
+
+A entrega apresenta uma aplicação web executável, acompanhada de documentação técnica, planejamento, testes e evidências.
+
+### Funcionalidades implementadas
+
+- Cadastro de categorias do cardápio.
+- Cadastro de produtos associados a categorias.
+- Consulta de categorias e produtos cadastrados.
+- Persistência dos dados no MySQL.
+- Validação de campos obrigatórios e valores de preço na interface.
+
+### Funcionalidades pendentes
+
+As operações de edição e exclusão de produtos ainda não foram implementadas. Essas limitações estão documentadas nos casos de teste CT06 e CT07.
+
+A implementação de 20/10 representa apenas uma etapa inicial do desenvolvimento, não a conclusão do MVP.
+
+## Tecnologias utilizadas
+
+| Componente | Tecnologia |
+|---|---|
+| Linguagem | Java 17 |
+| Backend | Spring Boot 3.3.5 |
+| Gerenciamento de dependências | Maven |
+| Banco de dados | MySQL |
+| Banco de testes | H2 em memória |
+| Frontend | HTML, CSS e JavaScript |
+
+## Como executar a implementação
+
+### Pré-requisitos
+
+- Java 17.
+- Maven.
+- MySQL instalado e em execução.
+- Banco de dados e conexão configurados para a aplicação.
+
+### Compilar
+
+Na raiz do repositório, acessar a pasta da implementação:
+
+```powershell
+cd "2-Bimestre/Entrega-20-10/implementacao"
+```
+
+Executar:
+
+```powershell
+mvn clean package -DskipTests
+```
+
+### Iniciar o servidor
+
+```powershell
+java -jar target\restaurante-0.1.0.jar
+```
+
+Após a inicialização, acessar:
+
+http://localhost:8080
+
+Para encerrar o servidor, pressionar `Ctrl + C` no terminal.
+
+### Executar os testes automatizados
+
+Na pasta da implementação:
+
+```powershell
+mvn clean test
+```
+
+A execução registrada apresentou dois testes automatizados aprovados, sem falhas ou erros.
+
+## Testes e evidências
+
+Foram registrados oito casos de teste:
+
+| Resultado | Quantidade |
+|---|---:|
+| Aprovados | 6 |
+| Bloqueados | 2 |
+| Total | 8 |
+
+Os casos CT01 a CT05 e CT08 foram aprovados nos escopos avaliados.
+
+Os casos CT06 e CT07 permaneceram bloqueados porque as operações de edição e exclusão ainda não estão disponíveis.
+
+As verificações do CT08 foram realizadas na interface web, sem teste direto da API.
+
+## Documentação da entrega
+
+- [Documentação técnica](./2-Bimestre/Entrega-20-10/documentacao/Documentacao-Tecnica-Entrega-20-10.md)
+- [Backlog e planejamento](./2-Bimestre/Entrega-20-10/documentacao/Backlog-e-Planejamento-20-10.md)
+- [Testes e evidências](./2-Bimestre/Entrega-20-10/documentacao/Testes-e-Evidencias-20-10.md)
+- [Código-fonte](./2-Bimestre/Entrega-20-10/implementacao/)
+- [Capturas de tela dos testes](./2-Bimestre/Entrega-20-10/evidencias/)
+
+## Identificação da entrega
+
+- **Data:** 20/10/2026.
+- **Branch:** `entrega-20-10-2026`.
+- **Commit de referência dos testes:** `2f96830`.
+- **Situação:** implementação inicial executável, com testes e pendências documentadas.
+
+---
+
 
 ## Fluxo de evolução do projeto
 
