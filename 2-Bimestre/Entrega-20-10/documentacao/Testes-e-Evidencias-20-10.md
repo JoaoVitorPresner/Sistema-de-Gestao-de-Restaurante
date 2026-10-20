@@ -166,16 +166,30 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
   - `../evidencias/EV05-Persistencia-Apos-Reinicio.png`
 - **Limitação:** o teste confirma a permanência dos registros após reiniciar a aplicação, mas não verifica recuperação de dados após falhas do banco de dados ou outras situações excepcionais.
 
-### CT06 — Alteração de registro (pendente)
+### CT06 — Alteração de registro (bloqueado)
 
-- **Requisito:** RF05.
-- **Pré-condições:** possuir categoria ou produto existente.
-- **Passos propostos:** localizar um registro; alterar um campo permitido; salvar; consultar novamente.
-- **Entrada proposta:** alterar a descrição ou outro campo editável de um produto fictício.
-- **Resultado esperado:** novo valor persistido e apresentado corretamente.
-- **Resultado observado:** **não há execução confirmada**.
-- **Situação:** **NÃO EXECUTADO / NÃO CONFIRMADO**.
-- **Data, commit e evidência:** pendentes.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada; conexão com MySQL disponível; produto `Pudim de Leite` previamente cadastrado; interface acessível em `http://localhost:8080`.
+- **Passos de verificação realizados:**
+  1. Iniciar a aplicação e acessar a interface pelo navegador.
+  2. Localizar o produto `Pudim de Leite` na listagem.
+  3. Procurar uma opção de edição ou alteração do produto.
+  4. Constatar a ausência de uma opção de edição na interface.
+  5. Inspecionar o arquivo `ApiController.java` para verificar a existência de endpoints de atualização.
+  6. Confirmar que o controlador não possui métodos com `@PutMapping` ou `@PatchMapping`.
+- **Entrada proposta:** produto `Pudim de Leite`; alteração de preço para R$ 14,90, condicionada à verificação do preço original.
+- **Resultado esperado:** permitir a alteração de um campo editável de um produto existente, salvar a modificação no banco de dados e apresentar o novo valor na consulta.
+- **Resultado observado:** a interface não apresenta uma opção de edição de produtos. A inspeção do controlador confirmou que não existem endpoints de atualização implementados. Por esse motivo, não foi possível executar a operação de alteração nem verificar sua persistência.
+- **Situação:** **BLOQUEADO — FUNCIONALIDADE NÃO IMPLEMENTADA**.
+- **Data da verificação:** 20/10/2026.
+- **Horário da verificação:** não registrado.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
+- **Commit da versão verificada:** `ecc652f`.
+- **Evidência:** inspeção do arquivo `src/main/java/br/com/restaurante/ApiController.java` e verificação manual da interface; captura de tela não anexada.
+- **Pendência identificada:** implementar a funcionalidade de alteração de produtos, incluindo endpoint de atualização, opção de edição na interface e persistência das modificações no MySQL.
+- **Encaminhamento:** registrar a implementação no backlog, com responsável, prioridade e prazo definidos pela equipe; executar novamente o CT06 após a implementação.
+- **Limitação:** este registro documenta o impedimento encontrado, não constituindo aprovação ou reprovação de uma operação de atualização efetivamente executada.
 
 ### CT07 — Exclusão de registro (pendente)
 
