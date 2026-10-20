@@ -50,29 +50,46 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 ### CT01 — Execução dos testes automatizados
 
-- **Requisito relacionado:** RF05 — Cardápio (verificações automatizadas do projeto; associação exata de cada método ao requisito precisa ser conferida no código).
-- **Pré-condições:** projeto Maven disponível e Java 17 configurado no terminal.
-- **Passos executados:** abrir o terminal na pasta `implementacao`; executar `mvn clean test`; conferir o resumo.
-- **Entrada:** código e configurações de teste do projeto; sem entrada manual adicional.
-- **Resultado esperado:** testes executados sem falhas ou erros; comando finaliza com `BUILD SUCCESS`.
-- **Resultado observado informado:** `Tests run: 2, Failures: 0, Errors: 0, Skipped: 0` e `BUILD SUCCESS`.
+- **Requisito relacionado:** RF05 — Cardápio (testes automatizados da aplicação; a correspondência específica dos dois métodos com cada comportamento do RF05 deve ser conferida no código).
+- **Responsável pelo registro:** MateusPresner. **Executor do teste:** não identificado no registro do terminal; confirmar com a equipe.
+- **Pré-condições:** projeto Maven disponível na pasta `2-Bimestre/Entrega-20-10/implementacao`; Java Temurin 17.0.20.1 configurado; dependências Maven acessíveis.
+- **Ambiente de execução:** Windows, Java Temurin 17.0.20.1, Spring Boot 3.3.5, Maven (versão exata não registrada) e banco H2 em memória para os testes automatizados.
+- **Passos executados:**
+  1. Acessar a pasta `2-Bimestre/Entrega-20-10/implementacao` pelo PowerShell.
+  2. Executar `java -version` e confirmar a versão 17.0.20.1.
+  3. Executar `mvn clean test`.
+  4. Conferir o resumo dos testes e o resultado final da compilação.
+- **Entrada:** código-fonte e configurações de teste do projeto, sem dados digitados manualmente.
+- **Resultado esperado:** execução dos testes automatizados sem falhas ou erros, encerrando com `BUILD SUCCESS`.
+- **Resultado observado:** execução de `br.com.restaurante.ApiControllerTest` com `Tests run: 2, Failures: 0, Errors: 0, Skipped: 0` e `BUILD SUCCESS`.
 - **Situação:** **APROVADO**.
-- **Data/hora exata da execução:** **a confirmar**.
-- **Commit exato testado:** **a confirmar**.
-- **Evidência a anexar:** `evidencias/CT01-maven-testes.png` ou `evidencias/CT01-maven-testes.txt`.
-- **Limitação:** o H2 utilizado nos testes automatizados não substitui a verificação manual de persistência no MySQL.
+- **Data e horário da execução:** 20/10/2026, conclusão às 17:29:45 (UTC−03:00), conforme saída do Maven.
+- **Branch e commit da versão testada:** `entrega-20-10-2026`, commit `e413d38`, informado por `git rev-parse --short HEAD` após a execução; não houve alteração de código relatada entre os comandos.
+- **Evidência:** [`EV01-Testes-Automatizados.png`](../evidencias/EV01-Testes-Automatizados.png), captura salva em `2-Bimestre/Entrega-20-10/evidencias/` em 20/10/2026 às 17:36, conforme listagem do PowerShell. **Confirmar o envio da imagem ao GitHub.**
+- **Limitação:** a execução automatizada utilizou H2 em memória, não MySQL. Este resultado comprova a aprovação dos dois testes existentes, mas não a cobertura completa do RF05 nem a persistência real no MySQL, que é verificada separadamente no CT05.
 
 ### CT02 — Cadastro de categoria
 
-- **Requisito:** RF05.
-- **Pré-condições:** aplicação iniciada; conexão com MySQL disponível; interface acessível em `http://localhost:8080`.
-- **Passos relatados:** acessar a interface; cadastrar uma categoria; verificar sua apresentação na aplicação.
-- **Dados de entrada:** nome da categoria `Bebidas`.
-- **Resultado esperado:** categoria cadastrada e disponível para consulta.
-- **Resultado observado informado:** cadastro de `Bebidas` realizado com sucesso.
-- **Situação:** **APROVADO (relato de execução manual)**.
-- **Data/hora exata e commit testado:** **a confirmar**.
-- **Evidência a anexar:** `evidencias/CT02-categoria-bebidas.png`.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada com Java 17; conexão com MySQL estabelecida; interface acessível em `http://localhost:8080`.
+- **Passos executados:**
+  1. Iniciar a aplicação com `java -jar target\restaurante-0.1.0.jar`.
+  2. Acessar a interface pelo navegador.
+  3. Localizar o formulário de cadastro de categorias.
+  4. Informar o nome `Sobremesas`.
+  5. Salvar o cadastro.
+  6. Verificar se a categoria aparece na listagem.
+- **Dados de entrada:** nome da categoria `Sobremesas`.
+- **Resultado esperado:** categoria cadastrada com sucesso e disponível para consulta na interface.
+- **Resultado observado:** a categoria `Sobremesas` foi cadastrada e apareceu corretamente na listagem, conforme confirmação da execução manual.
+- **Situação:** **APROVADO**.
+- **Data da execução:** 20/10/2026.
+- **Horário da execução:** não registrado; aplicação iniciada às 17h54min54s.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript; servidor local na porta 8080.
+- **Commit exato testado:** `6e0eb6b`.
+- **Evidência anexada:** `../evidencias/EV02-Cadastro-Categoria.png`.
+- **Limitação:** este teste confirma o cadastro e a visualização da categoria na interface. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT03 — Cadastro de produto
 
