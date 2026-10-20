@@ -7,9 +7,8 @@
 **Repositório:** https://github.com/JoaoVitorPresner/Sistema-de-Gestao-de-Restaurante  
 **Branch de trabalho:** `entrega-20-10-2026`  
 **Data de elaboração deste registro:** 20/10/2026  
-**Situação:** registro inicial; evidências visuais e dados de execução ainda precisam ser complementados.
+**Situação:** registro atualizado após a execução dos CT01 a CT08; seis casos aprovados e dois bloqueados. Permanecem pendentes a confirmação dos testadores e a conferência final das evidências no GitHub.
 
-> **Critério de honestidade dos registros:** somente resultados efetivamente informados como executados estão marcados como aprovados. Não foram presumidos horários, datas específicas de execução, capturas de tela, conteúdo dos dois métodos de teste ou a versão exata usada em cada teste. Essas informações devem ser conferidas pela equipe antes da entrega.
 
 ## 1. Objetivo e escopo
 
@@ -33,18 +32,24 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 ## 3. Resumo dos testes e situações
 
-| ID | Requisito | Verificação | Resultado informado | Evidência |
+| ID | Requisito | Verificação | Situação | Evidência |
 |---|---|---|---|---|
-| CT01 | RF05 | Execução dos testes automatizados via Maven | **Aprovado**: 2 executados, 0 falhas, 0 erros, 0 ignorados | Saída de terminal conhecida; arquivo/captura pendente |
-| CT02 | RF05 | Cadastrar categoria de exemplo | **Aprovado**, conforme execução manual relatada | Captura pendente |
-| CT03 | RF05 | Cadastrar produto associado ao cardápio | **Aprovado**, conforme execução manual relatada | Captura pendente |
-| CT04 | RF05 | Consultar os registros cadastrados | **Aprovado**, conforme execução manual relatada | Captura pendente |
-| CT05 | RF05 | Verificar persistência após reiniciar a aplicação | **Aprovado**, conforme execução manual relatada | Captura pendente |
-| CT06 | RF05 | Alterar categoria ou produto existente | **Não executado / não confirmado** | Pendente |
-| CT07 | RF05 | Excluir categoria ou produto existente | **Não executado / não confirmado** | Pendente |
-| CT08 | RF05 | Validar campos obrigatórios e entradas inválidas | **Não executado / não confirmado** | Pendente |
+| CT01 | RF05 | Execução dos testes automatizados via Maven | **APROVADO** — 2 testes, 0 falhas, 0 erros, 0 ignorados | `../evidencias/EV01-Testes-Automatizados.png` |
+| CT02 | RF05 | Cadastro da categoria `Sobremesas` | **APROVADO** — categoria cadastrada e apresentada na listagem | `../evidencias/EV02-Cadastro-Categoria.png` |
+| CT03 | RF05 | Cadastro do produto `Pudim de Leite` | **APROVADO** — produto cadastrado e apresentado na listagem | `../evidencias/EV03-Cadastro-Produto.png` |
+| CT04 | RF05 | Consulta de categorias e produtos | **APROVADO** — registros apresentados corretamente | `../evidencias/EV04-Consulta-Cardapio.png` |
+| CT05 | RF05 | Persistência após reinicialização da aplicação | **APROVADO** — registros permaneceram disponíveis após reiniciar | `../evidencias/EV05-Antes-Reinicio.png` e `../evidencias/EV05-Persistencia-Apos-Reinicio.png` |
+| CT06 | RF05 | Alteração de produto existente | **BLOQUEADO** — funcionalidade de edição não implementada | Inspeção da interface e do `ApiController.java`; sem captura anexada |
+| CT07 | RF05 | Exclusão de produto existente | **BLOQUEADO** — funcionalidade de exclusão não implementada | Inspeção da interface e do `ApiController.java`; sem captura anexada |
+| CT08 | RF05 | Validação de campos obrigatórios e preço negativo | **APROVADO — INTERFACE** — quatro verificações aprovadas | Quatro capturas `EV08-Validacao-*.png` |
 
-> Os identificadores CT01–CT08 organizam **este documento**. Se a equipe já possui identificadores de casos de teste no primeiro bimestre, alinhar a nomenclatura antes da versão final.
+**Resultado consolidado:** 8 casos de teste registrados, sendo **6 aprovados e 2 bloqueados**.
+
+Os casos CT06 e CT07 não foram aprovados nem reprovados, pois as operações necessárias ainda não estão implementadas.
+
+O CT08 comprova as validações realizadas pelo navegador. A validação direta dos endpoints da API não foi executada.
+
+Os identificadores CT01–CT08 organizam este documento. Caso a equipe possua identificadores anteriores para os mesmos testes, deverá alinhar a nomenclatura na documentação.
 
 ## 4. Registros detalhados
 
@@ -216,73 +221,178 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 - **Encaminhamento:** registrar a implementação no backlog, com responsável, prioridade e prazo definidos pela equipe; executar novamente o CT07 após a implementação.
 - **Limitação:** este registro documenta o impedimento encontrado, não constituindo aprovação ou reprovação de uma operação de exclusão efetivamente executada.
 
-### CT08 — Validações de entrada (pendente)
+### CT08 — Validação de campos obrigatórios e entradas inválidas
 
-- **Requisito:** RF05 e regras de negócio pertinentes, a confirmar na documentação original.
-- **Pré-condições:** formulário de cadastro acessível.
-- **Passos propostos:** tentar salvar campos obrigatórios vazios e outros valores inválidos previstos nas regras.
-- **Entrada:** casos inválidos a definir com base nas regras de negócio.
-- **Resultado esperado:** entradas inválidas são rejeitadas com resposta compreensível, sem gravar dados inconsistentes.
-- **Resultado observado:** **não há execução confirmada**.
-- **Situação:** **NÃO EXECUTADO / NÃO CONFIRMADO**.
-- **Data, commit e evidência:** pendentes.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada; conexão com MySQL disponível; interface acessível em `http://localhost:8080`; categoria `Sobremesas` previamente cadastrada.
+- **Data da execução:** 20/10/2026.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
+
+**Verificação 1 — Nome obrigatório**
+
+- **Entrada:** nome vazio; categoria `Sobremesas`; preço R$ 10,00; descrição `Produto fictício para teste`.
+- **Resultado esperado:** impedir o cadastro de produto sem nome.
+- **Resultado observado:** o navegador exibiu a mensagem `Preencha este campo` e impediu o envio do formulário.
+- **Situação:** APROVADO.
+- **Evidência:** `../evidencias/EV08-Validacao-Nome-Obrigatorio.png`.
+
+**Verificação 2 — Preço negativo**
+
+- **Entrada:** nome `Produto Teste Preço`; categoria `Sobremesas`; preço `-10`; descrição `Teste de preço negativo`.
+- **Resultado esperado:** impedir o cadastro de produto com preço negativo.
+- **Resultado observado:** o navegador impediu o envio do formulário e apresentou uma mensagem de validação.
+- **Situação:** APROVADO.
+- **Evidência:** `../evidencias/EV08-Validacao-Preco-Negativo.png`.
+
+**Verificação 3 — Preço obrigatório**
+
+- **Entrada:** nome `Produto Teste Sem Preço`; categoria `Sobremesas`; preço vazio; descrição `Teste de preço obrigatório`.
+- **Resultado esperado:** impedir o cadastro de produto sem preço.
+- **Resultado observado:** o navegador exibiu a mensagem `Preencha este campo` e impediu o envio do formulário.
+- **Situação:** APROVADO.
+- **Evidência:** `../evidencias/EV08-Validacao-Preco-Obrigatorio.png`.
+
+**Verificação 4 — Categoria obrigatória**
+
+- **Entrada:** nome `Produto Teste Sem Categoria`; categoria não selecionada; preço R$ 10,00; descrição `Teste de categoria obrigatória`.
+- **Resultado esperado:** impedir o cadastro de produto sem categoria.
+- **Resultado observado:** o navegador impediu o envio do formulário e solicitou a seleção de uma categoria.
+- **Situação:** APROVADO.
+- **Evidência:** `../evidencias/EV08-Validacao-Categoria-Obrigatoria.png`.
+
+**Resultado consolidado:** quatro verificações executadas e aprovadas na interface.
+
+- **Situação do CT08:** **APROVADO — VALIDAÇÕES DA INTERFACE**.
+- **Commit da versão testada:** `fa85052`.
+- **Limitação:** as verificações foram realizadas pela interface web. A validação diretamente nos endpoints da API não foi executada e deverá ser verificada separadamente, se necessária ao escopo.
+- **Encaminhamento:** manter as evidências no repositório e atualizar a rastreabilidade do requisito RF05.
 
 ## 5. Organização das evidências
 
-Salvar capturas e registros reais na pasta `2-Bimestre/Entrega-20-10/documentacao/evidencias/` com os nomes sugeridos nos testes. Não criar imagens fictícias para simular resultados. Antes de capturar telas, utilizar somente dados de demonstração e ocultar credenciais, tokens e informações pessoais.
+As evidências dos testes foram organizadas na pasta:
 
-### Como registrar a saída do Maven
+`2-Bimestre/Entrega-20-10/evidencias/`
 
-Na pasta `implementacao`, com Java 17 ativo:
+Os registros detalhados estão documentados em:
+
+`2-Bimestre/Entrega-20-10/documentacao/Testes-e-Evidencias-20-10.md`
+
+### Evidências registradas
+
+| Teste | Arquivo ou registro |
+|---|---|
+| CT01 | `EV01-Testes-Automatizados.png` |
+| CT02 | `EV02-Cadastro-Categoria.png` |
+| CT03 | `EV03-Cadastro-Produto.png` |
+| CT04 | `EV04-Consulta-Cardapio.png` |
+| CT05 | `EV05-Antes-Reinicio.png` |
+| CT05 | `EV05-Persistencia-Apos-Reinicio.png` |
+| CT06 | Inspeção da interface e do código; captura não anexada |
+| CT07 | Inspeção da interface e do código; captura não anexada |
+| CT08 | `EV08-Validacao-Nome-Obrigatorio.png` |
+| CT08 | `EV08-Validacao-Preco-Negativo.png` |
+| CT08 | `EV08-Validacao-Preco-Obrigatorio.png` |
+| CT08 | `EV08-Validacao-Categoria-Obrigatoria.png` |
+
+As capturas foram registradas durante as verificações manuais informadas pela equipe. A presença de todos os arquivos no repositório remoto deverá ser confirmada antes da entrega.
+
+### Execução dos testes automatizados
+
+Os testes automatizados foram executados com Java 17, utilizando o comando:
 
 ```powershell
-mvn clean test 2>&1 | Tee-Object -FilePath "..\documentacao\evidencias\CT01-maven-testes.txt"
+mvn clean test
 ```
 
-**Atenção:** o caminho acima pressupõe que o terminal está em `2-Bimestre/Entrega-20-10/implementacao` e que a pasta `evidencias` já existe. Esta será **uma nova execução**, com nova data e commit a registrar; só marque como aprovada após verificar o resultado real. Alternativamente, salvar captura do resumo do terminal.
+O resultado registrado no CT01 foi:
 
-### Registro complementar obrigatório para cada execução
+- Tests run: 2
+- Failures: 0
+- Errors: 0
+- Skipped: 0
+- BUILD SUCCESS
 
-| Campo | Preencher após executar |
-|---|---|
-| Data e horário | `DD/MM/AAAA HH:MM` |
-| Testador | Usuário GitHub de quem executou |
-| Versão / commit | Saída de `git rev-parse --short HEAD` |
-| Ambiente | Java, Maven, MySQL/H2 conforme o teste |
-| Resultado observado | O que efetivamente aconteceu |
-| Evidência | Caminho do arquivo anexado |
-| Defeito, se houver | Descrição, passos para reproduzir e responsável pela correção |
+O banco utilizado nesses testes foi H2 em memória. A persistência real no MySQL foi verificada separadamente no CT05.
 
-## 6. Defeitos, limitações e riscos conhecidos
+### Identificação e rastreabilidade
 
-| Item | Situação | Ação |
-|---|---|---|
-| Incompatibilidade anterior com JDK 26 durante os testes (Mockito/Byte Buddy) | Contornada ao executar com Java 17; testes passaram | Documentar Java 17 no README e validar em outra máquina |
-| Alteração e exclusão do RF05 | Não verificadas | Executar CT06 e CT07 e registrar resultados reais |
-| Validações de entrada | Não verificadas | Confrontar regras originais e executar CT08 |
-| Evidências visuais | Não anexadas neste registro inicial | Capturar telas e logs reais |
-| Datas e commits exatos dos testes já relatados | Não registrados | Completar com informações verificáveis; não inventar |
+Cada caso de teste contém informações sobre requisito, pré-condições, passos, entradas, resultados esperados e observados, situação, data e commit da versão verificada.
 
-## 7. Rastreabilidade inicial
-
-| Requisito | Implementação | Testes | Situação em 20/10 |
-|---|---|---|---|
-| RF05 — Cardápio | Código em `2-Bimestre/Entrega-20-10/implementacao/` | CT01 a CT05 | Cadastro, consulta e persistência relatados como funcionais; evidências a anexar |
-| RF05 — Alteração/exclusão | Conferir endpoints e interface no código | CT06 e CT07 | Ainda não verificado |
-| RF05 — Validações | Conferir regras de negócio e código | CT08 | Ainda não verificado |
-
-## 8. Próximos passos até 06/11/2026
-
-1. Anexar capturas de tela ou logs de CT01 a CT05, com data, testador e commit.
-2. Executar CT06, CT07 e CT08 e atualizar o status de acordo com os resultados.
-3. Caso haja defeitos, registrar passos de reprodução, comportamento esperado e observado, correção e reteste.
-4. Repetir a execução em ambiente de outro integrante, seguindo as instruções do README.
-5. Integrar os registros ao backlog, ao README e à documentação técnica, mantendo a rastreabilidade atualizada.
-
-## 9. Critério para concluir esta atividade documental
-
-A atividade de testes e evidências estará pronta para revisão final quando os registros tiverem **ID, requisito, pré-condições, passos, entrada, resultado esperado, resultado observado, status, data, versão/commit e evidência correspondente**, com pendências explicitadas e sem testes não executados marcados como aprovados.
+Os horários não confirmados e a identificação dos testadores permanecem explicitamente indicados como pendentes, evitando o registro de informações presumidas.
 
 ---
 
-**Referência de orientação:** *Manual da primeira entrega do segundo bimestre*, disciplina Fábrica de Software, professora Sabine Cassol, entrega de 20/10/2026, especialmente os passos sobre testes, evidências, rastreabilidade e organização da entrega.
+## 6. Defeitos, limitações e riscos conhecidos
+
+| Item | Situação identificada | Ação necessária |
+|---|---|---|
+| Incompatibilidade anterior com JDK 26 durante testes automatizados | Contornada utilizando Java Temurin 17.0.20.1; CT01 aprovado | Manter Java 17 documentado e validar a execução em outro ambiente |
+| Alteração de produtos — CT06 | **BLOQUEADO:** interface sem opção de edição e controlador sem endpoint de atualização | Implementar edição, registrar no backlog e executar novamente o CT06 |
+| Exclusão de produtos — CT07 | **BLOQUEADO:** interface sem opção de exclusão e controlador sem endpoint de remoção | Implementar exclusão, definir regras de negócio e executar novamente o CT07 |
+| Validação de entradas — CT08 | Quatro verificações aprovadas na interface | Verificar separadamente a validação direta da API, conforme prioridade do projeto |
+| Cobertura dos testes automatizados | Dois testes aprovados; cobertura integral do RF05 não demonstrada | Ampliar os testes conforme novas funcionalidades forem implementadas |
+| Identificação dos testadores | Ainda não confirmada nos registros detalhados | Preencher com os responsáveis reais antes da entrega |
+| Evidências no GitHub | Capturas informadas como salvas; conferir presença na branch remota | Verificar os arquivos e seus caminhos no repositório |
+| Execução em outro computador | Não documentada neste registro | Validar o procedimento do README em ambiente de outro integrante |
+
+As funcionalidades de alteração e exclusão não foram removidas do escopo do RF05. Permanecem como pendências de implementação.
+
+---
+
+## 7. Rastreabilidade inicial
+
+| Requisito | Implementação ou situação | Testes relacionados | Resultado em 20/10/2026 |
+|---|---|---|---|
+| RF05 — Cadastro de categorias | Cadastro disponível na aplicação | CT02 | **APROVADO** |
+| RF05 — Cadastro de produtos | Cadastro disponível na aplicação | CT03 | **APROVADO** |
+| RF05 — Consulta de cardápio | Listagem de categorias e produtos disponível | CT04 | **APROVADO** |
+| RF05 — Persistência | Armazenamento em MySQL | CT05 | **APROVADO** |
+| RF05 — Testes automatizados | Dois testes existentes executados com Maven e H2 | CT01 | **APROVADO**, dentro da cobertura existente |
+| RF05 — Alteração de registros | Funcionalidade não implementada | CT06 | **BLOQUEADO** |
+| RF05 — Exclusão de registros | Funcionalidade não implementada | CT07 | **BLOQUEADO** |
+| RF05 — Validação de entradas | Validações verificadas na interface web | CT08 | **APROVADO NA INTERFACE**; API não verificada diretamente |
+
+**Localização da implementação:**
+
+`2-Bimestre/Entrega-20-10/implementacao/`
+
+Os resultados demonstram que o recorte inicial do RF05 permite cadastrar, consultar e manter registros após reinicialização, mas ainda não contempla todas as operações previstas para o cardápio.
+
+---
+
+## 8. Próximos passos até 06/11/2026
+
+1. Confirmar que todas as capturas dos testes CT01 a CT05 e CT08 estão presentes no GitHub e acessíveis pelos caminhos documentados.
+2. Registrar no backlog a implementação da alteração de produtos, relacionada ao CT06, com prioridade, responsável e prazo.
+3. Registrar no backlog a implementação da exclusão de produtos, relacionada ao CT07, incluindo o tratamento das regras de negócio necessárias.
+4. Implementar e testar as funcionalidades pendentes conforme as prioridades definidas pela equipe.
+5. Ampliar as verificações de validação para os endpoints da API, quando aplicável, sem confundir a validação do navegador com a validação do servidor.
+6. Reexecutar os testes afetados pelas futuras alterações e registrar novos resultados, evidências e commits.
+7. Validar a execução da aplicação em outro computador, seguindo as instruções do README.
+8. Completar a identificação dos testadores e conferir a documentação, o backlog e a rastreabilidade antes da próxima entrega.
+
+---
+
+## 9. Critério para concluir esta atividade documental
+
+A documentação registra os oito casos de teste previstos para a entrega de 20/10/2026, com os seguintes resultados:
+
+- **6 casos aprovados:** CT01, CT02, CT03, CT04, CT05 e CT08.
+- **2 casos bloqueados:** CT06 e CT07.
+
+Os testes aprovados possuem resultados observados registrados. Os testes bloqueados apresentam justificativas técnicas e encaminhamentos para implementação futura.
+
+**Pendências de conferência antes da entrega:**
+
+- Confirmar os responsáveis reais pelas execuções.
+- Verificar a presença das capturas no GitHub.
+- Confirmar a integração da documentação na branch de entrega.
+- Conferir se as funcionalidades pendentes estão representadas no backlog.
+- Confirmar que o commit da versão entregue está identificado.
+
+A conclusão desta etapa documental não representa a conclusão integral do RF05 nem do Sistema de Gestão de Restaurante. O documento registra o estado da implementação e dos testes em 20/10/2026, preservando a distinção entre funcionalidades aprovadas, bloqueadas e verificações ainda não realizadas.
+
+---
+
+**Referência de orientação:** *Manual da primeira entrega do segundo bimestre*, disciplina Fábrica de Software, professora Sabine Cassol, entrega de 20/10/2026.
