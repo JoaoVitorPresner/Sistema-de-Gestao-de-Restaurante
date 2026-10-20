@@ -191,16 +191,30 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 - **Encaminhamento:** registrar a implementação no backlog, com responsável, prioridade e prazo definidos pela equipe; executar novamente o CT06 após a implementação.
 - **Limitação:** este registro documenta o impedimento encontrado, não constituindo aprovação ou reprovação de uma operação de atualização efetivamente executada.
 
-### CT07 — Exclusão de registro (pendente)
+### CT07 — Exclusão de registro (bloqueado)
 
-- **Requisito:** RF05.
-- **Pré-condições:** possuir um registro fictício criado especificamente para o teste; verificar possíveis vínculos.
-- **Passos propostos:** selecionar registro; solicitar exclusão; confirmar; consultar novamente.
-- **Entrada proposta:** registro descartável de teste.
-- **Resultado esperado:** comportamento conforme as regras do sistema, inclusive restrições por vínculos quando aplicáveis.
-- **Resultado observado:** **não há execução confirmada**.
-- **Situação:** **NÃO EXECUTADO / NÃO CONFIRMADO**.
-- **Data, commit e evidência:** pendentes.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada; conexão com MySQL disponível; produto `Pudim de Leite` previamente cadastrado; interface acessível em `http://localhost:8080`.
+- **Passos de verificação realizados:**
+  1. Acessar a interface do sistema.
+  2. Localizar o produto `Pudim de Leite` na listagem.
+  3. Verificar a existência de uma opção para excluir ou remover o produto.
+  4. Constatar a ausência dessa funcionalidade na interface.
+  5. Inspecionar o arquivo `ApiController.java` para verificar a existência de endpoints de exclusão.
+  6. Confirmar que o controlador não possui métodos com `@DeleteMapping`.
+- **Entrada proposta:** exclusão de um produto fictício previamente cadastrado, mediante confirmação do usuário.
+- **Resultado esperado:** permitir excluir um produto existente, remover seu registro do banco de dados e garantir que ele não apareça mais na consulta.
+- **Resultado observado:** a interface não apresenta opção de exclusão de produtos. A inspeção do controlador confirmou que não existem endpoints de exclusão implementados. Portanto, não foi possível executar a operação nem verificar a remoção do registro.
+- **Situação:** **BLOQUEADO — FUNCIONALIDADE NÃO IMPLEMENTADA**.
+- **Data da verificação:** 20/10/2026.
+- **Horário da verificação:** não registrado.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
+- **Commit da versão verificada:** `67ca690`.
+- **Evidência:** inspeção do arquivo `src/main/java/br/com/restaurante/ApiController.java` e verificação manual da interface; captura de tela não anexada.
+- **Pendência identificada:** implementar a funcionalidade de exclusão de produtos, incluindo endpoint de exclusão, opção de remoção na interface e tratamento das regras de negócio relacionadas.
+- **Encaminhamento:** registrar a implementação no backlog, com responsável, prioridade e prazo definidos pela equipe; executar novamente o CT07 após a implementação.
+- **Limitação:** este registro documenta o impedimento encontrado, não constituindo aprovação ou reprovação de uma operação de exclusão efetivamente executada.
 
 ### CT08 — Validações de entrada (pendente)
 
