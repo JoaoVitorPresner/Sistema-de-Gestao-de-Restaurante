@@ -117,15 +117,26 @@ Documentar a verificação inicial da implementação do RF05 — Cardápio, inc
 
 ### CT04 — Consulta de registros
 
-- **Requisito:** RF05.
-- **Pré-condições:** categoria e produto cadastrados.
-- **Passos relatados:** consultar os registros na aplicação.
-- **Entrada:** registros `Bebidas` e `Suco de Laranja` previamente cadastrados.
-- **Resultado esperado:** registros apresentados na consulta.
-- **Resultado observado informado:** registros puderam ser consultados.
-- **Situação:** **APROVADO (relato de execução manual)**.
-- **Data/hora exata e commit testado:** **a confirmar**.
-- **Evidência a anexar:** `evidencias/CT04-consulta-cardapio.png`.
+- **Requisito:** RF05 — Cardápio.
+- **Pré-condições:** aplicação Spring Boot iniciada; conexão com MySQL estabelecida; categorias e produtos previamente cadastrados; interface acessível em `http://localhost:8080`.
+- **Passos executados:**
+  1. Iniciar a aplicação com `java -jar target\restaurante-0.1.0.jar`.
+  2. Acessar a interface pelo navegador.
+  3. Consultar a listagem de categorias cadastradas.
+  4. Verificar a presença das categorias `Bebidas` e `Sobremesas`.
+  5. Consultar a listagem de produtos cadastrados.
+  6. Verificar a presença dos produtos `Suco de Laranja` e `Pudim de Leite`.
+- **Dados de entrada:** registros previamente cadastrados no banco de dados MySQL.
+- **Resultado esperado:** categorias e produtos cadastrados devem aparecer corretamente nas respectivas listagens, permitindo a consulta dos registros.
+- **Resultado observado:** as categorias `Bebidas` e `Sobremesas` e os produtos `Suco de Laranja` e `Pudim de Leite` foram apresentados corretamente na interface, conforme execução manual confirmada.
+- **Situação:** **APROVADO**.
+- **Data da execução:** 20/10/2026.
+- **Horário da execução:** não registrado.
+- **Testador:** a confirmar.
+- **Ambiente:** Java Temurin 17.0.20.1; Spring Boot 3.3.5; MySQL; interface HTML, CSS e JavaScript.
+- **Commit exato testado:** `a2d801b`.
+- **Evidência anexada:** `../evidencias/EV04-Consulta-Cardapio.png`.
+- **Limitação:** este teste confirma a consulta dos registros existentes. A persistência após reinicialização é verificada separadamente no CT05.
 
 ### CT05 — Persistência após reinicialização
 
