@@ -10,11 +10,66 @@ import java.util.*;
  @GetMapping("/categorias") public List<Categoria> categorias(){return categorias.findAll();}
  @PostMapping("/categorias") public ResponseEntity<Categoria> categoria(@Valid @RequestBody Categoria c){c.id=null;return ResponseEntity.status(201).body(categorias.save(c));}
  @GetMapping("/produtos") public List<Produto> produtos(){return produtos.findAll();}
+ @GetMapping("/produtos/{id}")
+public Produto buscarProduto(@PathVariable Long id) {
+    return produtos.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(
+            HttpStatus.NOT_FOUND,
+            "Produto nao encontrado"
+        ));
+}
  @PostMapping("/produtos") public ResponseEntity<Produto> produto(@Valid @RequestBody Produto p){
   p.id=null; if(p.categoria==null||p.categoria.id==null)throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Categoria obrigatoria");
   p.categoria=categorias.findById(p.categoria.id).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST,"Categoria inexistente"));
   return ResponseEntity.status(201).body(produtos.save(p));
  }
+ @PutMapping("/produtos/{id}")
+public Produto editarProduto(
+        @PathVariable Long id,
+        @Valid @RequestBody Produto dados) {
+
+    Produto produto = produtos.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(
+            HttpStatus.NOT_FOUND,
+            "Produto nao encontrado"
+        ));
+
+    if (dados.categoria == null || dados.categoria.id == null) {
+        throw new ResponseStatusException(
+            HttpStatus.BAD_REQUEST,
+            "Categoria obrigatoria"
+        );
+    }
+
+    Categoria categoria = categorias.findById(dados.categoria.id)
+        .orElseThrow(() -> new ResponseStatusException(
+            HttpStatus.BAD_REQUEST,
+            "Categoria inexistente"
+        ));
+
+    produto.nome = dados.nome;
+    produto.descricao = dados.descricao;
+    produto.preco = dados.preco;
+    produto.ativo = dados.ativo;
+    produto.categoria = categoria;
+
+    return produtos.save(produto);
+}
+@DeleteMapping("/produtos/{id}")
+public ResponseEntity<Void> desativarProduto(@PathVariable Long id) {
+
+    Produto produto = produtos.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(
+            HttpStatus.NOT_FOUND,
+            "Produto nao encontrado"
+        ));
+
+    produto.ativo = false;
+
+    produtos.save(produto);
+
+    return ResponseEntity.noContent().build();
+}
  @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
  public ResponseEntity<Map<String,String>> invalid(org.springframework.web.bind.MethodArgumentNotValidException ex){return ResponseEntity.badRequest().body(Map.of("erro","Dados invalidos: confira os campos obrigatorios e o preco"));}
 }
