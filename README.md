@@ -113,6 +113,21 @@ Sistema-de-Gestao-de-Restaurante/
 ├── 3°Entrega/
 │   └── Planejamento, arquitetura, protótipos e MVP
 │
+├── 2-Bimestre/
+│   ├── Entrega-20-10/
+│   │   ├── implementacao/
+│   │   │   └── Aplicação Java com Spring Boot
+│   │   ├── documentacao/
+│   │   │   └── Documentação técnica, backlog e testes
+│   │   └── evidencias/
+│   │       └── Capturas de tela dos testes
+│   │
+│   └── Entrega-06-11/
+│       ├── documentacao/
+│       │   └── Documentação da segunda entrega
+│       └── evidencias/
+│           └── Evidências da segunda entrega
+│
 └── README.md
 ```
 
@@ -316,6 +331,122 @@ As verificações do CT08 foram realizadas na interface web, sem teste direto da
 
 ---
 
+# 2º Bimestre — Segunda Entrega (06/11/2026)
+
+## Evolução da implementação
+
+Nesta etapa, a equipe deu continuidade ao desenvolvimento do **Sistema de Gestão de Restaurante**, ampliando as funcionalidades do **RF05 — Gerenciamento do Cardápio**.
+
+A implementação foi desenvolvida a partir da versão apresentada em 20/10/2026, mantendo a arquitetura Java com Spring Boot, a persistência em MySQL e a interface web desenvolvida com HTML, CSS e JavaScript.
+
+### Funcionalidades implementadas
+
+Além das operações disponíveis na entrega anterior, foram acrescentadas:
+
+- **Edição de produtos:** permite modificar informações de produtos cadastrados, como nome, descrição, preço e categoria.
+- **Desativação lógica de produtos:** permite desativar produtos sem remover seus registros do banco de dados.
+- **Identificação de produtos inativos:** a interface identifica os produtos desativados e impede novas operações de edição e desativação nesses itens.
+- **Integração entre frontend e backend:** a interface utiliza requisições HTTP para atualizar e desativar produtos.
+- **Persistência das alterações:** as modificações são armazenadas no MySQL e permanecem disponíveis após a atualização da página.
+
+### Endpoints da API REST
+
+| Método | Endpoint | Finalidade |
+|---|---|---|
+| GET | `/api/categorias` | Consultar categorias |
+| POST | `/api/categorias` | Cadastrar categoria |
+| GET | `/api/produtos` | Consultar produtos |
+| POST | `/api/produtos` | Cadastrar produto |
+| GET | `/api/produtos/{id}` | Consultar produto por ID |
+| PUT | `/api/produtos/{id}` | Atualizar produto |
+| DELETE | `/api/produtos/{id}` | Desativar produto logicamente |
+
+A operação `DELETE` não remove fisicamente o registro do banco de dados. Ela altera o atributo `ativo` do produto para `false`.
+
+### Tecnologias utilizadas
+
+- Java 17;
+- Spring Boot 3.3.5;
+- Maven;
+- MySQL;
+- H2 em memória para testes automatizados;
+- HTML, CSS e JavaScript;
+- Git e GitHub.
+
+### Compilação e execução
+
+A partir da raiz do repositório, acessar:
+
+```powershell
+cd "2-Bimestre/Entrega-20-10/implementacao"
+```
+
+Executar a compilação e os testes automatizados:
+
+```powershell
+mvn clean package
+```
+
+Para iniciar a aplicação, configurar a senha do MySQL no ambiente, quando necessária:
+
+```powershell
+$env:SPRING_DATASOURCE_PASSWORD = Read-Host "Digite a senha do MySQL"
+```
+
+Em seguida, executar:
+
+```powershell
+java -jar target\restaurante-0.1.0.jar
+```
+
+Acessar a aplicação pelo navegador:
+
+`http://localhost:8080`
+
+As configurações de conexão também podem ser fornecidas pelas variáveis `DB_URL`, `DB_USER` e `DB_PASSWORD`, conforme o arquivo `application.properties`.
+
+Não devem ser publicadas senhas ou outras credenciais no repositório.
+
+### Testes realizados
+
+Durante a evolução do RF05, foram realizadas as seguintes verificações:
+
+- Compilação da aplicação utilizando Maven, concluída com sucesso.
+- Execução de dois testes automatizados, sem falhas ou erros.
+- Cadastro e consulta de produtos pela interface web.
+- Edição do preço de um produto existente.
+- Verificação da persistência do novo preço após atualizar a página.
+- Cadastro de um produto para teste de desativação.
+- Desativação lógica do produto pela interface.
+- Verificação da identificação do produto como inativo após atualizar a página.
+
+Essas verificações confirmam o funcionamento dos fluxos avaliados, mas não representam a conclusão de todos os requisitos do sistema.
+
+### Limitações atuais
+
+A implementação desta entrega continua concentrada no RF05. Outros módulos previstos no projeto, como autenticação, gerenciamento de mesas, pedidos, cozinha, estoque e pagamentos, permanecem fora do escopo implementado nesta versão.
+
+A desativação lógica de produtos também não deve ser confundida com exclusão física dos registros.
+
+### Organização dos arquivos
+
+O código-fonte atualizado permanece na pasta:
+
+`2-Bimestre/Entrega-20-10/implementacao/`
+
+A documentação e as evidências específicas desta entrega serão organizadas em:
+
+- `2-Bimestre/Entrega-06-11/documentacao/`
+- `2-Bimestre/Entrega-06-11/evidencias/`
+
+### Identificação da entrega
+
+- **Data:** 06/11/2026.
+- **Branch:** `entrega-06-11-2026`.
+- **Commit de referência da evolução do RF05:** `c952fef`.
+- **Situação:** evolução funcional do RF05 implementada, compilada, testada nos fluxos descritos e enviada ao GitHub.
+
+---
 
 ## Fluxo de evolução do projeto
 
@@ -338,4 +469,4 @@ Cada etapa utiliza os artefatos produzidos anteriormente, mantendo a rastreabili
 
 ## Repositório
 
-Este repositório reúne a documentação, os diagramas, os modelos de banco de dados, os protótipos e, posteriormente, o código-fonte desenvolvido durante a evolução do projeto **Sistema de Gestão de Restaurante**.
+Este repositório reúne a documentação, os diagramas, os modelos de banco de dados, os protótipos e o código-fonte desenvolvido durante a evolução do projeto Sistema de Gestão de Restaurante.
