@@ -1,7 +1,7 @@
 # Sistema de Gestão de Restaurante
 ## Documentação técnica — entrega final do 2º bimestre
 
-**Disciplina:** Fábrica de Software\
+**Disciplina:** IMERSÃO PROFISSIONAL: PROJETO DE SOFTWARE\
 **Professora:** Sabine Cassol\
 **Data de referência:** 27/11/2026\
 **Responsável pela revisão técnica:** guilhermemgb\
