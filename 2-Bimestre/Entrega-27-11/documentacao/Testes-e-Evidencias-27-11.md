@@ -3,7 +3,7 @@
 ## 1. Identificação
 
 - **Projeto:** Sistema de Gestão de Restaurante.
-- **Disciplina:** Fábrica de Software.
+- **Disciplina:** IMERSÃO PROFISSIONAL: PROJETO DE SOFTWARE.
 - **Professora:** Sabine Cassol.
 - **Entrega:** Entrega final do segundo bimestre de 2026.
 - **Data de referência:** 27/11/2026.
