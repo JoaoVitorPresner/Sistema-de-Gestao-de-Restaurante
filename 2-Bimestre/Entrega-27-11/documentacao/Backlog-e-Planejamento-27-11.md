@@ -1,6 +1,6 @@
 # Backlog e Planejamento — Sistema de Gestão de Restaurante
 
-**Disciplina:** Fábrica de Software — 2º bimestre de 2026\
+**Disciplina:** IMERSÃO PROFISSIONAL: PROJETO DE SOFTWARE — 2º bimestre de 2026\
 **Professora:** Sabine Cassol\
 **Entrega de referência:** 27/11/2026\
 **Responsável pela organização do backlog:** Matheusborgges\
