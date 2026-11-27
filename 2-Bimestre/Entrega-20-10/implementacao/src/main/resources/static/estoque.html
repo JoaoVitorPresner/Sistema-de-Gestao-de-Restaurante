@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Gestão de estoque | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+    <link rel="stylesheet" href="/css/estoque.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/estoque.js" defer></script>
+</head>
+
+<body class="pagina-produtos pagina-estoque">
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html" class="voltar-painel">
+                ← Voltar ao painel
+            </a>
+
+            <h1>Gestão de estoque</h1>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual"></span>
+
+            <button type="button"
+                    class="botao-secundario"
+                    id="botao-sair">
+                Sair
+            </button>
+
+        </div>
+
+    </header>
+
+    <main class="conteudo-modulo">
+
+        <section class="apresentacao-modulo">
+
+            <h2>Controle de ingredientes</h2>
+
+            <p>
+                Gerencie os ingredientes, acompanhe os saldos
+                disponíveis e consulte as movimentações do estoque.
+            </p>
+
+        </section>
+
+        <p id="mensagem-estoque"
+           class="mensagem"
+           role="status"
+           hidden></p>
+
+        <!-- INDICADORES -->
+
+        <section class="grade-indicadores indicadores-estoque">
+
+            <article class="indicador">
+                <span>Total de ingredientes</span>
+                <strong id="total-ingredientes">—</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Ingredientes ativos</span>
+                <strong id="ingredientes-ativos">—</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Ingredientes inativos</span>
+                <strong id="ingredientes-inativos">—</strong>
+            </article>
+
+            <article class="indicador indicador-alerta">
+                <span>Estoque baixo</span>
+                <strong id="estoque-baixo">—</strong>
+            </article>
+
+            <article class="indicador indicador-perigo">
+                <span>Ingredientes indisponíveis</span>
+                <strong id="ingredientes-indisponiveis">—</strong>
+            </article>
+
+            <article class="indicador indicador-reserva">
+                <span>Ingredientes com reservas</span>
+                <strong id="ingredientes-reservados">—</strong>
+            </article>
+
+        </section>
+
+        <section class="painel-modulo">
+
+            <div class="abas-modulo">
+
+                <button type="button"
+                        class="aba selecionada"
+                        id="aba-ingredientes">
+                    Ingredientes
+                </button>
+
+                <button type="button"
+                        class="aba"
+                        id="aba-movimentacoes">
+                    Movimentações
+                </button>
+
+            </div>
+
+            <!-- LISTAGEM DE INGREDIENTES -->
+
+            <section id="painel-ingredientes">
+
+                <div class="barra-ferramentas">
+
+                    <input type="search"
+                           id="pesquisa-ingrediente"
+                           placeholder="Pesquisar ingrediente..."
+                           aria-label="Pesquisar ingrediente">
+
+                    <select id="filtro-status"
+                            aria-label="Filtrar status">
+
+                        <option value="">Todos os status</option>
+                        <option value="ativo">Ativos</option>
+                        <option value="inativo">Inativos</option>
+                        <option value="baixo">Estoque baixo</option>
+                        <option value="indisponivel">Indisponíveis</option>
+                        <option value="reservado">Com reservas</option>
+
+                    </select>
+
+                    <button type="button"
+                            class="botao-secundario"
+                            id="atualizar-estoque">
+                        Atualizar
+                    </button>
+
+                    <button type="button"
+                            class="botao-secundario"
+                            id="nova-movimentacao">
+                        Registrar movimentação
+                    </button>
+
+                    <button type="button"
+                            class="botao-principal"
+                            id="novo-ingrediente">
+                        + Novo ingrediente
+                    </button>
+
+                </div>
+
+                <div class="tabela-responsiva">
+
+                    <table class="tabela-modulo tabela-estoque">
+
+                        <thead>
+                            <tr>
+                                <th>Ingrediente</th>
+                                <th>Unidade</th>
+                                <th>Físico</th>
+                                <th>Reservado</th>
+                                <th>Disponível</th>
+                                <th>Mínimo</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="lista-ingredientes"></tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="contagem-ingredientes"
+                   class="contagem-registros"></p>
+
+            </section>
+
+            <!-- HISTORICO DE MOVIMENTACOES -->
+
+            <section id="painel-movimentacoes" hidden>
+
+                <div class="barra-ferramentas">
+
+                    <select id="filtro-ingrediente-movimentacao"
+                            aria-label="Filtrar ingrediente">
+
+                        <option value="">Todos os ingredientes</option>
+
+                    </select>
+
+                    <select id="filtro-tipo-movimentacao"
+                            aria-label="Filtrar movimentação">
+
+                        <option value="">Todos os tipos</option>
+                        <option value="ENTRADA">Entrada</option>
+                        <option value="SAIDA_MANUAL">Saída manual</option>
+                        <option value="RESERVA">Reserva</option>
+                        <option value="LIBERACAO">Liberação</option>
+                        <option value="CONSUMO">Consumo</option>
+                        <option value="PERDA">Perda</option>
+
+                    </select>
+
+                    <button type="button"
+                            class="botao-secundario"
+                            id="atualizar-movimentacoes">
+                        Atualizar histórico
+                    </button>
+
+                    <button type="button"
+                            class="botao-principal"
+                            id="registrar-movimentacao">
+                        + Movimentação
+                    </button>
+
+                </div>
+
+                <div class="tabela-responsiva">
+
+                    <table class="tabela-modulo tabela-movimentacoes">
+
+                        <thead>
+                            <tr>
+                                <th>Data e hora</th>
+                                <th>Ingrediente</th>
+                                <th>Tipo</th>
+                                <th>Quantidade</th>
+                                <th>Saldo físico</th>
+                                <th>Saldo reservado</th>
+                                <th>Pedido</th>
+                                <th>Responsável</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="lista-movimentacoes"></tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="contagem-movimentacoes"
+                   class="contagem-registros"></p>
+
+                <p class="aviso-estoque">
+                    O histórico apresenta até 100 movimentações
+                    recentes por consulta.
+                </p>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- MODAL DE INGREDIENTE -->
+
+    <dialog id="modal-ingrediente" class="modal-modulo">
+
+        <form id="form-ingrediente">
+
+            <div class="cabecalho-modal">
+
+                <h2 id="titulo-modal-ingrediente">
+                    Novo ingrediente
+                </h2>
+
+                <button type="button"
+                        class="fechar-modal"
+                        id="fechar-ingrediente"
+                        aria-label="Fechar">
+                    ×
+                </button>
+
+            </div>
+
+            <input type="hidden" name="id">
+
+            <div class="campo-modulo">
+
+                <label for="nome-ingrediente">Nome</label>
+
+                <input type="text"
+                       id="nome-ingrediente"
+                       name="nome"
+                       maxlength="100"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="descricao-ingrediente">Descrição</label>
+
+                <textarea id="descricao-ingrediente"
+                          name="descricao"
+                          maxlength="255"
+                          rows="3"></textarea>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="unidade-ingrediente">
+                    Unidade de medida
+                </label>
+
+                <select id="unidade-ingrediente"
+                        name="unidadeMedida"
+                        required>
+
+                    <option value="UNIDADE">Unidade (un)</option>
+                    <option value="GRAMA">Grama (g)</option>
+                    <option value="QUILOGRAMA">Quilograma (kg)</option>
+                    <option value="MILILITRO">Mililitro (ml)</option>
+                    <option value="LITRO">Litro (L)</option>
+
+                </select>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="minimo-ingrediente">
+                    Estoque mínimo
+                </label>
+
+                <input type="number"
+                       id="minimo-ingrediente"
+                       name="estoqueMinimo"
+                       min="0"
+                       max="999999999999.999"
+                       step="0.001"
+                       value="0"
+                       required>
+
+            </div>
+
+            <p class="aviso-estoque">
+                O saldo físico é alterado por movimentações
+                de estoque, não pelo cadastro do ingrediente.
+            </p>
+
+            <p id="erro-ingrediente"
+               class="mensagem erro"
+               role="alert"
+               hidden></p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="cancelar-ingrediente">
+                    Cancelar
+                </button>
+
+                <button type="submit" class="botao-principal">
+                    Salvar ingrediente
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <!-- MODAL DE MOVIMENTACAO -->
+
+    <dialog id="modal-movimentacao" class="modal-modulo">
+
+        <form id="form-movimentacao">
+
+            <div class="cabecalho-modal">
+
+                <h2>Registrar movimentação</h2>
+
+                <button type="button"
+                        class="fechar-modal"
+                        id="fechar-movimentacao"
+                        aria-label="Fechar">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="ingrediente-movimentacao">
+                    Ingrediente
+                </label>
+
+                <select id="ingrediente-movimentacao"
+                        name="ingredienteId"
+                        required></select>
+
+            </div>
+
+            <div id="saldo-movimentacao"
+                 class="saldo-movimentacao"></div>
+
+            <div class="campo-modulo">
+
+                <label for="tipo-movimentacao">Tipo</label>
+
+                <select id="tipo-movimentacao"
+                        name="tipo"
+                        required>
+
+                    <option value="ENTRADA">Entrada</option>
+                    <option value="SAIDA_MANUAL">Saída manual</option>
+
+                </select>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="quantidade-movimentacao">
+                    Quantidade
+                </label>
+
+                <input type="number"
+                       id="quantidade-movimentacao"
+                       name="quantidade"
+                       min="0.001"
+                       max="999999999999.999"
+                       step="0.001"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="motivo-movimentacao">
+                    Motivo
+                </label>
+
+                <textarea id="motivo-movimentacao"
+                          name="motivo"
+                          maxlength="255"
+                          rows="3"
+                          required></textarea>
+
+            </div>
+
+            <p class="aviso-estoque">
+                As saídas manuais não podem utilizar
+                ingredientes reservados para pedidos.
+            </p>
+
+            <p id="erro-movimentacao"
+               class="mensagem erro"
+               role="alert"
+               hidden></p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="cancelar-movimentacao">
+                    Cancelar
+                </button>
+
+                <button type="submit" class="botao-principal">
+                    Confirmar movimentação
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <footer class="rodape-modulo">
+        Sistema de Gestão de Restaurante — 2026
+    </footer>
+
+</body>
+</html>

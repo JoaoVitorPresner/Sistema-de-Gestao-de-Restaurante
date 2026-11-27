@@ -1,0 +1,621 @@
+
+/* =========================================
+   CONFIGURACOES DA PAGINA
+   ========================================= */
+
+.pagina-meus-pedidos .conteudo-cliente {
+    padding-bottom: 40px;
+}
+
+
+/* =========================================
+   INDICADORES DO ATENDIMENTO
+   ========================================= */
+
+.indicadores-pedidos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.indicador-pedido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 20px;
+    background: var(--cli-branco);
+    border: 1px solid var(--cli-borda);
+    border-radius: 9px;
+}
+
+.indicador-pedido span {
+    color: var(--cli-secundario);
+    font-size: 13px;
+}
+
+.indicador-pedido strong {
+    color: var(--cli-texto);
+    font-size: 28px;
+    overflow-wrap: anywhere;
+}
+
+.indicador-pedido small {
+    color: var(--cli-secundario);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.indicador-valor strong {
+    color: #806333;
+}
+
+
+/* =========================================
+   CABECALHO DA LISTAGEM
+   ========================================= */
+
+.cabecalho-listagem-pedidos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.cabecalho-listagem-pedidos h2 {
+    margin: 0 0 8px;
+    font-size: 23px;
+}
+
+.cabecalho-listagem-pedidos p {
+    margin: 0;
+    color: var(--cli-secundario);
+    font-size: 14px;
+}
+
+.cabecalho-listagem-pedidos button {
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   FILTROS
+   ========================================= */
+
+.filtros-pedidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   LISTAGEM
+   ========================================= */
+
+.lista-pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lista-pedidos > .estado-vazio {
+    background: white;
+    border: 1px solid var(--cli-borda);
+    border-radius: 9px;
+    margin: 0;
+}
+
+
+/* =========================================
+   CARTAO DO PEDIDO
+   ========================================= */
+
+.cartao-pedido {
+    min-width: 0;
+    padding: 24px;
+    background: var(--cli-branco);
+    border: 1px solid var(--cli-borda);
+    border-left: 4px solid #3569a3;
+    border-radius: 9px;
+}
+
+.cartao-pedido.status-recebido {
+    border-left-color: #3569a3;
+}
+
+.cartao-pedido.status-em-preparo {
+    border-left-color: #ad7927;
+}
+
+.cartao-pedido.status-pronto {
+    border-left-color: #367448;
+}
+
+.cartao-pedido.status-entregue {
+    border-left-color: #25352c;
+}
+
+.cartao-pedido.status-cancelado {
+    border-left-color: #a13c3c;
+}
+
+.cabecalho-pedido {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.identificacao-pedido {
+    min-width: 0;
+}
+
+.identificacao-pedido h3 {
+    font-size: 19px;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.data-pedido {
+    font-size: 12px;
+    color: var(--cli-secundario);
+}
+
+
+/* =========================================
+   IDENTIFICACAO DO STATUS
+   ========================================= */
+
+.status-pedido {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-pedido.status-recebido {
+    color: #285789;
+    background: #e5eef8;
+}
+
+.status-pedido.status-em-preparo {
+    color: #806020;
+    background: #f5e9d4;
+}
+
+.status-pedido.status-pronto {
+    color: #28623a;
+    background: #e1f0e5;
+}
+
+.status-pedido.status-entregue {
+    color: #25352c;
+    background: #e1e9e3;
+}
+
+.status-pedido.status-cancelado {
+    color: #a13c3c;
+    background: #f9e4e4;
+}
+
+
+/* =========================================
+   PROGRESSO DO PEDIDO
+   ========================================= */
+
+.progresso-pedido {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 12px 0 24px;
+    padding: 0;
+    list-style: none;
+}
+
+.etapa-pedido {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    text-align: center;
+}
+
+.etapa-pedido:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background: #dedfd9;
+}
+
+.etapa-pedido.concluida::after {
+    background: #367448;
+}
+
+.marcador-etapa {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background: #dedfd9;
+    color: #69746d;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.etapa-pedido.concluida .marcador-etapa {
+    background: #367448;
+    color: white;
+}
+
+.etapa-pedido.atual .marcador-etapa {
+    background: var(--cli-verde-claro);
+    color: white;
+    box-shadow: 0 0 0 4px #e1e9e3;
+}
+
+.nome-etapa {
+    color: var(--cli-secundario);
+    font-size: 12px;
+}
+
+.etapa-pedido.atual .nome-etapa {
+    color: var(--cli-texto);
+    font-weight: bold;
+}
+
+.etapa-pedido.concluida .nome-etapa {
+    color: #367448;
+}
+
+
+/* =========================================
+   PEDIDOS CANCELADOS
+   ========================================= */
+
+.aviso-pedido-cancelado {
+    margin-bottom: 20px;
+    padding: 14px;
+    background: #f9e4e4;
+    color: #a13c3c;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PRODUTOS DO PEDIDO
+   ========================================= */
+
+.itens-pedido {
+    border-top: 1px solid var(--cli-borda);
+}
+
+.item-pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--cli-borda);
+}
+
+.dados-item-pedido {
+    min-width: 0;
+}
+
+.dados-item-pedido h4 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.preco-unitario-pedido {
+    color: var(--cli-secundario);
+    font-size: 12px;
+}
+
+.subtotal-item-pedido {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    color: var(--cli-texto);
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   OBSERVACOES
+   ========================================= */
+
+.observacoes-pedido {
+    margin-top: 18px;
+    padding: 15px;
+    background: var(--cli-fundo);
+    border-radius: 6px;
+}
+
+.observacoes-pedido strong {
+    font-size: 12px;
+    color: var(--cli-secundario);
+}
+
+.observacoes-pedido p {
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   TOTAL DO PEDIDO
+   ========================================= */
+
+.total-pedido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total-pedido strong {
+    font-size: 22px;
+    color: #806333;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.cartao-pedido.status-cancelado .total-pedido strong {
+    text-decoration: line-through;
+    color: var(--cli-secundario);
+}
+
+
+/* =========================================
+   RODAPE DA LISTAGEM
+   ========================================= */
+
+.rodape-listagem-pedidos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    color: var(--cli-secundario);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RETORNO AO CARDAPIO
+   ========================================= */
+
+.continuar-pedindo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--cli-borda);
+    border-radius: 9px;
+}
+
+.continuar-pedindo h2 {
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.continuar-pedindo p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cli-secundario);
+    margin: 0;
+}
+
+.continuar-pedindo a {
+    flex-shrink: 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 850px) {
+
+    .indicadores-pedidos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+
+    .indicadores-pedidos {
+        gap: 10px;
+    }
+
+    .indicador-pedido {
+        padding: 15px;
+    }
+
+    .indicador-pedido strong {
+        font-size: 23px;
+    }
+
+    .cabecalho-listagem-pedidos {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cabecalho-listagem-pedidos h2 {
+        font-size: 20px;
+    }
+
+    .filtros-pedidos {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 6px;
+    }
+
+    .filtros-pedidos button {
+        flex-shrink: 0;
+    }
+
+    .cartao-pedido {
+        padding: 16px;
+    }
+
+    .identificacao-pedido h3 {
+        font-size: 17px;
+    }
+
+    .nome-etapa {
+        font-size: 10px;
+    }
+
+    .status-pedido {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .continuar-pedindo {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .indicador-pedido {
+        padding: 12px;
+    }
+
+    .indicador-pedido strong {
+        font-size: 20px;
+    }
+
+    .indicador-pedido span {
+        font-size: 12px;
+    }
+
+    .marcador-etapa {
+        width: 28px;
+        height: 28px;
+    }
+
+    .etapa-pedido:not(:last-child)::after {
+        top: 13px;
+    }
+
+    .total-pedido strong {
+        font-size: 19px;
+    }
+
+    .cabecalho-pedido {
+        flex-wrap: wrap;
+    }
+}
+
+/* =========================================
+   INFORMACOES DO CANCELAMENTO - RN04
+   ========================================= */
+
+.titulo-pedido-cancelado {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #963c3c;
+}
+
+.dados-cancelamento-cliente {
+    margin: 0;
+}
+
+.dados-cancelamento-cliente dt {
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #963c3c;
+}
+
+.dados-cancelamento-cliente dd {
+    margin: 6px 0 0;
+    color: var(--cli-texto);
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.aviso-cobranca-cancelamento {
+    margin: 16px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #e7caca;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* VALOR A COBRAR */
+
+.valor-cobranca-cancelado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--cli-borda);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.valor-cobranca-cancelado strong {
+    color: #367448;
+    font-size: 22px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 400px) {
+
+    .titulo-pedido-cancelado {
+        font-size: 14px;
+    }
+
+    .valor-cobranca-cancelado strong {
+        font-size: 19px;
+    }
+}

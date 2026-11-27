@@ -1,0 +1,338 @@
+.pagina-usuarios {
+    min-height: 100vh;
+    background: #f5f3ee;
+    color: #25352c;
+}
+
+.pagina-usuarios [hidden] {
+    display: none !important;
+}
+
+.pagina-usuarios button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.indicadores-usuarios {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.indicadores-usuarios .indicador {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.indicadores-usuarios .indicador strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 2rem;
+    color: #25352c;
+}
+
+.indicadores-usuarios .indicador span {
+    font-size: 0.9rem;
+    color: #68736b;
+}
+
+.painel-usuarios {
+    padding: 24px;
+    min-width: 0;
+}
+
+.titulo-painel-usuarios {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.titulo-painel-usuarios h2 {
+    margin: 0 0 6px;
+}
+
+.titulo-painel-usuarios p {
+    margin: 0;
+    color: #68736b;
+    font-size: 0.9rem;
+}
+
+.filtros-usuarios {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: end;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.filtros-usuarios .campo-modulo {
+    min-width: 0;
+    margin: 0;
+}
+
+.filtros-usuarios input,
+.filtros-usuarios select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.filtros-usuarios button {
+    min-height: 42px;
+}
+
+.tabela-usuarios-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e1e4df;
+    border-radius: 10px;
+}
+
+.tabela-usuarios {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-usuarios th {
+    padding: 14px;
+    background: #eef1ed;
+    color: #25352c;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.tabela-usuarios td {
+    padding: 14px;
+    border-top: 1px solid #e5e8e3;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+.tabela-usuarios tbody tr:hover {
+    background: #f8f9f7;
+}
+
+.nome-funcionario {
+    display: block;
+    font-weight: 600;
+}
+
+.identificacao-propria-conta {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #68736b;
+}
+
+.situacoes-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.status-usuario {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-usuario.ativo {
+    background: #e3f2e7;
+    color: #28643b;
+}
+
+.status-usuario.inativo {
+    background: #e9ece9;
+    color: #59635d;
+}
+
+.status-usuario.bloqueado {
+    background: #fbe4e4;
+    color: #a72f2f;
+}
+
+.tentativas-usuario {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.tentativas-usuario.alerta {
+    color: #a72f2f;
+}
+
+.acoes-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 230px;
+}
+
+.botao-acao-usuario {
+    padding: 7px 10px;
+    border: 1px solid #d2d9d3;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #25352c;
+    font: inherit;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.botao-acao-usuario:hover:not(:disabled) {
+    background: #edf2ee;
+    border-color: #25352c;
+}
+
+.botao-acao-usuario.perigo {
+    color: #a72f2f;
+    border-color: #e3b8b8;
+}
+
+.botao-acao-usuario.perigo:hover:not(:disabled) {
+    background: #fbe4e4;
+}
+
+.botao-acao-usuario.sucesso {
+    color: #28643b;
+    border-color: #b7d8bf;
+}
+
+.lista-usuarios-vazia {
+    padding: 32px !important;
+    text-align: center;
+    color: #68736b;
+}
+
+.aviso-seguranca-usuarios {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: #fffdf7;
+    border: 1px solid #e4d7b9;
+    border-left: 4px solid #c8a66a;
+    border-radius: 8px;
+}
+
+.aviso-seguranca-usuarios p {
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #59635d;
+}
+
+.pagina-usuarios .modal-modulo {
+    width: min(520px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.pagina-usuarios .modal-modulo input,
+.pagina-usuarios .modal-modulo select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pagina-usuarios .modal-modulo small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #68736b;
+}
+
+.pagina-usuarios .modal-modulo p {
+    line-height: 1.5;
+}
+
+.aviso-propria-conta {
+    padding: 12px;
+    background: #f7f2e5;
+    border: 1px solid #e4d7b9;
+    border-radius: 6px;
+    color: #67562e;
+    font-size: 0.85rem;
+}
+
+.pagina-usuarios .rodape-modal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#ultima-atualizacao {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+
+    .indicadores-usuarios {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .filtros-usuarios {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+
+    .indicadores-usuarios {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .indicadores-usuarios .indicador {
+        padding: 12px;
+    }
+
+    .indicadores-usuarios .indicador strong {
+        font-size: 1.5rem;
+    }
+
+    .indicadores-usuarios .indicador:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .painel-usuarios {
+        padding: 14px;
+    }
+
+    .filtros-usuarios {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .titulo-painel-usuarios {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .titulo-painel-usuarios button {
+        width: 100%;
+    }
+
+    .pagina-usuarios .rodape-modal button {
+        flex: 1 1 100%;
+    }
+
+    .pagina-usuarios .modal-modulo {
+        padding: 16px;
+    }
+
+    .aviso-seguranca-usuarios {
+        padding: 14px;
+    }
+}

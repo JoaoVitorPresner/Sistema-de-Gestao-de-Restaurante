@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pagamentos | Sistema de Gestão de Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+
+    <link rel="stylesheet" href="/css/produtos.css">
+
+    <link rel="stylesheet" href="/css/pagamentos.css">
+
+    <script src="/js/api.js" defer></script>
+
+    <script src="/js/pagamentos.js" defer></script>
+
+</head>
+
+<body class="pagina-produtos pagina-pagamentos">
+
+    <!-- =========================================
+         CABECALHO
+         ========================================= -->
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html"
+               class="voltar-painel"
+               aria-label="Voltar ao painel">
+
+                &#8592; Painel
+
+            </a>
+
+            <div>
+
+                <h1>Pagamentos</h1>
+
+                <p>Sistema de Gestão de Restaurante</p>
+
+            </div>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">
+                Carregando usuário...
+            </span>
+
+            <button type="button"
+                    id="botao-sair">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         CONTEUDO PRINCIPAL
+         ========================================= -->
+
+    <main class="conteudo-modulo">
+
+        <section class="apresentacao-modulo">
+
+            <div>
+
+                <h2>Gerenciamento financeiro</h2>
+
+                <p>
+                    Consulte contas, registre pagamentos,
+                    aplique descontos e acompanhe o histórico
+                    financeiro do restaurante.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    id="atualizar-pagamentos"
+                    class="botao-secundario">
+
+                Atualizar dados
+
+            </button>
+
+        </section>
+
+        <div id="mensagem-pagamentos"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+
+        <!-- =========================================
+             INDICADORES FINANCEIROS
+             ========================================= -->
+
+        <section class="grade-indicadores indicadores-pagamentos"
+                 aria-label="Indicadores financeiros">
+
+            <article class="indicador">
+
+                <span>Mesas ocupadas</span>
+
+                <strong id="mesas-ocupadas">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-pendente">
+
+                <span>Aguardando pagamento</span>
+
+                <strong id="mesas-aguardando">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-positivo">
+
+                <span>Contas finalizadas</span>
+
+                <strong id="contas-finalizadas">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-negativo">
+
+                <span>Contas estornadas</span>
+
+                <strong id="contas-estornadas">—</strong>
+
+            </article>
+
+            <article class="indicador">
+
+                <span>Valor bruto</span>
+
+                <strong id="valor-bruto">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-pendente">
+
+                <span>Descontos concedidos</span>
+
+                <strong id="valor-descontos">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-positivo">
+
+                <span>Valor recebido</span>
+
+                <strong id="valor-recebido">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-negativo">
+
+                <span>Valor estornado</span>
+
+                <strong id="valor-estornado">—</strong>
+
+            </article>
+
+            <article class="indicador indicador-liquido">
+
+                <span>Valor líquido</span>
+
+                <strong id="valor-liquido">—</strong>
+
+            </article>
+
+        </section>
+
+        <p class="observacao-indicadores">
+
+            Os indicadores financeiros representam o histórico
+            acumulado de contas registradas no sistema.
+
+        </p>
+
+
+        <!-- =========================================
+             ABAS DO MODULO
+             ========================================= -->
+
+        <section class="painel-modulo">
+
+            <nav class="abas-modulo"
+                 aria-label="Seções de pagamentos">
+
+                <button type="button"
+                        id="aba-abertas"
+                        class="aba selecionada"
+                        aria-controls="painel-abertas"
+                        aria-pressed="true">
+
+                    Contas em aberto
+
+                </button>
+
+                <button type="button"
+                        id="aba-historico"
+                        class="aba"
+                        aria-controls="painel-historico"
+                        aria-pressed="false">
+
+                    Histórico financeiro
+
+                </button>
+
+            </nav>
+
+
+            <!-- =====================================
+                 CONTAS EM ABERTO
+                 ===================================== -->
+
+            <section id="painel-abertas">
+
+                <div class="barra-ferramentas">
+
+                    <input type="search"
+                           id="pesquisa-mesa"
+                           placeholder="Pesquisar número da mesa..."
+                           aria-label="Pesquisar número da mesa">
+
+                    <select id="filtro-status-mesa"
+                            aria-label="Filtrar situação da mesa">
+
+                        <option value="">
+                            Todas as situações
+                        </option>
+
+                        <option value="OCUPADA">
+                            Ocupada
+                        </option>
+
+                        <option value="AGUARDANDO_PAGAMENTO">
+                            Aguardando pagamento
+                        </option>
+
+                    </select>
+
+                    <select id="filtro-finalizacao"
+                            aria-label="Filtrar disponibilidade de fechamento">
+
+                        <option value="">
+                            Todas as contas
+                        </option>
+
+                        <option value="disponivel">
+                            Disponíveis para fechamento
+                        </option>
+
+                        <option value="bloqueada">
+                            Fechamento bloqueado
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div id="grade-contas-abertas"
+                     class="grade-contas-abertas"
+                     aria-live="polite">
+
+                    <p class="sem-registros">
+                        Carregando contas...
+                    </p>
+
+                </div>
+
+                <p id="contagem-abertas"
+                   class="contagem-registros">
+                </p>
+
+            </section>
+
+
+            <!-- =====================================
+                 HISTORICO FINANCEIRO
+                 ===================================== -->
+
+            <section id="painel-historico" hidden>
+
+                <form id="form-filtros-historico"
+                      class="filtros-historico">
+
+                    <div class="campo-modulo">
+
+                        <label for="pesquisa-historico">
+                            Conta ou mesa
+                        </label>
+
+                        <input type="search"
+                               id="pesquisa-historico"
+                               placeholder="Número da conta ou mesa">
+
+                    </div>
+
+                    <div class="campo-modulo">
+
+                        <label for="filtro-status-conta">
+                            Situação
+                        </label>
+
+                        <select id="filtro-status-conta">
+
+                            <option value="">
+                                Todas
+                            </option>
+
+                            <option value="FINALIZADA">
+                                Finalizada
+                            </option>
+
+                            <option value="ESTORNADA">
+                                Estornada
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo-modulo">
+
+                        <label for="data-inicial">
+                            Data inicial
+                        </label>
+
+                        <input type="date"
+                               id="data-inicial">
+
+                    </div>
+
+                    <div class="campo-modulo">
+
+                        <label for="data-final">
+                            Data final
+                        </label>
+
+                        <input type="date"
+                               id="data-final">
+
+                    </div>
+
+                    <div class="acoes-filtros">
+
+                        <button type="submit"
+                                class="botao-principal">
+
+                            Filtrar
+
+                        </button>
+
+                        <button type="button"
+                                id="limpar-filtros"
+                                class="botao-secundario">
+
+                            Limpar
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <div id="erro-historico"
+                     class="mensagem"
+                     role="alert"
+                     hidden>
+                </div>
+
+                <div class="tabela-responsiva">
+
+                    <table class="tabela-modulo tabela-pagamentos">
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">Conta</th>
+
+                                <th scope="col">Mesa</th>
+
+                                <th scope="col">Data</th>
+
+                                <th scope="col">Subtotal</th>
+
+                                <th scope="col">Desconto</th>
+
+                                <th scope="col">Valor pago</th>
+
+                                <th scope="col">Valor líquido</th>
+
+                                <th scope="col">Situação</th>
+
+                                <th scope="col">Responsável</th>
+
+                                <th scope="col">Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="lista-contas">
+
+                            <tr>
+
+                                <td colspan="10"
+                                    class="sem-registros">
+
+                                    Nenhuma conta carregada.
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="contagem-historico"
+                   class="contagem-registros">
+                </p>
+
+            </section>
+
+        </section>
+
+        <p id="ultima-atualizacao"
+           class="contagem-registros">
+        </p>
+
+    </main>
+
+
+    <!-- =========================================
+         MODAL DE CONTA ABERTA
+         ========================================= -->
+
+    <dialog id="modal-conta-aberta"
+            class="modal-modulo modal-financeiro"
+            aria-labelledby="titulo-conta-aberta">
+
+        <div class="cabecalho-modal">
+
+            <h2 id="titulo-conta-aberta">
+                Consultar conta
+            </h2>
+
+            <button type="button"
+                    id="fechar-conta-aberta"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div id="erro-conta-aberta"
+             class="mensagem"
+             role="alert"
+             hidden>
+        </div>
+
+        <section id="resumo-conta-aberta"
+                 class="resumo-conta">
+        </section>
+
+        <section class="secao-financeira">
+
+            <h3>Pedidos do atendimento</h3>
+
+            <div id="lista-pedidos-conta"
+                 class="lista-pedidos-conta">
+            </div>
+
+        </section>
+
+        <div id="aviso-fechamento"
+             class="aviso-financeiro"
+             role="status"
+             hidden>
+        </div>
+
+        <button type="button"
+                id="solicitar-pagamento"
+                class="botao-principal"
+                hidden>
+
+            Solicitar pagamento
+
+        </button>
+
+
+        <!-- =====================================
+             FORMULARIO DE FINALIZACAO
+             ===================================== -->
+
+        <form id="form-finalizacao" hidden>
+
+            <section class="secao-financeira">
+
+                <h3>Desconto</h3>
+
+                <div class="campo-modulo">
+
+                    <label for="percentual-desconto">
+                        Percentual de desconto (%)
+                    </label>
+
+                    <input type="number"
+                           id="percentual-desconto"
+                           name="percentualDesconto"
+                           min="0"
+                           max="100"
+                           step="0.01"
+                           value="0"
+                           required>
+
+                    <small id="limite-desconto">
+                        Descontos superiores a 10% exigem
+                        autorização de gerente ou administrador.
+                    </small>
+
+                </div>
+
+                <div class="campo-modulo"
+                     id="campo-motivo-desconto"
+                     hidden>
+
+                    <label for="motivo-desconto">
+                        Justificativa do desconto
+                    </label>
+
+                    <textarea id="motivo-desconto"
+                              name="motivoDesconto"
+                              maxlength="255"
+                              rows="3"
+                              placeholder="Informe o motivo do desconto"
+                              disabled></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 RESUMO DOS VALORES
+                 ================================= -->
+
+            <section class="resumo-valores"
+                     aria-label="Valores da conta">
+
+                <div class="linha-valor">
+
+                    <span>Subtotal</span>
+
+                    <strong id="subtotal-fechamento">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+                <div class="linha-valor">
+
+                    <span>Desconto</span>
+
+                    <strong id="desconto-fechamento">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+                <div class="linha-valor linha-total">
+
+                    <span>Total devido</span>
+
+                    <strong id="total-fechamento">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 FORMAS DE PAGAMENTO
+                 ================================= -->
+
+            <section class="secao-financeira">
+
+                <div class="cabecalho-secao-financeira">
+
+                    <h3>Formas de pagamento</h3>
+
+                    <button type="button"
+                            id="adicionar-pagamento"
+                            class="botao-secundario">
+
+                        + Adicionar pagamento
+
+                    </button>
+
+                </div>
+
+                <p class="texto-auxiliar">
+
+                    É possível utilizar mais de uma forma
+                    de pagamento. A soma dos valores deve
+                    corresponder exatamente ao total devido.
+
+                </p>
+
+                <div id="lista-pagamentos"
+                     class="lista-pagamentos">
+                </div>
+
+                <template id="modelo-pagamento">
+
+                    <div class="linha-pagamento">
+
+                        <label class="campo-modulo">
+
+                            <span>Forma de pagamento</span>
+
+                            <select class="forma-pagamento"
+                                    required>
+
+                                <option value="PIX">
+                                    PIX
+                                </option>
+
+                                <option value="DINHEIRO">
+                                    Dinheiro
+                                </option>
+
+                                <option value="CARTAO_CREDITO">
+                                    Cartão de crédito
+                                </option>
+
+                                <option value="CARTAO_DEBITO">
+                                    Cartão de débito
+                                </option>
+
+                                <option value="VALE_REFEICAO">
+                                    Vale-refeição
+                                </option>
+
+                            </select>
+
+                        </label>
+
+                        <label class="campo-modulo">
+
+                            <span>Valor (R$)</span>
+
+                            <input type="number"
+                                   class="valor-pagamento"
+                                   min="0.01"
+                                   max="999999999999.99"
+                                   step="0.01"
+                                   required>
+
+                        </label>
+
+                        <button type="button"
+                                class="botao-acao botao-desativar remover-pagamento"
+                                aria-label="Remover pagamento">
+
+                            Remover
+
+                        </button>
+
+                    </div>
+
+                </template>
+
+            </section>
+
+
+            <!-- =================================
+                 CONFERENCIA DO PAGAMENTO
+                 ================================= -->
+
+            <section class="resumo-valores"
+                     aria-live="polite">
+
+                <div class="linha-valor">
+
+                    <span>Valor informado</span>
+
+                    <strong id="total-informado">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+                <div class="linha-valor linha-total">
+
+                    <span id="rotulo-saldo">
+                        Saldo restante
+                    </span>
+
+                    <strong id="saldo-restante">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+                <p id="validacao-pagamento"
+                   class="validacao-pagamento">
+                </p>
+
+            </section>
+
+            <p class="aviso-financeiro">
+
+                A finalização registra o recebimento,
+                encerra o atendimento e libera a mesa.
+
+                Confirme que os pagamentos foram efetivamente
+                recebidos antes de prosseguir.
+
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        id="cancelar-finalizacao"
+                        class="botao-secundario">
+
+                    Voltar
+
+                </button>
+
+                <button type="submit"
+                        id="confirmar-finalizacao"
+                        class="botao-principal"
+                        disabled>
+
+                    Finalizar conta
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+
+    <!-- =========================================
+         MODAL DE DETALHES FINANCEIROS
+         ========================================= -->
+
+    <dialog id="modal-detalhes-conta"
+            class="modal-modulo modal-financeiro"
+            aria-labelledby="titulo-detalhes-conta">
+
+        <div class="cabecalho-modal">
+
+            <h2 id="titulo-detalhes-conta">
+                Detalhes da conta
+            </h2>
+
+            <button type="button"
+                    id="fechar-detalhes-conta"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div id="erro-detalhes-conta"
+             class="mensagem"
+             role="alert"
+             hidden>
+        </div>
+
+        <section id="dados-conta-finalizada"
+                 class="resumo-conta">
+        </section>
+
+        <section class="secao-financeira">
+
+            <h3>Valores registrados</h3>
+
+            <div id="valores-conta-finalizada"
+                 class="resumo-valores">
+            </div>
+
+        </section>
+
+        <section class="secao-financeira">
+
+            <h3>Pagamentos registrados</h3>
+
+            <div class="tabela-responsiva">
+
+                <table class="tabela-modulo tabela-detalhes-pagamento">
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">Forma de pagamento</th>
+
+                            <th scope="col">Valor</th>
+
+                            <th scope="col">Data e hora</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="lista-pagamentos-conta">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <section id="dados-estorno"
+                 class="secao-financeira dados-estorno"
+                 hidden>
+
+            <h3>Informações do estorno</h3>
+
+            <div id="informacoes-estorno">
+            </div>
+
+        </section>
+
+        <div class="rodape-modal">
+
+            <button type="button"
+                    id="voltar-detalhes"
+                    class="botao-secundario">
+
+                Fechar
+
+            </button>
+
+            <button type="button"
+                    id="abrir-estorno"
+                    class="botao-perigo"
+                    hidden>
+
+                Estornar conta
+
+            </button>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- =========================================
+         MODAL DE ESTORNO
+         ========================================= -->
+
+    <dialog id="modal-estorno"
+            class="modal-modulo"
+            aria-labelledby="titulo-estorno">
+
+        <div class="cabecalho-modal">
+
+            <h2 id="titulo-estorno">
+                Estornar conta
+            </h2>
+
+            <button type="button"
+                    id="fechar-estorno"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div id="erro-estorno"
+             class="mensagem"
+             role="alert"
+             hidden>
+        </div>
+
+        <form id="form-estorno">
+
+            <div id="resumo-estorno"
+                 class="resumo-valores">
+            </div>
+
+            <p class="aviso-financeiro aviso-perigo">
+
+                O estorno é integral e não poderá ser desfeito
+                pela interface.
+
+                Os registros originais serão preservados.
+
+                A operação não reabre a mesa, não devolve
+                ingredientes ao estoque e não realiza
+                automaticamente uma devolução bancária.
+
+            </p>
+
+            <div class="campo-modulo">
+
+                <label for="motivo-estorno">
+                    Justificativa do estorno
+                </label>
+
+                <textarea id="motivo-estorno"
+                          name="motivo"
+                          rows="4"
+                          maxlength="255"
+                          placeholder="Informe o motivo do estorno"
+                          required></textarea>
+
+            </div>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        id="cancelar-estorno"
+                        class="botao-secundario">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit"
+                        id="confirmar-estorno"
+                        class="botao-perigo">
+
+                    Confirmar estorno
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+
+    <!-- =========================================
+         RODAPE
+         ========================================= -->
+
+    <footer class="rodape-modulo">
+
+        Sistema de Gestão de Restaurante
+        &mdash; Módulo financeiro
+
+    </footer>
+
+</body>
+
+</html>

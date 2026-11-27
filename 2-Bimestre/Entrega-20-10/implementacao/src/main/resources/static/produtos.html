@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Produtos e Categorias | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/produtos.js" defer></script>
+
+</head>
+
+<body class="pagina-produtos">
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html"
+               class="voltar-painel">
+
+                ← Voltar ao painel
+
+            </a>
+
+            <h1>Produtos e categorias</h1>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">
+                Carregando...
+            </span>
+
+            <button type="button" id="botao-sair"
+                    class="botao-secundario">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="conteudo-modulo">
+
+        <section class="apresentacao-modulo">
+
+            <h2>Gerenciamento do cardápio</h2>
+
+            <p>
+                Cadastre, edite e controle a disponibilidade
+                dos produtos e categorias do restaurante.
+            </p>
+
+        </section>
+
+
+        <!-- INDICADORES -->
+
+        <section class="grade-indicadores">
+
+            <article class="indicador">
+
+                <span>Total de produtos</span>
+                <strong id="total-produtos">0</strong>
+
+            </article>
+
+            <article class="indicador">
+
+                <span>Produtos ativos</span>
+                <strong id="produtos-ativos">0</strong>
+
+            </article>
+
+            <article class="indicador">
+
+                <span>Produtos inativos</span>
+                <strong id="produtos-inativos">0</strong>
+
+            </article>
+
+            <article class="indicador">
+
+                <span>Total de categorias</span>
+                <strong id="total-categorias">0</strong>
+
+            </article>
+
+        </section>
+
+
+        <div id="mensagem-produtos"
+             class="mensagem"
+             role="status"
+             hidden>
+        </div>
+
+
+        <section class="painel-modulo">
+
+            <!-- ABAS -->
+
+            <div class="abas-modulo">
+
+                <button type="button"
+                        class="aba selecionada"
+                        id="aba-produtos">
+
+                    Produtos
+
+                </button>
+
+                <button type="button"
+                        class="aba"
+                        id="aba-categorias">
+
+                    Categorias
+
+                </button>
+
+            </div>
+
+
+            <!-- LISTAGEM DE PRODUTOS -->
+
+            <section id="painel-produtos">
+
+                <div class="barra-ferramentas">
+
+                    <input type="search"
+                           id="pesquisa-produto"
+                           aria-label="Pesquisar produto"
+                           placeholder="Buscar produto...">
+
+                    <select id="filtro-categoria"
+                            aria-label="Filtrar categoria">
+
+                        <option value="">
+                            Todas as categorias
+                        </option>
+
+                    </select>
+
+                    <select id="filtro-status-produto"
+                            aria-label="Filtrar status">
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="true">
+                            Ativos
+                        </option>
+
+                        <option value="false">
+                            Inativos
+                        </option>
+
+                    </select>
+
+                    <button type="button"
+                            class="botao-principal"
+                            id="novo-produto">
+
+                        + Novo produto
+
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-responsiva">
+
+                    <table class="tabela-modulo">
+
+                        <thead>
+
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="lista-produtos">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="contagem-produtos"
+                   class="contagem-registros">
+                </p>
+
+            </section>
+
+
+            <!-- LISTAGEM DE CATEGORIAS -->
+
+            <section id="painel-categorias" hidden>
+
+                <div class="barra-ferramentas">
+
+                    <input type="search"
+                           id="pesquisa-categoria"
+                           aria-label="Pesquisar categoria"
+                           placeholder="Buscar categoria...">
+
+                    <select id="filtro-status-categoria"
+                            aria-label="Filtrar status">
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="true">
+                            Ativas
+                        </option>
+
+                        <option value="false">
+                            Inativas
+                        </option>
+
+                    </select>
+
+                    <button type="button"
+                            class="botao-principal"
+                            id="nova-categoria">
+
+                        + Nova categoria
+
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-responsiva">
+
+                    <table class="tabela-modulo">
+
+                        <thead>
+
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th>Produtos ativos</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="lista-categorias">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="contagem-categorias"
+                   class="contagem-registros">
+                </p>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- FORMULARIO DE PRODUTOS -->
+
+    <dialog id="modal-produto" class="modal-modulo">
+
+        <form id="form-produto">
+
+            <div class="cabecalho-modal">
+
+                <h2 id="titulo-modal-produto">
+                    Novo produto
+                </h2>
+
+                <button type="button"
+                        class="fechar-modal"
+                        id="fechar-produto"
+                        aria-label="Fechar">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <input type="hidden" name="id">
+
+            <div class="campo-modulo">
+
+                <label for="nome-produto">Nome</label>
+
+                <input type="text"
+                       id="nome-produto"
+                       name="nome"
+                       maxlength="100"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="descricao-produto">
+                    Descrição
+                </label>
+
+                <textarea id="descricao-produto"
+                          name="descricao"
+                          maxlength="255"
+                          rows="3"></textarea>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="preco-produto">
+                    Preço (R$)
+                </label>
+
+                <input type="number"
+                       id="preco-produto"
+                       name="preco"
+                       min="0.01"
+                       max="99999999.99"
+                       step="0.01"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="categoria-produto">
+                    Categoria
+                </label>
+
+                <select id="categoria-produto"
+                        name="categoria"
+                        required>
+                </select>
+
+            </div>
+
+            <p id="erro-produto"
+               class="mensagem erro"
+               role="alert"
+               hidden>
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="cancelar-produto">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit"
+                        class="botao-principal">
+
+                    Salvar produto
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+
+    <!-- FORMULARIO DE CATEGORIAS -->
+
+    <dialog id="modal-categoria" class="modal-modulo">
+
+        <form id="form-categoria">
+
+            <div class="cabecalho-modal">
+
+                <h2 id="titulo-modal-categoria">
+                    Nova categoria
+                </h2>
+
+                <button type="button"
+                        class="fechar-modal"
+                        id="fechar-categoria"
+                        aria-label="Fechar">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <input type="hidden" name="id">
+
+            <div class="campo-modulo">
+
+                <label for="nome-categoria">
+                    Nome
+                </label>
+
+                <input type="text"
+                       id="nome-categoria"
+                       name="nome"
+                       maxlength="100"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="descricao-categoria">
+                    Descrição
+                </label>
+
+                <textarea id="descricao-categoria"
+                          name="descricao"
+                          maxlength="255"
+                          rows="3"></textarea>
+
+            </div>
+
+            <p id="erro-categoria"
+               class="mensagem erro"
+               role="alert"
+               hidden>
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="cancelar-categoria">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit"
+                        class="botao-principal">
+
+                    Salvar categoria
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <!-- MODAL DE COMPOSICAO -->
+
+<dialog id="modal-composicao"
+        class="modal-modulo modal-composicao">
+
+    <div class="cabecalho-modal">
+
+        <h2>Composição do produto</h2>
+
+        <button type="button"
+                class="fechar-modal"
+                id="fechar-composicao"
+                aria-label="Fechar">
+            ×
+        </button>
+
+    </div>
+
+    <h3 id="nome-produto-composicao"></h3>
+
+    <div class="controle-composicao">
+
+        <label>
+
+            <input type="checkbox"
+                   id="controle-estoque-produto">
+
+            Controlar estoque deste produto
+
+        </label>
+
+        <button type="button"
+                class="botao-secundario"
+                id="salvar-controle-estoque">
+
+            Salvar configuração
+
+        </button>
+
+    </div>
+
+    <p class="aviso-composicao">
+
+        Informe a quantidade de cada ingrediente
+        necessária para produzir uma unidade do produto.
+
+        Produtos com controle de estoque habilitado
+        e sem composição ficam indisponíveis no cardápio.
+
+    </p>
+
+    <p id="mensagem-composicao"
+       class="mensagem"
+       role="status"
+       hidden></p>
+
+    <div class="tabela-responsiva">
+
+        <table class="tabela-modulo tabela-composicao">
+
+            <thead>
+
+                <tr>
+                    <th>Ingrediente</th>
+                    <th>Quantidade</th>
+                    <th>Disponível</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="lista-composicao"></tbody>
+
+        </table>
+
+    </div>
+
+    <form id="form-composicao">
+
+        <h3 id="titulo-form-composicao">
+            Adicionar ingrediente
+        </h3>
+
+        <div class="campo-modulo">
+
+            <label for="ingrediente-composicao">
+                Ingrediente
+            </label>
+
+            <select id="ingrediente-composicao"
+                    name="ingredienteId"
+                    required>
+            </select>
+
+        </div>
+
+        <div class="campo-modulo">
+
+            <label for="quantidade-composicao">
+                Quantidade por produto
+            </label>
+
+            <input type="number"
+                   id="quantidade-composicao"
+                   name="quantidade"
+                   min="0.001"
+                   max="999999999.999"
+                   step="0.001"
+                   required>
+
+        </div>
+
+        <p id="unidade-composicao"></p>
+
+        <div class="rodape-modal">
+
+            <button type="button"
+                    class="botao-secundario"
+                    id="cancelar-edicao-composicao"
+                    hidden>
+
+                Cancelar edição
+
+            </button>
+
+            <button type="submit"
+                    class="botao-principal"
+                    id="salvar-composicao">
+
+                Adicionar ingrediente
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="rodape-modal">
+
+        <button type="button"
+                class="botao-secundario"
+                id="concluir-composicao">
+
+            Concluir
+
+        </button>
+
+    </div>
+
+</dialog>
+
+    <footer class="rodape-modulo">
+
+        Sistema de Gestão de Restaurante — 2026
+
+    </footer>
+
+</body>
+</html>

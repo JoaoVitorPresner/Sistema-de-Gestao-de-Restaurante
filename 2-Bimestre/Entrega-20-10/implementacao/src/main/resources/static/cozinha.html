@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cozinha | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+    <link rel="stylesheet" href="/css/cozinha.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/cozinha.js" defer></script>
+
+</head>
+
+<body class="pagina-produtos pagina-cozinha">
+
+    <!-- CABECALHO -->
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html"
+               class="voltar-painel">
+
+                Voltar ao painel
+
+            </a>
+
+            <div>
+
+                <span class="marca-cozinha">
+                    RESTAURANTE | ÁREA OPERACIONAL
+                </span>
+
+                <h1>Painel da cozinha</h1>
+
+            </div>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">
+                Carregando usuário...
+            </span>
+
+            <button type="button"
+                    id="botao-sair"
+                    class="botao-sair-cozinha">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="conteudo-modulo conteudo-cozinha">
+
+        <section class="apresentacao-modulo">
+
+            <div>
+
+                <h2>Controle de produção</h2>
+
+                <p>
+                    Acompanhe os pedidos recebidos,
+                    organize o preparo dos alimentos
+                    e informe quando estiverem prontos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENSAGENS -->
+
+        <div id="mensagem-cozinha"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+
+        <!-- INDICADORES -->
+
+        <section class="indicadores-cozinha"
+                 aria-label="Indicadores da cozinha">
+
+            <article class="indicador-cozinha">
+
+                <span>Total na fila</span>
+
+                <strong id="total-pedidos">
+                    0
+                </strong>
+
+                <small>
+                    Pedidos aguardando conclusão
+                </small>
+
+            </article>
+
+
+            <article class="indicador-cozinha indicador-recebido">
+
+                <span>Recebidos</span>
+
+                <strong id="total-recebidos">
+                    0
+                </strong>
+
+                <small>
+                    Aguardando início do preparo
+                </small>
+
+            </article>
+
+
+            <article class="indicador-cozinha indicador-preparo">
+
+                <span>Em preparo</span>
+
+                <strong id="total-preparo">
+                    0
+                </strong>
+
+                <small>
+                    Atualmente em produção
+                </small>
+
+            </article>
+
+
+            <article class="indicador-cozinha indicador-pronto">
+
+                <span>Prontos</span>
+
+                <strong id="total-prontos">
+                    0
+                </strong>
+
+                <small>
+                    Aguardando entrega à mesa
+                </small>
+
+            </article>
+
+        </section>
+
+
+        <!-- PAINEL DE PRODUCAO -->
+
+        <section class="painel-cozinha"
+                 aria-labelledby="titulo-fila">
+
+            <div class="cabecalho-fila">
+
+                <div>
+
+                    <h2 id="titulo-fila">
+                        Fila de produção
+                    </h2>
+
+                    <p>
+                        Os pedidos mais antigos são
+                        apresentados primeiro.
+                    </p>
+
+                </div>
+
+                <button type="button"
+                        id="atualizar-cozinha"
+                        class="botao-secundario">
+
+                    Atualizar pedidos
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="filtros-cozinha">
+
+                <div class="campo-filtro-cozinha">
+
+                    <label for="pesquisa-pedido">
+
+                        Pesquisar pedido
+
+                    </label>
+
+                    <input type="search"
+                           id="pesquisa-pedido"
+                           placeholder="Número do pedido ou produto"
+                           autocomplete="off">
+
+                </div>
+
+
+                <div class="campo-filtro-cozinha">
+
+                    <label for="filtro-mesa">
+
+                        Mesa
+
+                    </label>
+
+                    <select id="filtro-mesa">
+
+                        <option value="TODAS">
+                            Todas as mesas
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo-filtro-cozinha">
+
+                    <label for="filtro-status">
+
+                        Situação
+
+                    </label>
+
+                    <select id="filtro-status">
+
+                        <option value="TODOS">
+                            Todos os estados
+                        </option>
+
+                        <option value="RECEBIDO">
+                            Recebidos
+                        </option>
+
+                        <option value="EM_PREPARO">
+                            Em preparo
+                        </option>
+
+                        <option value="PRONTO">
+                            Prontos
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="button"
+                        id="limpar-filtros"
+                        class="botao-secundario">
+
+                    Limpar filtros
+
+                </button>
+
+            </div>
+
+
+            <!-- QUADRO KANBAN -->
+
+            <div id="quadro-cozinha"
+                 class="quadro-cozinha"
+                 aria-busy="true">
+
+
+                <!-- COLUNA RECEBIDOS -->
+
+                <section id="coluna-recebidos"
+                         class="coluna-cozinha coluna-recebidos"
+                         aria-labelledby="titulo-recebidos">
+
+                    <header class="cabecalho-coluna">
+
+                        <div>
+
+                            <h3 id="titulo-recebidos">
+                                Recebidos
+                            </h3>
+
+                            <p>
+                                Aguardando preparo
+                            </p>
+
+                        </div>
+
+                        <span id="contagem-recebidos"
+                              class="contagem-coluna">
+
+                            0
+
+                        </span>
+
+                    </header>
+
+                    <div id="lista-recebidos"
+                         class="lista-cozinha">
+
+                        <p class="cozinha-vazia">
+
+                            Carregando pedidos...
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- COLUNA EM PREPARO -->
+
+                <section id="coluna-preparo"
+                         class="coluna-cozinha coluna-preparo"
+                         aria-labelledby="titulo-preparo">
+
+                    <header class="cabecalho-coluna">
+
+                        <div>
+
+                            <h3 id="titulo-preparo">
+                                Em preparo
+                            </h3>
+
+                            <p>
+                                Pedidos em produção
+                            </p>
+
+                        </div>
+
+                        <span id="contagem-preparo"
+                              class="contagem-coluna">
+
+                            0
+
+                        </span>
+
+                    </header>
+
+                    <div id="lista-preparo"
+                         class="lista-cozinha">
+
+                        <p class="cozinha-vazia">
+
+                            Carregando pedidos...
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- COLUNA PRONTOS -->
+
+                <section id="coluna-prontos"
+                         class="coluna-cozinha coluna-prontos"
+                         aria-labelledby="titulo-prontos">
+
+                    <header class="cabecalho-coluna">
+
+                        <div>
+
+                            <h3 id="titulo-prontos">
+                                Prontos
+                            </h3>
+
+                            <p>
+                                Aguardando entrega
+                            </p>
+
+                        </div>
+
+                        <span id="contagem-prontos"
+                              class="contagem-coluna">
+
+                            0
+
+                        </span>
+
+                    </header>
+
+                    <div id="lista-prontos"
+                         class="lista-cozinha">
+
+                        <p class="cozinha-vazia">
+
+                            Carregando pedidos...
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- INFORMACOES DA FILA -->
+
+            <footer class="rodape-cozinha">
+
+                <span id="contagem-pedidos">
+                    0 pedidos exibidos
+                </span>
+
+                <span id="ultima-atualizacao">
+                    Aguardando atualização
+                </span>
+
+            </footer>
+
+        </section>
+
+
+        <!-- ORIENTACOES OPERACIONAIS -->
+
+        <section class="orientacoes-cozinha">
+
+            <h2>Fluxo de trabalho</h2>
+
+            <div class="grade-orientacoes">
+
+                <article>
+
+                    <span class="numero-orientacao">
+                        1
+                    </span>
+
+                    <div>
+
+                        <h3>Receber</h3>
+
+                        <p>
+                            Confira os produtos, as quantidades
+                            e as observações do cliente.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span class="numero-orientacao">
+                        2
+                    </span>
+
+                    <div>
+
+                        <h3>Preparar</h3>
+
+                        <p>
+                            Inicie o preparo quando começar
+                            a produção do pedido.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span class="numero-orientacao">
+                        3
+                    </span>
+
+                    <div>
+
+                        <h3>Finalizar</h3>
+
+                        <p>
+                            Marque o pedido como pronto
+                            para que o atendente possa entregá-lo.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="rodape-modulo">
+
+        Sistema de Gestão de Restaurante |
+        Módulo da Cozinha
+
+    </footer>
+
+</body>
+</html>

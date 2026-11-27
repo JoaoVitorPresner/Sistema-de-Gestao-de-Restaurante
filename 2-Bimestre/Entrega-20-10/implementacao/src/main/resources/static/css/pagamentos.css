@@ -1,0 +1,1273 @@
+/* =========================================
+   CONFIGURACOES DO MODULO FINANCEIRO
+   ========================================= */
+
+.pagina-pagamentos {
+
+    --fin-verde: #25352c;
+    --fin-dourado: #c8a66a;
+    --fin-fundo: #f5f3ee;
+    --fin-borda: #e4e0d7;
+    --fin-secundario: #69746d;
+    --fin-sucesso: #275c35;
+    --fin-alerta: #b45309;
+    --fin-perigo: #b91c1c;
+
+}
+
+.pagina-pagamentos [hidden] {
+    display: none !important;
+}
+
+.pagina-pagamentos button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.pagina-pagamentos input,
+.pagina-pagamentos select,
+.pagina-pagamentos textarea {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   INDICADORES FINANCEIROS
+   ========================================= */
+
+.indicadores-pagamentos {
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+
+}
+
+.indicadores-pagamentos .indicador {
+
+    min-width: 0;
+
+    padding: 20px;
+
+}
+
+.indicadores-pagamentos .indicador strong {
+
+    font-size: clamp(20px, 2.3vw, 30px);
+
+    font-variant-numeric: tabular-nums;
+
+    overflow-wrap: anywhere;
+
+}
+
+.indicadores-pagamentos .indicador span {
+
+    line-height: 1.5;
+
+}
+
+.indicador-pendente {
+
+    border-top-color: var(--fin-alerta);
+
+}
+
+.indicador-pendente strong {
+
+    color: var(--fin-alerta);
+
+}
+
+.indicador-positivo {
+
+    border-top-color: var(--fin-sucesso);
+
+}
+
+.indicador-positivo strong {
+
+    color: var(--fin-sucesso);
+
+}
+
+.indicador-negativo {
+
+    border-top-color: var(--fin-perigo);
+
+}
+
+.indicador-negativo strong {
+
+    color: var(--fin-perigo);
+
+}
+
+.indicador-liquido {
+
+    background: #e8f1e9;
+
+    border-top-color: var(--fin-sucesso);
+
+}
+
+.indicador-liquido strong {
+
+    color: var(--fin-sucesso);
+
+}
+
+.observacao-indicadores {
+
+    margin: 12px 0 25px;
+
+    font-size: 12px;
+
+    color: var(--fin-secundario);
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   CONTAS EM ABERTO
+   ========================================= */
+
+.grade-contas-abertas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+.grade-contas-abertas > .sem-registros {
+
+    grid-column: 1 / -1;
+
+}
+
+.cartao-conta-aberta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    min-width: 0;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--fin-borda);
+
+    border-top: 4px solid var(--fin-dourado);
+
+    border-radius: 9px;
+
+    transition:
+        box-shadow .2s,
+        border-color .2s;
+
+}
+
+.cartao-conta-aberta:hover {
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .06);
+
+}
+
+.cartao-conta-aberta.ocupada {
+
+    border-top-color: var(--fin-sucesso);
+
+}
+
+.cartao-conta-aberta.aguardando-pagamento {
+
+    border-top-color: var(--fin-alerta);
+
+}
+
+.cabecalho-conta {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+.cabecalho-conta h3 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    color: var(--fin-verde);
+
+}
+
+.informacoes-conta {
+
+    display: grid;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    color: var(--fin-secundario);
+
+    line-height: 1.5;
+
+}
+
+.informacoes-conta p {
+
+    margin: 0;
+
+}
+
+.valor-conta-aberta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 14px 0;
+
+    border-top: 1px solid var(--fin-borda);
+
+    border-bottom: 1px solid var(--fin-borda);
+
+}
+
+.valor-conta-aberta span {
+
+    font-size: 12px;
+
+    color: var(--fin-secundario);
+
+}
+
+.valor-conta-aberta strong {
+
+    color: var(--fin-verde);
+
+    font-size: 27px;
+
+    font-variant-numeric: tabular-nums;
+
+    overflow-wrap: anywhere;
+
+}
+
+.acoes-conta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: auto;
+
+}
+
+.acoes-conta button {
+
+    flex: 1 1 auto;
+
+}
+
+.bloqueio-conta {
+
+    padding: 10px 12px;
+
+    background: #fff7e6;
+
+    border-radius: 5px;
+
+    color: #92400e;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+.conta-disponivel {
+
+    color: var(--fin-sucesso);
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   SITUACOES E ETIQUETAS
+   ========================================= */
+
+.status-ocupada {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.status-aguardando-pagamento {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.status-finalizada {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.status-estornada {
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+}
+
+.status-recebido {
+
+    background: #dbeafe;
+
+    color: #1e40af;
+
+}
+
+.status-em-preparo {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.status-pronto {
+
+    background: #e0e7ff;
+
+    color: #3730a3;
+
+}
+
+.status-entregue {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.status-cancelado {
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+}
+
+
+/* =========================================
+   HISTORICO FINANCEIRO
+   ========================================= */
+
+.filtros-historico {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    align-items: end;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+.filtros-historico .campo-modulo {
+
+    min-width: 0;
+
+    margin-bottom: 0;
+
+}
+
+.filtros-historico input,
+.filtros-historico select {
+
+    width: 100%;
+
+    min-width: 0;
+
+}
+
+.acoes-filtros {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    grid-column: 1 / -1;
+
+}
+
+.tabela-pagamentos {
+
+    min-width: 1150px;
+
+}
+
+.tabela-detalhes-pagamento {
+
+    min-width: 460px;
+
+}
+
+.valor-monetario {
+
+    white-space: nowrap;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.valor-positivo {
+
+    color: var(--fin-sucesso);
+
+    font-weight: bold;
+
+}
+
+.valor-negativo {
+
+    color: var(--fin-perigo);
+
+    font-weight: bold;
+
+}
+
+.valor-desconto {
+
+    color: var(--fin-alerta);
+
+}
+
+.linha-estornada {
+
+    background: #fffafa;
+
+}
+
+
+/* =========================================
+   MODAIS FINANCEIROS
+   ========================================= */
+
+.modal-financeiro {
+
+    width: min(850px, calc(100% - 24px));
+
+    max-width: 850px;
+
+    max-height: 90vh;
+
+    max-height: 90dvh;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+}
+
+.pagina-pagamentos .modal-modulo {
+
+    box-sizing: border-box;
+
+}
+
+.resumo-conta {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+
+    background: var(--fin-fundo);
+
+    border: 1px solid var(--fin-borda);
+
+    border-radius: 7px;
+
+}
+
+.dado-conta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+
+}
+
+.dado-conta span {
+
+    font-size: 12px;
+
+    color: var(--fin-secundario);
+
+}
+
+.dado-conta strong {
+
+    font-size: 15px;
+
+    color: var(--fin-verde);
+
+    overflow-wrap: anywhere;
+
+}
+
+.secao-financeira {
+
+    margin: 20px 0;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--fin-borda);
+
+}
+
+.secao-financeira h3 {
+
+    margin: 0 0 15px;
+
+    font-size: 17px;
+
+    color: var(--fin-verde);
+
+}
+
+.cabecalho-secao-financeira {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+.cabecalho-secao-financeira h3 {
+
+    margin: 0;
+
+}
+
+.texto-auxiliar,
+.pagina-pagamentos .campo-modulo small {
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: var(--fin-secundario);
+
+}
+
+
+/* =========================================
+   PEDIDOS DA CONTA
+   ========================================= */
+
+.lista-pedidos-conta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+.pedido-conta {
+
+    padding: 15px;
+
+    border: 1px solid var(--fin-borda);
+
+    border-radius: 7px;
+
+}
+
+.pedido-conta.pedido-cancelado {
+
+    background: #fffafa;
+
+    border-left: 4px solid var(--fin-perigo);
+
+}
+
+.pedido-conta.pedido-pendente {
+
+    border-left: 4px solid var(--fin-alerta);
+
+}
+
+.pedido-conta.pedido-entregue {
+
+    border-left: 4px solid var(--fin-sucesso);
+
+}
+
+.cabecalho-pedido-conta {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+.itens-pedido-conta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 12px 0;
+
+}
+
+.item-pedido-conta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+.item-pedido-conta > :first-child {
+
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+
+}
+
+.item-pedido-conta > :last-child {
+
+    flex-shrink: 0;
+
+}
+
+.total-pedido-conta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid var(--fin-borda);
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   RESUMO DE VALORES
+   ========================================= */
+
+.resumo-valores {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    margin: 18px 0;
+
+    background: var(--fin-fundo);
+
+    border: 1px solid var(--fin-borda);
+
+    border-radius: 7px;
+
+}
+
+.linha-valor {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    font-size: 14px;
+
+}
+
+.linha-valor strong {
+
+    color: var(--fin-verde);
+
+    font-variant-numeric: tabular-nums;
+
+    overflow-wrap: anywhere;
+
+    min-width: 0;
+
+}
+
+.linha-total {
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--fin-borda);
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+}
+
+.linha-total strong {
+
+    font-size: 24px;
+
+}
+
+.linha-valor strong.valor-positivo {
+
+    color: var(--fin-sucesso);
+
+}
+
+.linha-valor strong.valor-negativo {
+
+    color: var(--fin-perigo);
+
+}
+
+.linha-valor strong.valor-desconto {
+
+    color: var(--fin-alerta);
+
+}
+
+
+/* =========================================
+   PAGAMENTOS MULTIPLOS
+   ========================================= */
+
+.lista-pagamentos {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+.linha-pagamento {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.4fr)
+        minmax(0, 1fr)
+        auto;
+
+    align-items: end;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    border: 1px solid var(--fin-borda);
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+}
+
+.linha-pagamento .campo-modulo {
+
+    margin: 0;
+
+    min-width: 0;
+
+}
+
+.linha-pagamento .campo-modulo span {
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+.linha-pagamento select,
+.linha-pagamento input {
+
+    width: 100%;
+
+    min-width: 0;
+
+}
+
+.remover-pagamento {
+
+    min-height: 38px;
+
+}
+
+.validacao-pagamento {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    line-height: 1.6;
+
+}
+
+.validacao-pagamento.valido {
+
+    color: var(--fin-sucesso);
+
+}
+
+.validacao-pagamento.invalido {
+
+    color: var(--fin-perigo);
+
+}
+
+
+/* =========================================
+   AVISOS FINANCEIROS
+   ========================================= */
+
+.aviso-financeiro {
+
+    padding: 14px;
+
+    margin: 15px 0;
+
+    background: var(--fin-fundo);
+
+    border-left: 4px solid var(--fin-dourado);
+
+    border-radius: 4px;
+
+    font-size: 13px;
+
+    color: var(--fin-secundario);
+
+    line-height: 1.7;
+
+    overflow-wrap: anywhere;
+
+}
+
+.aviso-perigo {
+
+    background: #fff1f2;
+
+    border-left-color: var(--fin-perigo);
+
+    color: #991b1b;
+
+}
+
+
+/* =========================================
+   ESTORNOS
+   ========================================= */
+
+.botao-perigo {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 11px 18px;
+
+    border: 1px solid #b91c1c;
+
+    border-radius: 6px;
+
+    background: #b91c1c;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background .2s;
+
+}
+
+.botao-perigo:hover:not(:disabled) {
+
+    background: #991b1b;
+
+}
+
+.dados-estorno {
+
+    padding: 16px;
+
+    background: #fff5f5;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 7px;
+
+}
+
+.dados-estorno h3 {
+
+    color: var(--fin-perigo);
+
+}
+
+#informacoes-estorno {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* =========================================
+   ACESSIBILIDADE
+   ========================================= */
+
+.pagina-pagamentos button:focus-visible,
+.pagina-pagamentos input:focus-visible,
+.pagina-pagamentos select:focus-visible,
+.pagina-pagamentos textarea:focus-visible {
+
+    outline: 3px solid var(--fin-dourado);
+
+    outline-offset: 3px;
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE - TABLETS
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .grade-contas-abertas {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+    .filtros-historico {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .indicadores-pagamentos {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+    .indicadores-pagamentos .indicador:last-child {
+
+        grid-column: 1 / -1;
+
+    }
+
+    .grade-contas-abertas {
+
+        gap: 12px;
+
+    }
+
+    .cartao-conta-aberta {
+
+        padding: 15px;
+
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE - CELULARES
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .grade-contas-abertas {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+    .indicadores-pagamentos {
+
+        gap: 10px;
+
+    }
+
+    .indicadores-pagamentos .indicador {
+
+        padding: 13px;
+
+    }
+
+    .indicadores-pagamentos .indicador strong {
+
+        font-size: 20px;
+
+    }
+
+    .indicadores-pagamentos .indicador span {
+
+        font-size: 12px;
+
+    }
+
+    .pagina-pagamentos .abas-modulo {
+
+        gap: 5px;
+
+    }
+
+    .pagina-pagamentos .aba {
+
+        padding: 12px 8px;
+
+        font-size: 13px;
+
+    }
+
+    .filtros-historico {
+
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 12px;
+
+    }
+
+    .acoes-filtros button {
+
+        flex: 1 1 auto;
+
+    }
+
+    .modal-financeiro {
+
+        padding: 16px;
+
+    }
+
+    .resumo-conta {
+
+        padding: 13px;
+
+        gap: 12px;
+
+    }
+
+    .linha-pagamento {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+    .remover-pagamento {
+
+        width: 100%;
+
+    }
+
+    .resumo-valores {
+
+        padding: 13px;
+
+    }
+
+    .linha-total strong {
+
+        font-size: 21px;
+
+    }
+
+    .cabecalho-secao-financeira {
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+    }
+
+    .pagina-pagamentos .rodape-modal button {
+
+        flex: 1 1 auto;
+
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .resumo-conta {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+    .indicadores-pagamentos .indicador strong {
+
+        font-size: 18px;
+
+    }
+
+    .cartao-conta-aberta {
+
+        padding: 13px;
+
+    }
+
+    .valor-conta-aberta strong {
+
+        font-size: 23px;
+
+    }
+
+}
+
+
+/* =========================================
+   REDUCAO DE MOVIMENTOS
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pagina-pagamentos .cartao-conta-aberta,
+    .pagina-pagamentos .botao-perigo {
+
+        transition: none;
+
+    }
+
+}

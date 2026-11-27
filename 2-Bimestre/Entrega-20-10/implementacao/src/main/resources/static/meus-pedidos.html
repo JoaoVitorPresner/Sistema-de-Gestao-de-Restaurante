@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Meus pedidos | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/cliente.css">
+    <link rel="stylesheet" href="/css/meus-pedidos.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/carrinho.js" defer></script>
+    <script src="/js/meus-pedidos.js" defer></script>
+
+</head>
+
+<body class="pagina-cliente pagina-meus-pedidos">
+
+    <!-- CABECALHO -->
+
+    <header class="cabecalho-cliente">
+
+        <div class="limite-cliente cabecalho-conteudo">
+
+            <div>
+
+                <span class="marca-cliente">
+                    RESTAURANTE
+                </span>
+
+                <h1>Meus pedidos</h1>
+
+                <p>
+                    Acompanhe o andamento dos seus pedidos.
+                </p>
+
+            </div>
+
+            <div class="identificacao-cliente">
+
+                <span id="identificacao-mesa"
+                      class="identificacao-mesa">
+
+                    Mesa --
+
+                </span>
+
+                <button type="button"
+                        id="botao-sair"
+                        class="sair-cliente">
+
+                    Sair
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVEGACAO -->
+
+    <nav class="navegacao-cliente">
+
+        <div class="limite-cliente navegacao-conteudo">
+
+            <a href="/cardapio.html">
+
+                Cardápio
+
+            </a>
+
+            <a href="/carrinho.html">
+
+                Carrinho
+                (<span id="quantidade-navegacao">0</span>)
+
+            </a>
+
+            <a href="/meus-pedidos.html"
+               class="ativo"
+               aria-current="page">
+
+                Meus pedidos
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="limite-cliente conteudo-cliente">
+
+        <!-- MENSAGENS -->
+
+        <div id="mensagem-cliente"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+
+        <!-- AVISO DE PAGAMENTO -->
+
+        <div id="aviso-pagamento"
+             class="aviso-pagamento"
+             hidden>
+
+            <strong>Pagamento solicitado</strong>
+
+            <p>
+                Sua mesa está aguardando pagamento.
+                Você ainda pode consultar os pedidos
+                realizados durante este atendimento.
+            </p>
+
+        </div>
+
+
+        <!-- INDICADORES DO ATENDIMENTO -->
+
+        <section class="indicadores-pedidos"
+                 aria-label="Resumo do atendimento">
+
+            <article class="indicador-pedido">
+
+                <span>Pedidos realizados</span>
+
+                <strong id="total-pedidos">
+                    0
+                </strong>
+
+                <small>
+                    Neste atendimento
+                </small>
+
+            </article>
+
+
+            <article class="indicador-pedido">
+
+                <span>Em andamento</span>
+
+                <strong id="pedidos-andamento">
+                    0
+                </strong>
+
+                <small>
+                    Aguardando preparo ou entrega
+                </small>
+
+            </article>
+
+
+            <article class="indicador-pedido">
+
+                <span>Pedidos entregues</span>
+
+                <strong id="pedidos-entregues">
+                    0
+                </strong>
+
+                <small>
+                    Entregues à sua mesa
+                </small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-valor">
+
+                <span>Total dos pedidos</span>
+
+                <strong id="valor-atendimento">
+                    R$ 0,00
+                </strong>
+
+                <small>
+                    Não inclui pedidos cancelados
+                </small>
+
+            </article>
+
+        </section>
+
+
+        <!-- LISTAGEM DOS PEDIDOS -->
+
+        <section class="secao-meus-pedidos"
+                 aria-labelledby="titulo-pedidos">
+
+            <div class="cabecalho-listagem-pedidos">
+
+                <div>
+
+                    <h2 id="titulo-pedidos">
+                        Histórico de pedidos
+                    </h2>
+
+                    <p>
+                        Pedidos realizados durante
+                        o atendimento atual da mesa.
+                    </p>
+
+                </div>
+
+                <button type="button"
+                        id="atualizar-pedidos"
+                        class="botao-cliente-secundario">
+
+                    Atualizar pedidos
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="filtros-pedidos"
+                 aria-label="Filtrar pedidos">
+
+                <button type="button"
+                        class="filtro-categoria ativo"
+                        data-filtro="TODOS"
+                        aria-pressed="true">
+
+                    Todos
+
+                </button>
+
+                <button type="button"
+                        class="filtro-categoria"
+                        data-filtro="ANDAMENTO"
+                        aria-pressed="false">
+
+                    Em andamento
+
+                </button>
+
+                <button type="button"
+                        class="filtro-categoria"
+                        data-filtro="ENTREGUE"
+                        aria-pressed="false">
+
+                    Entregues
+
+                </button>
+
+                <button type="button"
+                        class="filtro-categoria"
+                        data-filtro="CANCELADO"
+                        aria-pressed="false">
+
+                    Cancelados
+
+                </button>
+
+            </div>
+
+
+            <!-- PEDIDOS GERADOS PELO JAVASCRIPT -->
+
+            <div id="lista-pedidos"
+                 class="lista-pedidos"
+                 aria-busy="true">
+
+                <p class="estado-vazio">
+                    Carregando seus pedidos...
+                </p>
+
+            </div>
+
+
+            <!-- INFORMACOES DA LISTAGEM -->
+
+            <div class="rodape-listagem-pedidos">
+
+                <span id="contagem-pedidos">
+                    0 pedidos exibidos
+                </span>
+
+                <span id="ultima-atualizacao">
+                    Aguardando atualização
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RETORNO AO CARDAPIO -->
+
+        <section class="continuar-pedindo">
+
+            <div>
+
+                <h2>Deseja pedir mais alguma coisa?</h2>
+
+                <p>
+                    Consulte nosso cardápio e escolha
+                    outros alimentos ou bebidas.
+                </p>
+
+            </div>
+
+            <a href="/cardapio.html"
+               class="botao-cliente-principal">
+
+                Voltar ao cardápio
+
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

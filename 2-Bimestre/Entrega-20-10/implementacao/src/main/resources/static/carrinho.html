@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Carrinho | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/cliente.css">
+    <link rel="stylesheet" href="/css/carrinho.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/carrinho.js" defer></script>
+    <script src="/js/pagina-carrinho.js" defer></script>
+
+</head>
+
+<body class="pagina-cliente pagina-carrinho">
+
+    <!-- CABECALHO -->
+
+    <header class="cabecalho-cliente">
+
+        <div class="limite-cliente cabecalho-conteudo">
+
+            <div>
+
+                <span class="marca-cliente">
+                    RESTAURANTE
+                </span>
+
+                <h1>Meu carrinho</h1>
+
+                <p>
+                    Revise os itens antes de confirmar seu pedido.
+                </p>
+
+            </div>
+
+            <div class="identificacao-cliente">
+
+                <span id="identificacao-mesa"
+                      class="identificacao-mesa">
+
+                    Mesa --
+
+                </span>
+
+                <button type="button"
+                        id="botao-sair"
+                        class="sair-cliente">
+
+                    Sair
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVEGACAO -->
+
+    <nav class="navegacao-cliente">
+
+        <div class="limite-cliente navegacao-conteudo">
+
+            <a href="/cardapio.html">
+
+                Cardápio
+
+            </a>
+
+            <a href="/carrinho.html"
+               class="ativo"
+               aria-current="page">
+
+                Carrinho
+                (<span id="quantidade-navegacao">0</span>)
+
+            </a>
+
+            <a href="/meus-pedidos.html">
+
+    Meus pedidos
+
+</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="limite-cliente conteudo-cliente">
+
+        <div id="mensagem-cliente"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+
+        <!-- AVISO DE PAGAMENTO -->
+
+        <div id="aviso-pagamento"
+             class="aviso-pagamento"
+             hidden>
+
+            <strong>Pagamento solicitado</strong>
+
+            <p>
+                Sua mesa está aguardando pagamento.
+                Não é possível confirmar novos pedidos
+                neste momento.
+            </p>
+
+        </div>
+
+
+        <div class="grade-pagina-carrinho">
+
+            <!-- PRODUTOS SELECIONADOS -->
+
+            <section class="painel-carrinho"
+                     aria-labelledby="titulo-itens">
+
+                <div class="cabecalho-painel-carrinho">
+
+                    <h2 id="titulo-itens">
+                        Produtos selecionados
+                    </h2>
+
+                    <button type="button"
+                            id="atualizar-carrinho"
+                            class="botao-cliente-secundario">
+
+                        Atualizar
+
+                    </button>
+
+                </div>
+
+                <div id="itens-carrinho">
+
+                    <p class="estado-vazio">
+                        Carregando carrinho...
+                    </p>
+
+                </div>
+
+                <div class="rodape-painel-carrinho">
+
+                    <a href="/cardapio.html"
+                       class="link-continuar">
+
+                        ← Continuar escolhendo
+
+                    </a>
+
+                    <button type="button"
+                            id="esvaziar-carrinho"
+                            class="botao-esvaziar"
+                            disabled>
+
+                        Esvaziar carrinho
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESUMO DO PEDIDO -->
+
+            <section class="painel-carrinho painel-resumo"
+                     aria-labelledby="titulo-resumo">
+
+                <h2 id="titulo-resumo">
+                    Resumo do pedido
+                </h2>
+
+                <div class="linha-resumo">
+
+                    <span>Quantidade</span>
+
+                    <strong id="quantidade-total">
+                        0 unidades
+                    </strong>
+
+                </div>
+
+                <div class="linha-resumo linha-total">
+
+                    <span>Total estimado</span>
+
+                    <strong id="valor-total">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <!-- FORMULARIO DO PEDIDO -->
+
+                <form id="form-pedido">
+
+                    <div class="campo-observacoes">
+
+                        <label for="observacoes">
+                            Observações do pedido
+                        </label>
+
+                        <textarea id="observacoes"
+                                  name="observacoes"
+                                  maxlength="500"
+                                  rows="4"
+                                  placeholder="Ex.: Sem cebola, por favor."></textarea>
+
+                        <span id="contador-observacoes"
+                              class="contador-observacoes">
+
+                            0/500 caracteres
+
+                        </span>
+
+                    </div>
+
+                    <button type="submit"
+                            id="confirmar-pedido"
+                            class="botao-confirmar-pedido"
+                            disabled>
+
+                        Confirmar pedido
+
+                    </button>
+
+                    <p class="aviso-carrinho">
+
+                        Seu pedido será encaminhado à cozinha
+                        após a confirmação.
+
+                    </p>
+
+                    <p class="aviso-carrinho">
+
+                        Os valores e a disponibilidade dos
+                        produtos serão verificados pelo sistema.
+
+                    </p>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

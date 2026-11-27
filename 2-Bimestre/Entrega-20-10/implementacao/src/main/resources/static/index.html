@@ -1,405 +1,259 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Restaurante | Cardápio</title>
+    <meta charset="UTF-8">
 
-    <style>
-        body {
-            font: 16px system-ui;
-            background: #f5f6f8;
-            color: #1e293b;
-            margin: 0;
-        }
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-        header {
-            background: #19324b;
-            color: white;
-            padding: 20px;
-        }
+    <title>Restaurante | Acesso ao sistema</title>
 
-        main {
-            max-width: 920px;
-            margin: 25px auto;
-            padding: 0 16px;
-        }
+    <link rel="stylesheet" href="/css/estilo.css">
 
-        .painel {
-            background: white;
-            padding: 22px;
-            border-radius: 12px;
-            margin-bottom: 18px;
-            box-shadow: 0 1px 5px #ddd;
-        }
+    <script src="/js/api.js" defer></script>
+    <script src="/js/login.js" defer></script>
 
-        input, select, button {
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-        }
-
-        button {
-            background: #1765a3;
-            color: white;
-            cursor: pointer;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        .erro {
-            color: #a22;
-        }
-        [hidden] {
-    display: none !important;
-}
-    </style>
 </head>
 
-<body>
-
-<header>
-    <h1>Sistema de Gestão de Restaurante</h1>
-    <p>Primeira implementação • RF05: Cardápio</p>
-</header>
-
-<main>
-
-    <section class="painel">
-        <h2>Cadastrar categoria</h2>
-
-        <form id="cat">
-            <input name="nome" placeholder="Nome da categoria" required maxlength="100">
-            <input name="descricao" placeholder="Descrição">
-            <button>Salvar categoria</button>
-        </form>
-    </section>
-
-    <section class="painel">
-        <h2>Cadastrar produto</h2>
-
-        <form id="prod">
-            <input name="nome" placeholder="Nome do produto" required maxlength="100">
-            <input name="descricao" placeholder="Descrição">
-
-            <input
-                name="preco"
-                type="number"
-                min="0.01"
-                step="0.01"
-                placeholder="Preço (R$)"
-                required
-            >
-
-            <select name="categoria" required></select>
-
-            <button>Salvar produto</button>
-        </form>
-    </section>
-    
-<section class="painel" id="painel-edicao" hidden>
-    <h2>Editar produto</h2>
-
-    <form id="editar-produto">
-
-        <input type="hidden" name="id">
+<body class="pagina-login">
 
-        <input
-            name="nome"
-            placeholder="Nome do produto"
-            required
-            maxlength="100"
-        >
-
-        <input
-            name="descricao"
-            placeholder="Descrição"
-            maxlength="255"
-        >
-
-        <input
-            name="preco"
-            type="number"
-            min="0.01"
-            step="0.01"
-            placeholder="Preço (R$)"
-            required
-        >
-
-        <select name="categoria" required></select>
-
-        <button type="submit">Salvar alterações</button>
-        <button type="button" id="cancelar-edicao">
-            Cancelar
-        </button>
+    <header class="cabecalho-login">
 
-    </form>
-</section>
+        <div class="logotipo">
 
-    <section class="painel">
-        <h2>Cardápio cadastrado</h2>
-        <ul id="lista"></ul>
-    </section>
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.6"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
 
-    <p id="msg" role="status"></p>
+                <path d="M3 2v7a3 3 0 0 0 6 0V2"/>
+                <path d="M6 2v20"/>
+                <path d="M21 2c-4 0-6 4-6 8v3h6"/>
+                <path d="M21 2v20"/>
 
-    <p>
-        Protótipo funcional inicial. Login, pedidos, estoque e pagamentos
-        ainda não implementados.
-    </p>
+            </svg>
 
-</main>
+        </div>
 
-<script>
+        <h1>Restaurante</h1>
 
-    const $ = id => document.getElementById(id);
+        <p>Sistema de Gestão de Restaurante</p>
 
-    // Requisições para a API
-    async function request(url, method = 'GET', data) {
+    </header>
 
-        const r = await fetch(url, {
-            method,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: data !== undefined ? JSON.stringify(data) : undefined
-        });
+    <main class="area-login">
 
-        if (!r.ok) {
-            throw Error((await r.text()).slice(0, 200));
-        }
+        <div id="mensagem-geral"
+             class="mensagem"
+             role="status"
+             hidden>
+        </div>
 
-        // Respostas HTTP 204 não possuem conteúdo
-        if (r.status === 204) {
-            return null;
-        }
+        <div class="opcoes-login">
 
-        return await r.json();
-    }
+            <!-- Acesso do cliente -->
 
-    // Atualiza as categorias e os produtos cadastrados
-    async function refresh() {
+            <section class="cartao-login">
 
-        const [cats, prods] = await Promise.all([
-            request('/api/categorias'),
-            request('/api/produtos')
-        ]);
+                <div class="icone-login">
 
-        const sel = $('prod').elements.categoria;
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         aria-hidden="true">
 
-        sel.replaceChildren(
-            new Option('Selecione a categoria', '')
-        );
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
 
-        cats.forEach(c => {
-            sel.add(new Option(c.nome, c.id));
-        });
+                    </svg>
 
-        
-$('lista').replaceChildren(
-    ...prods.map(p => {
+                </div>
 
-        const li = document.createElement('li');
+                <h2>Sou cliente</h2>
 
-        const texto = document.createElement('span');
+                <p class="descricao-login">
 
-        texto.textContent =
-            p.nome + ' — ' +
-            p.categoria.nome + ' — R$ ' +
-            Number(p.preco).toFixed(2).replace('.', ',');
+                    Consulte nosso cardápio, faça seus pedidos
+                    e acompanhe seu atendimento.
 
-        const btnEditar = document.createElement('button');
-        btnEditar.type = 'button';
-        btnEditar.textContent = 'Editar';
-        
-btnEditar.onclick = () => {
+                </p>
 
-    const formulario = $('editar-produto');
-    const campos = formulario.elements;
+                <form id="form-cliente">
 
-    campos.id.value = p.id;
-    campos.nome.value = p.nome;
-    campos.descricao.value = p.descricao || '';
-    campos.preco.value = p.preco;
+                    <div class="campo">
 
-    const selectCategoria = campos.categoria;
+                        <label for="numero-mesa">
+                            Número da mesa
+                        </label>
 
-    selectCategoria.replaceChildren(
-        ...cats.map(c => new Option(c.nome, c.id))
-    );
+                        <input
+                            type="number"
+                            id="numero-mesa"
+                            name="numeroMesa"
+                            min="1"
+                            max="2147483647"
+                            step="1"
+                            placeholder="Ex.: 05"
+                            inputmode="numeric"
+                            required
+                        >
 
-    selectCategoria.value = String(p.categoria.id);
+                    </div>
 
-    $('painel-edicao').hidden = false;
+                    <div id="mensagem-cliente"
+                         class="mensagem"
+                         role="alert"
+                         hidden>
+                    </div>
 
-    $('painel-edicao').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
+                    <button
+                        type="submit"
+                        id="botao-cliente"
+                        class="botao botao-principal botao-largo">
 
-    show('Editando produto: ' + p.nome);
-};
+                        Acessar cardápio
 
+                    </button>
 
-        const btnDesativar = document.createElement('button');
-        btnDesativar.type = 'button';
-        btnDesativar.textContent = 'Desativar';
-        
-btnDesativar.onclick = async () => {
+                </form>
 
-    const confirmar = confirm(
-        'Deseja realmente desativar o produto "' + p.nome + '"?'
-    );
+                <p class="aviso-login">
 
-    if (!confirmar) {
-        return;
-    }
+                    Informe o número identificado na sua mesa.
+                    Não é necessário criar uma conta.
 
-    btnDesativar.disabled = true;
+                </p>
 
-    try {
-        await request('/api/produtos/' + p.id, 'DELETE');
+            </section>
 
-        await refresh();
+            <!-- Acesso do funcionário -->
 
-        show('Produto desativado com sucesso.');
+            <section class="cartao-login">
 
-    } catch (e) {
-        btnDesativar.disabled = false;
-        show('Erro ao desativar produto: ' + e.message, true);
-    }
-};
+                <div class="icone-login">
 
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         aria-hidden="true">
 
-        if (!p.ativo) {
-            texto.textContent += ' — Inativo';
-            btnEditar.disabled = true;
-            btnDesativar.disabled = true;
-        }
+                        <circle cx="12" cy="7" r="4"/>
 
-        li.append(texto, btnEditar, btnDesativar);
+                        <path d="M4 22v-3a8 8 0 0 1 16 0v3"/>
 
-        return li;
-    })
-);
+                    </svg>
 
-    }
+                </div>
 
-    // Exibe mensagens de sucesso ou erro
-    function show(s, err = false) {
-        $('msg').textContent = s;
-        $('msg').className = err ? 'erro' : '';
-    }
+                <h2>Sou funcionário</h2>
 
-    // Cadastro de categorias
-    $('cat').onsubmit = async e => {
+                <p class="descricao-login">
 
-        e.preventDefault();
+                    Acesse sua área de trabalho de acordo
+                    com suas permissões.
 
-        try {
+                </p>
 
-            const f = e.target.elements;
+                <form id="form-funcionario"
+                      method="POST"
+                      action="/login">
 
-            await request('/api/categorias', 'POST', {
-                nome: f.nome.value,
-                descricao: f.descricao.value
-            });
+                    <input type="hidden"
+                           id="csrf-funcionario"
+                           name="_csrf">
 
-            e.target.reset();
+                    <div class="campo">
 
-            await refresh();
+                        <label for="username">
+                            Usuário
+                        </label>
 
-            show('Categoria salva.');
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Informe seu usuário"
+                            autocomplete="username"
+                            maxlength="50"
+                            required
+                        >
 
-        } catch (e) {
-            show(e.message, true);
-        }
-    };
+                    </div>
 
-    // Cadastro de produtos
-    $('prod').onsubmit = async e => {
+                    <div class="campo">
 
-        e.preventDefault();
+                        <label for="password">
+                            Senha
+                        </label>
 
-        try {
+                        <div class="campo-senha">
 
-            const f = e.target.elements;
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Informe sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
 
-            await request('/api/produtos', 'POST', {
-                nome: f.nome.value,
-                descricao: f.descricao.value,
-                preco: f.preco.value,
-                ativo: true,
-                categoria: {
-                    id: Number(f.categoria.value)
-                }
-            });
+                            <button
+                                type="button"
+                                id="alternar-senha"
+                                class="alternar-senha"
+                                aria-pressed="false">
 
-            e.target.reset();
+                                Mostrar
 
-            await refresh();
+                            </button>
 
-            show('Produto salvo.');
+                        </div>
 
-        } catch (e) {
-            show(e.message, true);
-        }
-    };
-    
-    // Salvar edição de produto
-    $('editar-produto').onsubmit = async e => {
+                    </div>
 
-        e.preventDefault();
+                    <div id="mensagem-funcionario"
+                         class="mensagem"
+                         role="alert"
+                         hidden>
+                    </div>
 
-        const formulario = e.target;
-        const f = formulario.elements;
-        const botaoSalvar = formulario.querySelector('button[type="submit"]');
+                    <button
+                        type="submit"
+                        id="botao-funcionario"
+                        class="botao botao-principal botao-largo">
 
-        botaoSalvar.disabled = true;
+                        Entrar no sistema
 
-        try {
-            const id = Number(f.id.value);
+                    </button>
 
-            await request('/api/produtos/' + id, 'PUT', {
-                nome: f.nome.value,
-                descricao: f.descricao.value,
-                preco: f.preco.value,
-                ativo: true,
-                categoria: {
-                    id: Number(f.categoria.value)
-                }
-            });
+                </form>
 
-            formulario.reset();
-            $('painel-edicao').hidden = true;
+                <p class="aviso-login">
 
-            await refresh();
+                    Área restrita aos funcionários autorizados.
 
-            show('Produto atualizado com sucesso.');
+                </p>
 
-        } catch (erro) {
-            show('Erro ao editar produto: ' + erro.message, true);
-        } finally {
-            botaoSalvar.disabled = false;
-        }
-    };
+            </section>
 
-    // Cancelar edição
-    $('cancelar-edicao').onclick = () => {
-        $('editar-produto').reset();
-        $('painel-edicao').hidden = true;
-        show('Edição cancelada.');
-    };
+        </div>
 
-    // Carregamento inicial
-    refresh().catch(e => show(e.message, true));
+    </main>
 
-</script>
+    <footer class="rodape-login">
+
+        Sistema de Gestão de Restaurante &middot; 2026
+
+    </footer>
 
 </body>
+
 </html>
