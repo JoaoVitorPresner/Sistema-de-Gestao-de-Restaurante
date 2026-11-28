@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Gestão de Pedidos | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+    <link rel="stylesheet" href="/css/pedidos.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/pedidos.js" defer></script>
+
+</head>
+
+<body class="pagina-produtos pagina-pedidos">
+
+    <!-- CABECALHO -->
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html"
+               class="voltar-painel">
+
+                Voltar ao painel
+
+            </a>
+
+            <div>
+
+                <span class="marca-pedidos">
+                    RESTAURANTE | ÁREA OPERACIONAL
+                </span>
+
+                <h1>Gestão de pedidos</h1>
+
+            </div>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">
+                Carregando usuário...
+            </span>
+
+            <button type="button"
+                    id="botao-sair"
+                    class="botao-sair-pedidos">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="conteudo-modulo conteudo-pedidos">
+
+        <section class="apresentacao-modulo">
+
+            <div>
+
+                <h2>Acompanhamento operacional</h2>
+
+                <p>
+                    Acompanhe os pedidos do restaurante,
+                    consulte seus detalhes e registre
+                    a entrega dos alimentos às mesas.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    id="atualizar-pedidos"
+                    class="botao-secundario">
+
+                Atualizar pedidos
+
+            </button>
+
+        </section>
+
+
+        <!-- MENSAGENS -->
+
+        <div id="mensagem-pedidos"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+
+        <!-- INDICADORES OPERACIONAIS -->
+
+        <section class="indicadores-pedidos"
+                 aria-label="Indicadores operacionais">
+
+            <article class="indicador-pedido indicador-total">
+
+                <span>Total de pedidos</span>
+
+                <strong id="total-pedidos">0</strong>
+
+                <small>Todos os pedidos registrados</small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-recebido">
+
+                <span>Recebidos</span>
+
+                <strong id="total-recebidos">0</strong>
+
+                <small>Aguardando preparo</small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-preparo">
+
+                <span>Em preparo</span>
+
+                <strong id="total-preparo">0</strong>
+
+                <small>Em produção na cozinha</small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-pronto">
+
+                <span>Prontos</span>
+
+                <strong id="total-prontos">0</strong>
+
+                <small>Aguardando entrega</small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-entregue">
+
+                <span>Entregues</span>
+
+                <strong id="total-entregues">0</strong>
+
+                <small>Entregues aos clientes</small>
+
+            </article>
+
+
+            <article class="indicador-pedido indicador-cancelado">
+
+                <span>Cancelados</span>
+
+                <strong id="total-cancelados">0</strong>
+
+                <small>Pedidos cancelados</small>
+
+            </article>
+
+        </section>
+
+
+        <!-- PEDIDOS PRIORITARIOS -->
+
+        <section class="painel-entregas"
+                 aria-labelledby="titulo-entregas">
+
+            <header class="cabecalho-painel-pedidos">
+
+                <div>
+
+                    <span class="rotulo-entregas">
+                        PRIORIDADE OPERACIONAL
+                    </span>
+
+                    <h2 id="titulo-entregas">
+                        Pedidos prontos para entrega
+                    </h2>
+
+                    <p>
+                        Entregue os alimentos às mesas
+                        antes de registrar a conclusão.
+                    </p>
+
+                </div>
+
+                <span id="contagem-prontos"
+                      class="contagem-entregas">
+
+                    0 pedidos
+
+                </span>
+
+            </header>
+
+
+            <div id="lista-prontos"
+                 class="grade-entregas"
+                 aria-busy="true">
+
+                <p class="estado-vazio-pedidos">
+
+                    Carregando pedidos...
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- LISTAGEM GERAL -->
+
+        <section class="painel-listagem-pedidos"
+                 aria-labelledby="titulo-listagem">
+
+            <header class="cabecalho-painel-pedidos">
+
+                <div>
+
+                    <h2 id="titulo-listagem">
+                        Todos os pedidos
+                    </h2>
+
+                    <p>
+                        Consulte os pedidos atuais
+                        e o histórico de atendimentos.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <!-- FILTROS -->
+
+            <div class="filtros-pedidos">
+
+                <div class="campo-filtro-pedidos">
+
+                    <label for="pesquisa-pedido">
+                        Pesquisar pedido
+                    </label>
+
+                    <input type="search"
+                           id="pesquisa-pedido"
+                           placeholder="Número do pedido ou produto"
+                           autocomplete="off">
+
+                </div>
+
+
+                <div class="campo-filtro-pedidos">
+
+                    <label for="filtro-mesa">
+                        Mesa
+                    </label>
+
+                    <select id="filtro-mesa">
+
+                        <option value="TODAS">
+                            Todas as mesas
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo-filtro-pedidos">
+
+                    <label for="filtro-status">
+                        Situação
+                    </label>
+
+                    <select id="filtro-status">
+
+                        <option value="TODOS">
+                            Todos os estados
+                        </option>
+
+                        <option value="RECEBIDO">
+                            Recebidos
+                        </option>
+
+                        <option value="EM_PREPARO">
+                            Em preparo
+                        </option>
+
+                        <option value="PRONTO">
+                            Prontos
+                        </option>
+
+                        <option value="ENTREGUE">
+                            Entregues
+                        </option>
+
+                        <option value="CANCELADO">
+                            Cancelados
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo-filtro-pedidos">
+
+                    <label for="filtro-ordem">
+                        Ordenação
+                    </label>
+
+                    <select id="filtro-ordem">
+
+                        <option value="RECENTES">
+                            Mais recentes
+                        </option>
+
+                        <option value="ANTIGOS">
+                            Mais antigos
+                        </option>
+
+                        <option value="PRIORIDADE">
+                            Prioridade de entrega
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="button"
+                        id="limpar-filtros"
+                        class="botao-secundario">
+
+                    Limpar filtros
+
+                </button>
+
+            </div>
+
+
+            <!-- TABELA DE PEDIDOS -->
+
+            <div class="tabela-pedidos-container"
+                 id="container-listagem"
+                 aria-busy="true">
+
+                <table class="tabela-pedidos">
+
+                    <caption class="somente-leitor">
+
+                        Listagem geral dos pedidos do restaurante
+
+                    </caption>
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">Pedido</th>
+
+                            <th scope="col">Mesa</th>
+
+                            <th scope="col">Data e horário</th>
+
+                            <th scope="col">Itens</th>
+
+                            <th scope="col">Situação</th>
+
+                            <th scope="col">Valor total</th>
+
+                            <th scope="col">Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tabela-pedidos">
+
+                        <tr>
+
+                            <td colspan="7"
+                                class="estado-vazio-pedidos">
+
+                                Carregando pedidos...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- RODAPE DA LISTAGEM -->
+
+            <footer class="rodape-listagem-pedidos">
+
+                <span id="contagem-pedidos">
+
+                    0 pedidos exibidos
+
+                </span>
+
+                <span id="ultima-atualizacao">
+
+                    Aguardando atualização
+
+                </span>
+
+            </footer>
+
+        </section>
+
+
+        <!-- ORIENTACOES -->
+
+        <section class="orientacoes-pedidos">
+
+            <h2>Orientações operacionais</h2>
+
+            <div class="grade-orientacoes-pedidos">
+
+                <article>
+
+                    <span class="numero-orientacao">1</span>
+
+                    <div>
+
+                        <h3>Acompanhar</h3>
+
+                        <p>
+                            Consulte a situação dos pedidos
+                            e acompanhe o trabalho da cozinha.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span class="numero-orientacao">2</span>
+
+                    <div>
+
+                        <h3>Conferir</h3>
+
+                        <p>
+                            Verifique a mesa, os produtos
+                            e as observações antes da entrega.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span class="numero-orientacao">3</span>
+
+                    <div>
+
+                        <h3>Entregar</h3>
+
+                        <p>
+                            Registre a entrega somente depois
+                            de entregar os alimentos ao cliente.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL DE DETALHES -->
+
+    <dialog id="modal-pedido"
+            class="modal-modulo modal-pedido"
+            aria-labelledby="titulo-modal">
+
+        <div class="cabecalho-modal-pedido">
+
+            <div>
+
+                <span class="rotulo-modal">
+                    INFORMAÇÕES DO PEDIDO
+                </span>
+
+                <h2 id="titulo-modal">
+                    Detalhes do pedido
+                </h2>
+
+                <p id="identificacao-modal"></p>
+
+            </div>
+
+            <button type="button"
+                    id="fechar-modal"
+                    class="fechar-modal-pedido"
+                    aria-label="Fechar detalhes">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <div class="corpo-modal-pedido">
+
+            <!-- MENSAGEM DE ERRO -->
+
+            <div id="mensagem-modal"
+                 class="mensagem"
+                 role="status"
+                 aria-live="polite"
+                 hidden>
+            </div>
+
+
+            <!-- SITUACAO -->
+
+            <section class="situacao-modal">
+
+                <span>Situação atual</span>
+
+                <span id="status-modal"
+                      class="status-pedido">
+
+                    Carregando
+
+                </span>
+
+            </section>
+
+
+            <!-- PROGRESSO -->
+
+            <div id="progresso-modal"
+                 class="progresso-modal">
+
+            </div>
+
+
+            <!-- PRODUTOS -->
+
+            <section class="produtos-modal">
+
+                <h3>Produtos do pedido</h3>
+
+                <div id="itens-modal"
+                     class="itens-modal">
+
+                </div>
+
+            </section>
+
+
+            <!-- OBSERVACOES -->
+
+            <section id="secao-observacoes"
+                     class="observacoes-modal"
+                     hidden>
+
+                <h3>Observações do cliente</h3>
+
+                <p id="observacoes-modal"></p>
+
+            </section>
+
+            <!-- INFORMACOES DO CANCELAMENTO -->
+
+<section id="secao-cancelamento"
+         class="informacoes-cancelamento"
+         hidden>
+
+    <h3>Informações do cancelamento</h3>
+
+    <dl>
+
+        <dt>Motivo</dt>
+        <dd id="motivo-cancelamento-modal"></dd>
+
+        <dt>Data e horário</dt>
+        <dd id="data-cancelamento-modal"></dd>
+
+        <dt>Funcionário responsável</dt>
+        <dd id="responsavel-cancelamento-modal"></dd>
+
+    </dl>
+
+    <p>
+        O valor original permanece registrado
+        para fins de histórico.
+        Este pedido não deverá ser cobrado.
+    </p>
+
+</section>
+
+            <!-- VALOR TOTAL -->
+
+            <section class="total-modal">
+
+                <span>Valor total do pedido</span>
+
+                <strong id="valor-modal">
+
+                    R$ 0,00
+
+                </strong>
+
+            </section>
+
+        </div>
+
+
+        <!-- ACOES DO MODAL -->
+
+        <footer class="rodape-modal-pedido">
+
+            <button type="button"
+                    id="voltar-modal"
+                    class="botao-secundario">
+
+                Fechar
+
+            </button>
+
+            <button type="button"
+                    id="entregar-modal"
+                    class="botao-entregar"
+                    hidden>
+
+                Registrar entrega
+
+            </button>
+
+            <button type="button"
+        id="cancelar-pedido-modal"
+        class="botao-cancelar-pedido"
+        hidden>
+
+    Cancelar pedido
+
+</button>
+
+        </footer>
+
+    </dialog>
+
+     <!-- MODAL DE CANCELAMENTO -->
+
+<dialog id="modal-cancelamento"
+        class="modal-pedido modal-cancelamento"
+        aria-labelledby="titulo-cancelamento">
+
+    <header class="cabecalho-modal-pedido">
+
+        <div>
+
+            <span class="rotulo-modal">
+                CANCELAMENTO DE PEDIDO
+            </span>
+
+            <h2 id="titulo-cancelamento">
+                Cancelar pedido
+            </h2>
+
+            <p id="identificacao-cancelamento"></p>
+
+        </div>
+
+        <button type="button"
+                id="fechar-cancelamento"
+                class="fechar-modal-pedido"
+                aria-label="Fechar cancelamento">
+
+            &times;
+
+        </button>
+
+    </header>
+
+    <form id="form-cancelamento">
+
+        <div class="corpo-modal-pedido">
+
+            <div id="mensagem-cancelamento"
+                 class="mensagem"
+                 role="alert"
+                 hidden>
+            </div>
+
+            <div class="aviso-cancelado-modal">
+
+                Esta operação não poderá ser desfeita.
+
+                O pedido será retirado da fila da cozinha,
+                mas permanecerá registrado no histórico.
+
+            </div>
+
+            <div class="campo-cancelamento">
+
+                <label for="motivo-cancelamento">
+                    Motivo do cancelamento *
+                </label>
+
+                <textarea
+                    id="motivo-cancelamento"
+                    name="motivo"
+                    rows="5"
+                    maxlength="255"
+                    required
+                    placeholder="Informe o motivo do cancelamento..."
+                    aria-describedby="contador-cancelamento"
+                ></textarea>
+
+                <small id="contador-cancelamento">
+                    0/255 caracteres
+                </small>
+
+            </div>
+
+        </div>
+
+        <footer class="rodape-modal-pedido">
+
+            <button type="button"
+                    id="voltar-cancelamento"
+                    class="botao-secundario">
+
+                Voltar
+
+            </button>
+
+            <button type="submit"
+                    id="confirmar-cancelamento"
+                    class="botao-confirmar-cancelamento"
+                    disabled>
+
+                Confirmar cancelamento
+
+            </button>
+
+        </footer>
+
+    </form>
+
+</dialog>
+
+    <!-- RODAPE -->
+
+    <footer class="rodape-modulo">
+
+        Sistema de Gestão de Restaurante |
+        Módulo de Gestão de Pedidos
+
+    </footer>
+
+</body>
+</html>

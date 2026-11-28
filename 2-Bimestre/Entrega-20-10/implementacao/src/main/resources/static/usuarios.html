@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciamento de Usuários | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+    <link rel="stylesheet" href="/css/usuarios.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/usuarios.js" defer></script>
+</head>
+
+<body class="pagina-usuarios">
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html" class="voltar-painel">
+                &larr; Voltar ao painel
+            </a>
+
+            <div>
+                <strong>Sistema de Gestão de Restaurante</strong>
+                <p>Gerenciamento de usuários</p>
+            </div>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">Carregando...</span>
+
+            <button type="button" id="botao-sair"
+                    class="botao-secundario">
+                Sair
+            </button>
+
+        </div>
+
+    </header>
+
+    <main class="conteudo-modulo">
+
+        <section class="apresentacao-modulo">
+
+            <div>
+                <h1>Gerenciamento de usuários</h1>
+
+                <p>
+                    Cadastre funcionários, gerencie perfis,
+                    senhas e permissões de acesso.
+                </p>
+            </div>
+
+            <button type="button" id="atualizar-usuarios"
+                    class="botao-secundario">
+                Atualizar
+            </button>
+
+        </section>
+
+        <div id="mensagem-usuarios"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+        <section class="grade-indicadores indicadores-usuarios"
+                 aria-label="Indicadores administrativos">
+
+            <article class="indicador">
+                <span>Total de usuários</span>
+                <strong id="total-usuarios">0</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Usuários ativos</span>
+                <strong id="usuarios-ativos">0</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Usuários inativos</span>
+                <strong id="usuarios-inativos">0</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Usuários bloqueados</span>
+                <strong id="usuarios-bloqueados">0</strong>
+            </article>
+
+            <article class="indicador">
+                <span>Administradores disponíveis</span>
+                <strong id="administradores-disponiveis">0</strong>
+            </article>
+
+        </section>
+
+        <section class="painel-modulo painel-usuarios">
+
+            <div class="titulo-painel-usuarios">
+
+                <div>
+                    <h2>Funcionários cadastrados</h2>
+                    <p id="contagem-usuarios">0 funcionários</p>
+                </div>
+
+                <button type="button" id="novo-usuario"
+                        class="botao-principal">
+                    + Novo usuário
+                </button>
+
+            </div>
+
+            <div class="filtros-usuarios">
+
+                <div class="campo-modulo">
+                    <label for="pesquisa-usuario">
+                        Pesquisar
+                    </label>
+
+                    <input type="search"
+                           id="pesquisa-usuario"
+                           placeholder="Nome ou login">
+                </div>
+
+                <div class="campo-modulo">
+                    <label for="filtro-perfil">
+                        Perfil
+                    </label>
+
+                    <select id="filtro-perfil">
+                        <option value="">Todos os perfis</option>
+                        <option value="ADMINISTRADOR">Administrador</option>
+                        <option value="GERENTE">Gerente</option>
+                        <option value="ATENDENTE">Atendente</option>
+                        <option value="COZINHEIRO">Cozinheiro</option>
+                        <option value="ESTOQUISTA">Estoquista</option>
+                    </select>
+                </div>
+
+                <div class="campo-modulo">
+                    <label for="filtro-situacao">
+                        Situação
+                    </label>
+
+                    <select id="filtro-situacao">
+                        <option value="">Todas as situações</option>
+                        <option value="ATIVO">Ativos e desbloqueados</option>
+                        <option value="INATIVO">Inativos</option>
+                        <option value="BLOQUEADO">Bloqueados</option>
+                    </select>
+                </div>
+
+                <button type="button" id="limpar-filtros"
+                        class="botao-secundario">
+                    Limpar filtros
+                </button>
+
+            </div>
+
+            <div class="tabela-usuarios-container">
+
+                <table class="tabela-usuarios">
+
+                    <thead>
+                        <tr>
+                            <th>Funcionário</th>
+                            <th>Login</th>
+                            <th>Perfil</th>
+                            <th>Situação</th>
+                            <th>Tentativas falhas</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="lista-usuarios">
+                        <tr>
+                            <td colspan="6">
+                                Carregando funcionários...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <aside class="aviso-seguranca-usuarios">
+
+            <strong>Segurança de acesso</strong>
+
+            <p>
+                As senhas são armazenadas utilizando BCrypt.
+                Funcionários são bloqueados após cinco tentativas
+                incorretas de autenticação.
+            </p>
+
+            <p>
+                A desativação preserva os registros históricos
+                associados ao funcionário.
+            </p>
+
+        </aside>
+
+    </main>
+
+    <footer class="rodape-modulo">
+        Sistema de Gestão de Restaurante
+        <span id="ultima-atualizacao"></span>
+    </footer>
+
+    <!-- Cadastro e edição -->
+
+    <dialog id="modal-usuario" class="modal-modulo">
+
+        <div class="cabecalho-modal">
+
+            <h2 id="titulo-modal-usuario">Novo usuário</h2>
+
+            <button type="button"
+                    id="fechar-modal-usuario"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+                &times;
+            </button>
+
+        </div>
+
+        <form id="form-usuario">
+
+            <div id="erro-usuario"
+                 class="mensagem erro"
+                 role="alert"
+                 hidden>
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="nome-usuario">Nome completo</label>
+
+                <input type="text"
+                       id="nome-usuario"
+                       maxlength="100"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="login-usuario">Login</label>
+
+                <input type="text"
+                       id="login-usuario"
+                       minlength="3"
+                       maxlength="50"
+                       pattern="[a-zA-Z0-9._\-]+"
+                       autocomplete="off"
+                       required>
+
+                <small>
+                    Utilize letras, números, pontos,
+                    hífens ou sublinhados.
+                </small>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="perfil-usuario">Perfil</label>
+
+                <select id="perfil-usuario" required>
+                    <option value="">Selecione um perfil</option>
+                    <option value="ADMINISTRADOR">Administrador</option>
+                    <option value="GERENTE">Gerente</option>
+                    <option value="ATENDENTE">Atendente</option>
+                    <option value="COZINHEIRO">Cozinheiro</option>
+                    <option value="ESTOQUISTA">Estoquista</option>
+                </select>
+
+            </div>
+
+            <div id="campos-senha-cadastro">
+
+                <div class="campo-modulo">
+
+                    <label for="senha-usuario">Senha inicial</label>
+
+                    <input type="password"
+                           id="senha-usuario"
+                           minlength="8"
+                           maxlength="72"
+                           autocomplete="new-password">
+
+                    <small>
+                        Mínimo de 8 caracteres e máximo de 72 bytes.
+                    </small>
+
+                </div>
+
+                <div class="campo-modulo">
+
+                    <label for="confirmacao-senha-usuario">
+                        Confirmar senha
+                    </label>
+
+                    <input type="password"
+                           id="confirmacao-senha-usuario"
+                           maxlength="72"
+                           autocomplete="new-password">
+
+                </div>
+
+            </div>
+
+            <p id="aviso-propria-conta"
+               class="aviso-propria-conta"
+               hidden>
+                Você não pode alterar o login ou o perfil
+                da sua própria conta.
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        id="cancelar-usuario"
+                        class="botao-secundario">
+                    Cancelar
+                </button>
+
+                <button type="submit"
+                        id="salvar-usuario"
+                        class="botao-principal">
+                    Salvar
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <!-- Redefinição de senha -->
+
+    <dialog id="modal-senha" class="modal-modulo">
+
+        <div class="cabecalho-modal">
+
+            <h2>Redefinir senha</h2>
+
+            <button type="button"
+                    id="fechar-modal-senha"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+                &times;
+            </button>
+
+        </div>
+
+        <form id="form-senha">
+
+            <div id="erro-senha"
+                 class="mensagem erro"
+                 role="alert"
+                 hidden>
+            </div>
+
+            <p id="identificacao-senha"></p>
+
+            <div class="campo-modulo">
+
+                <label for="nova-senha">Nova senha</label>
+
+                <input type="password"
+                       id="nova-senha"
+                       minlength="8"
+                       maxlength="72"
+                       autocomplete="new-password"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="confirmacao-nova-senha">
+                    Confirmar nova senha
+                </label>
+
+                <input type="password"
+                       id="confirmacao-nova-senha"
+                       maxlength="72"
+                       autocomplete="new-password"
+                       required>
+
+            </div>
+
+            <p class="aviso-propria-conta">
+                A redefinição de senha também remove o bloqueio
+                e reinicia as tentativas incorretas.
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        id="cancelar-senha"
+                        class="botao-secundario">
+                    Cancelar
+                </button>
+
+                <button type="submit"
+                        id="salvar-senha"
+                        class="botao-principal">
+                    Redefinir senha
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <!-- Confirmação de alterações de situação -->
+
+    <dialog id="modal-confirmacao" class="modal-modulo">
+
+        <div class="cabecalho-modal">
+
+            <h2 id="titulo-confirmacao">Confirmar operação</h2>
+
+            <button type="button"
+                    id="fechar-confirmacao"
+                    class="fechar-modal"
+                    aria-label="Fechar">
+                &times;
+            </button>
+
+        </div>
+
+        <div id="erro-confirmacao"
+             class="mensagem erro"
+             role="alert"
+             hidden>
+        </div>
+
+        <p id="texto-confirmacao"></p>
+
+        <div class="rodape-modal">
+
+            <button type="button"
+                    id="cancelar-confirmacao"
+                    class="botao-secundario">
+                Cancelar
+            </button>
+
+            <button type="button"
+                    id="confirmar-operacao"
+                    class="botao-principal">
+                Confirmar
+            </button>
+
+        </div>
+
+    </dialog>
+
+</body>
+</html>

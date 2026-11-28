@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cardápio | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/cliente.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/carrinho.js" defer></script>
+    <script src="/js/cardapio.js" defer></script>
+
+</head>
+
+<body class="pagina-cliente">
+
+    <!-- CABECALHO -->
+
+    <header class="cabecalho-cliente">
+
+        <div class="limite-cliente cabecalho-conteudo">
+
+            <div>
+
+                <span class="marca-cliente">
+                    RESTAURANTE
+                </span>
+
+                <h1>Nosso cardápio</h1>
+
+                <p>Escolha o que deseja saborear.</p>
+
+            </div>
+
+            <div class="identificacao-cliente">
+
+                <span id="identificacao-mesa"
+                      class="identificacao-mesa">
+
+                    Mesa --
+
+                </span>
+
+                <button type="button"
+                        id="botao-sair"
+                        class="sair-cliente">
+
+                    Sair
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVEGACAO -->
+
+    <nav class="navegacao-cliente">
+
+        <div class="limite-cliente navegacao-conteudo">
+
+            <a href="/cardapio.html"
+               class="ativo"
+               aria-current="page">
+
+                Cardápio
+
+            </a>
+
+            <a href="/carrinho.html">
+
+                Carrinho
+                (<span id="quantidade-navegacao">0</span>)
+
+            </a>
+
+            <a href="/meus-pedidos.html">
+
+    Meus pedidos
+
+</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="limite-cliente conteudo-cliente">
+
+        <div id="mensagem-cliente"
+             class="mensagem"
+             role="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+        <div id="aviso-pagamento"
+             class="aviso-pagamento"
+             hidden>
+
+            <strong>Pagamento solicitado</strong>
+
+            <p>
+                Você ainda pode consultar o cardápio,
+                mas não pode adicionar novos pedidos
+                ao atendimento.
+            </p>
+
+        </div>
+
+
+        <!-- PESQUISA -->
+
+        <section class="pesquisa-cardapio">
+
+            <input type="search"
+                   id="pesquisa-produto"
+                   placeholder="Pesquisar alimentos e bebidas..."
+                   aria-label="Pesquisar produtos">
+
+            <button type="button"
+                    id="atualizar-cardapio"
+                    class="botao-cliente-secundario">
+
+                Atualizar
+
+            </button>
+
+        </section>
+
+
+        <!-- FILTROS -->
+
+        <section id="filtros-categorias"
+                 class="filtros-categorias"
+                 aria-label="Categorias do cardápio">
+        </section>
+
+
+        <!-- PRODUTOS -->
+
+        <div id="lista-cardapio"
+             class="lista-cardapio">
+
+            <p class="estado-vazio">
+                Carregando cardápio...
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- RESUMO DO CARRINHO -->
+
+    <aside id="barra-carrinho"
+           class="barra-carrinho"
+           hidden>
+
+        <div class="limite-cliente resumo-carrinho">
+
+            <div>
+
+                <span id="quantidade-carrinho">
+                    0 itens selecionados
+                </span>
+
+                <strong id="total-carrinho">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+            <a href="/carrinho.html"
+               id="ver-carrinho"
+               class="botao-carrinho">
+
+                Ver carrinho
+
+            </a>
+
+        </div>
+
+    </aside>
+
+</body>
+</html>

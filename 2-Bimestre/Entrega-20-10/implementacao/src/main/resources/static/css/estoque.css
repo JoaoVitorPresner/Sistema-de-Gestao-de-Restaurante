@@ -1,0 +1,162 @@
+/* =========================================
+   INDICADORES
+   ========================================= */
+
+.indicadores-estoque {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.indicador-alerta {
+    border-top-color: #d97706;
+}
+
+.indicador-alerta strong {
+    color: #b45309;
+}
+
+.indicador-perigo {
+    border-top-color: #b91c1c;
+}
+
+.indicador-perigo strong {
+    color: #b91c1c;
+}
+
+.indicador-reserva {
+    border-top-color: #2563eb;
+}
+
+.indicador-reserva strong {
+    color: #1d4ed8;
+}
+
+
+/* =========================================
+   TABELAS
+   ========================================= */
+
+.tabela-estoque {
+    min-width: 1050px;
+}
+
+.tabela-movimentacoes {
+    min-width: 1200px;
+}
+
+.saldo-numerico {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.saldo-disponivel {
+    color: #275c35;
+    font-weight: bold;
+}
+
+.saldo-reservado {
+    color: #1d4ed8;
+}
+
+.saldo-baixo {
+    color: #b45309;
+    font-weight: bold;
+}
+
+.saldo-indisponivel {
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+.status-baixo {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-indisponivel {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* =========================================
+   TIPOS DE MOVIMENTACAO
+   ========================================= */
+
+.tipo-entrada,
+.tipo-liberacao {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.tipo-saida_manual,
+.tipo-consumo {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.tipo-reserva {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.tipo-perda {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* =========================================
+   FORMULARIOS
+   ========================================= */
+
+.aviso-estoque {
+    padding: 12px 14px;
+    background: #f5f3ee;
+    border-left: 3px solid #c8a66a;
+    border-radius: 4px;
+    color: #69746d;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.saldo-movimentacao {
+    padding: 15px;
+    margin-bottom: 18px;
+    background: #f5f3ee;
+    border: 1px solid #e4e0d7;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1200px) {
+
+    .indicadores-estoque {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .indicadores-estoque {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pagina-estoque .abas-modulo {
+        gap: 5px;
+    }
+
+    .pagina-estoque .aba {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+}

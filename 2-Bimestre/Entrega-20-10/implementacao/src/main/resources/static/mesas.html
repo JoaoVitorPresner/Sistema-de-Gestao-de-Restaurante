@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciamento de Mesas | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/produtos.css">
+    <link rel="stylesheet" href="/css/mesas.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/mesas.js" defer></script>
+
+</head>
+
+<body class="pagina-produtos pagina-mesas">
+
+    <header class="cabecalho-modulo">
+
+        <div class="identificacao-modulo">
+
+            <a href="/dashboard.html"
+               class="voltar-painel">
+
+                ← Voltar ao painel
+
+            </a>
+
+            <h1>Gerenciamento de mesas</h1>
+
+        </div>
+
+        <div class="usuario-modulo">
+
+            <span id="usuario-atual">
+                Carregando...
+            </span>
+
+            <button type="button"
+                    class="botao-secundario"
+                    id="botao-sair">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="conteudo-modulo">
+
+        <section class="apresentacao-modulo">
+
+            <h2>Visão geral das mesas</h2>
+
+            <p>
+                Acompanhe a ocupação, a disponibilidade
+                e a situação dos atendimentos.
+            </p>
+
+        </section>
+
+
+        <!-- INDICADORES -->
+
+        <section class="grade-indicadores indicadores-mesas">
+
+            <article class="indicador">
+
+                <span>Total de mesas</span>
+                <strong id="total-mesas">0</strong>
+
+            </article>
+
+            <article class="indicador indicador-livre">
+
+                <span>Mesas livres</span>
+                <strong id="mesas-livres">0</strong>
+
+            </article>
+
+            <article class="indicador indicador-ocupada">
+
+                <span>Mesas ocupadas</span>
+                <strong id="mesas-ocupadas">0</strong>
+
+            </article>
+
+            <article class="indicador indicador-pagamento">
+
+                <span>Aguardando pagamento</span>
+                <strong id="mesas-pagamento">0</strong>
+
+            </article>
+
+            <article class="indicador indicador-inativa">
+
+                <span>Mesas inativas</span>
+                <strong id="mesas-inativas">0</strong>
+
+            </article>
+
+        </section>
+
+
+        <div id="mensagem-mesas"
+             class="mensagem"
+             role="status"
+             hidden>
+        </div>
+
+
+        <!-- LISTAGEM DE MESAS -->
+
+        <section class="painel-modulo">
+
+            <div class="titulo-painel-mesas">
+
+                <h2>Mesas do restaurante</h2>
+
+                <button type="button"
+                        class="botao-principal"
+                        id="nova-mesa"
+                        hidden>
+
+                    + Nova mesa
+
+                </button>
+
+            </div>
+
+
+            <div class="barra-ferramentas">
+
+                <input type="search"
+                       id="pesquisa-mesa"
+                       placeholder="Buscar número da mesa..."
+                       aria-label="Pesquisar mesa">
+
+                <select id="filtro-status"
+                        aria-label="Filtrar situação da mesa">
+
+                    <option value="">
+                        Todas as situações
+                    </option>
+
+                    <option value="LIVRE">
+                        Livres
+                    </option>
+
+                    <option value="OCUPADA">
+                        Ocupadas
+                    </option>
+
+                    <option value="AGUARDANDO_PAGAMENTO">
+                        Aguardando pagamento
+                    </option>
+
+                    <option value="INATIVA">
+                        Inativas
+                    </option>
+
+                </select>
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="atualizar-mesas">
+
+                    ↻ Atualizar
+
+                </button>
+
+            </div>
+
+
+            <div id="grade-mesas"
+                 class="grade-mesas">
+            </div>
+
+
+            <div class="informacoes-listagem">
+
+                <p id="contagem-mesas"
+                   class="contagem-registros">
+                </p>
+
+                <p id="ultima-atualizacao"
+                   class="contagem-registros">
+
+                    Aguardando atualização...
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="aviso-atendimento">
+
+            <strong>Sobre o atendimento</strong>
+
+            <p>
+                Uma mesa ocupada somente poderá retornar
+                ao estado livre após o encerramento
+                correto do atendimento.
+            </p>
+
+            <p>
+                A liberação definitiva será integrada
+                ao módulo de pagamentos.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL DE CADASTRO E EDICAO -->
+
+    <dialog id="modal-mesa" class="modal-modulo">
+
+        <form id="form-mesa">
+
+            <div class="cabecalho-modal">
+
+                <h2 id="titulo-modal">
+                    Nova mesa
+                </h2>
+
+                <button type="button"
+                        class="fechar-modal"
+                        id="fechar-modal"
+                        aria-label="Fechar">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <input type="hidden" name="id">
+
+            <div class="campo-modulo">
+
+                <label for="numero-mesa">
+                    Número da mesa
+                </label>
+
+                <input type="number"
+                       id="numero-mesa"
+                       name="numero"
+                       min="1"
+                       max="2147483647"
+                       step="1"
+                       required>
+
+            </div>
+
+            <div class="campo-modulo">
+
+                <label for="capacidade-mesa">
+                    Capacidade de pessoas
+                </label>
+
+                <input type="number"
+                       id="capacidade-mesa"
+                       name="capacidade"
+                       min="1"
+                       max="2147483647"
+                       step="1"
+                       required>
+
+            </div>
+
+            <p id="erro-mesa"
+               class="mensagem erro"
+               role="alert"
+               hidden>
+            </p>
+
+            <div class="rodape-modal">
+
+                <button type="button"
+                        class="botao-secundario"
+                        id="cancelar-modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit"
+                        class="botao-principal">
+
+                    Salvar mesa
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+
+    <footer class="rodape-modulo">
+
+        Sistema de Gestão de Restaurante — 2026
+
+    </footer>
+
+</body>
+</html>

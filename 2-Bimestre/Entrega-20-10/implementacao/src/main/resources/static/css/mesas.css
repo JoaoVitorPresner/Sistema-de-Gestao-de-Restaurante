@@ -1,0 +1,330 @@
+
+/* =========================================
+   CORES DOS ESTADOS
+   ========================================= */
+
+.pagina-mesas {
+    --mesa-livre: #367448;
+    --mesa-livre-fundo: #e3eee5;
+
+    --mesa-ocupada: #ad7927;
+    --mesa-ocupada-fundo: #f5e9d4;
+
+    --mesa-pagamento: #3569a3;
+    --mesa-pagamento-fundo: #e1ebf6;
+
+    --mesa-inativa: #777777;
+    --mesa-inativa-fundo: #ececec;
+}
+
+
+/* =========================================
+   INDICADORES
+   ========================================= */
+
+.indicadores-mesas {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.indicador-livre {
+    border-top-color: var(--mesa-livre);
+}
+
+.indicador-livre strong {
+    color: var(--mesa-livre);
+}
+
+.indicador-ocupada {
+    border-top-color: var(--mesa-ocupada);
+}
+
+.indicador-ocupada strong {
+    color: var(--mesa-ocupada);
+}
+
+.indicador-pagamento {
+    border-top-color: var(--mesa-pagamento);
+}
+
+.indicador-pagamento strong {
+    color: var(--mesa-pagamento);
+}
+
+.indicador-inativa {
+    border-top-color: var(--mesa-inativa);
+}
+
+.indicador-inativa strong {
+    color: var(--mesa-inativa);
+}
+
+
+/* =========================================
+   PAINEL
+   ========================================= */
+
+.titulo-painel-mesas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.titulo-painel-mesas h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.grade-mesas {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(min(100%, 235px), 1fr)
+    );
+    gap: 18px;
+}
+
+
+/* =========================================
+   CARTOES DAS MESAS
+   ========================================= */
+
+.cartao-mesa {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: white;
+    border: 1px solid var(--mod-borda);
+    border-left: 5px solid var(--mesa-cor);
+    border-radius: 9px;
+    padding: 20px;
+    min-width: 0;
+    transition: box-shadow .2s;
+}
+
+.cartao-mesa:hover {
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+
+.cartao-mesa.livre {
+    --mesa-cor: var(--mesa-livre);
+    --mesa-fundo: var(--mesa-livre-fundo);
+}
+
+.cartao-mesa.ocupada {
+    --mesa-cor: var(--mesa-ocupada);
+    --mesa-fundo: var(--mesa-ocupada-fundo);
+}
+
+.cartao-mesa.aguardando-pagamento {
+    --mesa-cor: var(--mesa-pagamento);
+    --mesa-fundo: var(--mesa-pagamento-fundo);
+}
+
+.cartao-mesa.inativa {
+    --mesa-cor: var(--mesa-inativa);
+    --mesa-fundo: var(--mesa-inativa-fundo);
+}
+
+.cabecalho-mesa {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icone-mesa {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: var(--mesa-fundo);
+    color: var(--mesa-cor);
+}
+
+.icone-mesa svg {
+    width: 30px;
+    height: 30px;
+}
+
+.identificacao-mesa {
+    min-width: 0;
+}
+
+.identificacao-mesa h3 {
+    margin: 0 0 6px;
+    font-size: 19px;
+    overflow-wrap: anywhere;
+}
+
+.identificacao-mesa p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--mod-secundario);
+}
+
+.status-mesa {
+    align-self: flex-start;
+    background: var(--mesa-fundo);
+    color: var(--mesa-cor);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 11px;
+    border-radius: 5px;
+}
+
+.descricao-mesa {
+    color: var(--mod-secundario);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 40px;
+}
+
+
+/* =========================================
+   ACOES
+   ========================================= */
+
+.acoes-mesa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--mod-borda);
+}
+
+.botao-mesa {
+    border: 1px solid var(--mod-borda);
+    border-radius: 5px;
+    background: white;
+    color: var(--mod-texto);
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-mesa:hover {
+    background: var(--mod-fundo);
+}
+
+.botao-mesa.principal {
+    background: var(--mod-verde-claro);
+    color: white;
+    border-color: var(--mod-verde-claro);
+}
+
+.botao-mesa.principal:hover {
+    background: #35483b;
+}
+
+.botao-mesa.perigo {
+    color: #a13c3c;
+}
+
+.botao-mesa.reativar {
+    color: var(--mesa-livre);
+}
+
+.informacao-pagamento {
+    font-size: 12px;
+    color: var(--mesa-pagamento);
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   INFORMACOES COMPLEMENTARES
+   ========================================= */
+
+.informacoes-listagem {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.sem-mesas {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 15px;
+    color: var(--mod-secundario);
+}
+
+.aviso-atendimento {
+    margin-top: 22px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--mod-borda);
+    border-left: 4px solid var(--mod-dourado);
+    border-radius: 7px;
+}
+
+.aviso-atendimento strong {
+    font-size: 14px;
+}
+
+.aviso-atendimento p {
+    margin: 8px 0 0;
+    color: var(--mod-secundario);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .indicadores-mesas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+
+    .indicadores-mesas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grade-mesas {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .indicadores-mesas .indicador:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .grade-mesas {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-mesa {
+        padding: 16px;
+    }
+
+    .titulo-painel-mesas h2 {
+        font-size: 18px;
+    }
+
+    .titulo-painel-mesas button {
+        width: 100%;
+    }
+
+    .informacoes-listagem {
+        flex-direction: column;
+        gap: 0;
+    }
+}

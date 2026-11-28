@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo | Restaurante</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+</head>
+
+<body class="pagina-dashboard">
+
+    <aside class="menu-lateral" id="menu-lateral">
+
+        <div class="marca-dashboard">
+            <div class="simbolo-marca">R</div>
+
+            <div>
+                <strong>RESTAURANTE</strong>
+                <small>Sistema de Gestão</small>
+            </div>
+        </div>
+
+        <div class="titulo-navegacao">
+            NAVEGAÇÃO
+        </div>
+
+        <nav id="menu-navegacao"
+             aria-label="Menu principal">
+
+            <a href="/dashboard.html"
+               class="item-menu selecionado"
+               aria-current="page">
+
+                <span class="icone-menu">⌂</span>
+                Visão geral
+
+            </a>
+
+        </nav>
+
+        <div class="rodape-menu">
+
+            <button type="button"
+                    id="botao-sair"
+                    class="botao-sair">
+
+                <span>↪</span>
+                Sair do sistema
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="fundo-menu"
+         id="fundo-menu"
+         hidden>
+    </div>
+
+    <div class="estrutura-principal">
+
+        <header class="cabecalho-dashboard">
+
+            <div class="titulo-cabecalho">
+
+                <button type="button"
+                        id="alternar-menu"
+                        class="alternar-menu"
+                        aria-label="Abrir menu"
+                        aria-controls="menu-lateral"
+                        aria-expanded="false">
+
+                    ☰
+
+                </button>
+
+                <h1>Painel administrativo</h1>
+
+            </div>
+
+            <div class="usuario-cabecalho">
+
+                <div class="avatar-usuario"
+                     id="avatar-usuario">
+
+                    ?
+
+                </div>
+
+                <div class="dados-usuario">
+
+                    <strong id="nome-usuario">
+                        Carregando...
+                    </strong>
+
+                    <small id="perfil-usuario">
+                        Identificando perfil
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main class="conteudo-dashboard">
+
+            <section class="painel-boas-vindas">
+
+                <span class="subtitulo-painel">
+                    SISTEMA DE GESTÃO
+                </span>
+
+                <h2 id="titulo-boas-vindas">
+                    Bem-vindo!
+                </h2>
+
+                <p id="descricao-perfil">
+                    Carregando informações do usuário...
+                </p>
+
+            </section>
+
+            <div id="mensagem-dashboard"
+                 class="mensagem"
+                 role="status"
+                 hidden>
+            </div>
+
+            <section class="secao-acessos">
+
+                <div class="cabecalho-secao">
+
+                    <h2>Acesso rápido</h2>
+
+                    <p>
+                        Selecione uma funcionalidade
+                        disponível para o seu perfil.
+                    </p>
+
+                </div>
+
+                <div class="grade-modulos"
+                     id="grade-modulos">
+                </div>
+
+            </section>
+
+            <section class="painel-informacoes">
+
+                <h2>Informações da sessão</h2>
+
+                <div class="grade-informacoes">
+
+                    <div>
+                        <span>Usuário</span>
+                        <strong id="info-login">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Perfil de acesso</span>
+                        <strong id="info-perfil">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Módulos disponíveis</span>
+                        <strong id="info-modulos">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Limite de inatividade</span>
+                        <strong>15 minutos</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="rodape-dashboard">
+
+            Sistema de Gestão de Restaurante
+            — 2026
+
+        </footer>
+
+    </div>
+
+</body>
+</html>

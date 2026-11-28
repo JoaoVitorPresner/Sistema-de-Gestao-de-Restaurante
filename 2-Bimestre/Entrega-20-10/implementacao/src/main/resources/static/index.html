@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurante | Acesso ao sistema</title>
+
+    <link rel="stylesheet" href="/css/estilo.css">
+
+    <script src="/js/api.js" defer></script>
+    <script src="/js/login.js" defer></script>
+
+</head>
+
+<body class="pagina-login">
+
+    <header class="cabecalho-login">
+
+        <div class="logotipo">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.6"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
+
+                <path d="M3 2v7a3 3 0 0 0 6 0V2"/>
+                <path d="M6 2v20"/>
+                <path d="M21 2c-4 0-6 4-6 8v3h6"/>
+                <path d="M21 2v20"/>
+
+            </svg>
+
+        </div>
+
+        <h1>Restaurante</h1>
+
+        <p>Sistema de Gestão de Restaurante</p>
+
+    </header>
+
+    <main class="area-login">
+
+        <div id="mensagem-geral"
+             class="mensagem"
+             role="status"
+             hidden>
+        </div>
+
+        <div class="opcoes-login">
+
+            <!-- Acesso do cliente -->
+
+            <section class="cartao-login">
+
+                <div class="icone-login">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         aria-hidden="true">
+
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+
+                    </svg>
+
+                </div>
+
+                <h2>Sou cliente</h2>
+
+                <p class="descricao-login">
+
+                    Consulte nosso cardápio, faça seus pedidos
+                    e acompanhe seu atendimento.
+
+                </p>
+
+                <form id="form-cliente">
+
+                    <div class="campo">
+
+                        <label for="numero-mesa">
+                            Número da mesa
+                        </label>
+
+                        <input
+                            type="number"
+                            id="numero-mesa"
+                            name="numeroMesa"
+                            min="1"
+                            max="2147483647"
+                            step="1"
+                            placeholder="Ex.: 05"
+                            inputmode="numeric"
+                            required
+                        >
+
+                    </div>
+
+                    <div id="mensagem-cliente"
+                         class="mensagem"
+                         role="alert"
+                         hidden>
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="botao-cliente"
+                        class="botao botao-principal botao-largo">
+
+                        Acessar cardápio
+
+                    </button>
+
+                </form>
+
+                <p class="aviso-login">
+
+                    Informe o número identificado na sua mesa.
+                    Não é necessário criar uma conta.
+
+                </p>
+
+            </section>
+
+            <!-- Acesso do funcionário -->
+
+            <section class="cartao-login">
+
+                <div class="icone-login">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         aria-hidden="true">
+
+                        <circle cx="12" cy="7" r="4"/>
+
+                        <path d="M4 22v-3a8 8 0 0 1 16 0v3"/>
+
+                    </svg>
+
+                </div>
+
+                <h2>Sou funcionário</h2>
+
+                <p class="descricao-login">
+
+                    Acesse sua área de trabalho de acordo
+                    com suas permissões.
+
+                </p>
+
+                <form id="form-funcionario"
+                      method="POST"
+                      action="/login">
+
+                    <input type="hidden"
+                           id="csrf-funcionario"
+                           name="_csrf">
+
+                    <div class="campo">
+
+                        <label for="username">
+                            Usuário
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Informe seu usuário"
+                            autocomplete="username"
+                            maxlength="50"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label for="password">
+                            Senha
+                        </label>
+
+                        <div class="campo-senha">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Informe sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="alternar-senha"
+                                class="alternar-senha"
+                                aria-pressed="false">
+
+                                Mostrar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div id="mensagem-funcionario"
+                         class="mensagem"
+                         role="alert"
+                         hidden>
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="botao-funcionario"
+                        class="botao botao-principal botao-largo">
+
+                        Entrar no sistema
+
+                    </button>
+
+                </form>
+
+                <p class="aviso-login">
+
+                    Área restrita aos funcionários autorizados.
+
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="rodape-login">
+
+        Sistema de Gestão de Restaurante &middot; 2026
+
+    </footer>
+
+</body>
+
+</html>

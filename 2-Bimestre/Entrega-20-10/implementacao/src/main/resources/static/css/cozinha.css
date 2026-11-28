@@ -1,0 +1,678 @@
+
+/* =========================================
+   CONFIGURACOES GERAIS
+   ========================================= */
+
+.pagina-cozinha {
+    --coz-verde: #18241f;
+    --coz-verde-claro: #25352c;
+    --coz-dourado: #c8a66a;
+    --coz-fundo: #f5f3ee;
+    --coz-branco: #ffffff;
+    --coz-texto: #243129;
+    --coz-secundario: #69746d;
+    --coz-borda: #e4e0d7;
+
+    --coz-recebido: #3569a3;
+    --coz-preparo: #ad7927;
+    --coz-pronto: #367448;
+
+    background: var(--coz-fundo);
+    color: var(--coz-texto);
+    min-height: 100vh;
+}
+
+.pagina-cozinha * {
+    box-sizing: border-box;
+}
+
+.pagina-cozinha [hidden] {
+    display: none !important;
+}
+
+.pagina-cozinha button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.pagina-cozinha :focus-visible {
+    outline: 2px solid var(--coz-recebido);
+    outline-offset: 3px;
+}
+
+.pagina-cozinha .conteudo-cozinha {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   CABECALHO
+   ========================================= */
+
+.marca-cozinha {
+    color: var(--coz-dourado);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.botao-sair-cozinha {
+    padding: 9px 15px;
+    border: 1px solid #65736a;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.botao-sair-cozinha:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================
+   INDICADORES
+   ========================================= */
+
+.indicadores-cozinha {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0 30px;
+}
+
+.indicador-cozinha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 20px;
+    background: var(--coz-branco);
+    border: 1px solid var(--coz-borda);
+    border-top: 4px solid var(--coz-verde);
+    border-radius: 8px;
+}
+
+.indicador-cozinha span {
+    color: var(--coz-secundario);
+    font-size: 13px;
+}
+
+.indicador-cozinha strong {
+    color: var(--coz-texto);
+    font-size: 30px;
+    overflow-wrap: anywhere;
+}
+
+.indicador-cozinha small {
+    color: var(--coz-secundario);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.indicador-recebido {
+    border-top-color: var(--coz-recebido);
+}
+
+.indicador-recebido strong {
+    color: var(--coz-recebido);
+}
+
+.indicador-preparo {
+    border-top-color: var(--coz-preparo);
+}
+
+.indicador-preparo strong {
+    color: var(--coz-preparo);
+}
+
+.indicador-pronto {
+    border-top-color: var(--coz-pronto);
+}
+
+.indicador-pronto strong {
+    color: var(--coz-pronto);
+}
+
+
+/* =========================================
+   CABECALHO DA FILA
+   ========================================= */
+
+.painel-cozinha {
+    min-width: 0;
+}
+
+.cabecalho-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.cabecalho-fila h2 {
+    margin: 0 0 8px;
+    font-size: 23px;
+}
+
+.cabecalho-fila p {
+    margin: 0;
+    color: var(--coz-secundario);
+    font-size: 14px;
+}
+
+.cabecalho-fila button {
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   FILTROS
+   ========================================= */
+
+.filtros-cozinha {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: end;
+    gap: 14px;
+    padding: 18px;
+    margin-bottom: 24px;
+    background: white;
+    border: 1px solid var(--coz-borda);
+    border-radius: 8px;
+}
+
+.campo-filtro-cozinha {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.campo-filtro-cozinha label {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--coz-texto);
+}
+
+.campo-filtro-cozinha input,
+.campo-filtro-cozinha select {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--coz-borda);
+    border-radius: 6px;
+    background: white;
+    color: var(--coz-texto);
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.filtros-cozinha > button {
+    min-height: 42px;
+}
+
+
+/* =========================================
+   QUADRO KANBAN
+   ========================================= */
+
+.quadro-cozinha {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 18px;
+}
+
+.coluna-cozinha {
+    min-width: 0;
+    min-height: 280px;
+    background: #eceae4;
+    border: 1px solid var(--coz-borda);
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.coluna-recebidos {
+    --cor-coluna: var(--coz-recebido);
+}
+
+.coluna-preparo {
+    --cor-coluna: var(--coz-preparo);
+}
+
+.coluna-prontos {
+    --cor-coluna: var(--coz-pronto);
+}
+
+.cabecalho-coluna {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px;
+    background: var(--cor-coluna);
+    color: white;
+}
+
+.cabecalho-coluna h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: white;
+}
+
+.cabecalho-coluna p {
+    margin: 0;
+    font-size: 11px;
+    color: white;
+    opacity: 0.95;
+}
+
+.contagem-coluna {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.lista-cozinha {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+}
+
+.cozinha-vazia {
+    margin: 0;
+    padding: 35px 15px;
+    text-align: center;
+    color: var(--coz-secundario);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CARTAO DO PEDIDO
+   ========================================= */
+
+.cartao-cozinha {
+    min-width: 0;
+    padding: 16px;
+    background: white;
+    border: 1px solid var(--coz-borda);
+    border-left: 4px solid var(--cor-coluna);
+    border-radius: 7px;
+}
+
+.cabecalho-cartao-cozinha {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.identificacao-pedido-cozinha {
+    min-width: 0;
+}
+
+.identificacao-pedido-cozinha h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: var(--coz-texto);
+}
+
+.numero-pedido-cozinha {
+    color: var(--coz-secundario);
+    font-size: 12px;
+}
+
+.tempo-pedido-cozinha {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 9px;
+    background: var(--coz-fundo);
+    color: var(--coz-texto);
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.horario-pedido-cozinha {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--coz-secundario);
+    font-size: 11px;
+}
+
+
+/* =========================================
+   PRODUTOS DO PEDIDO
+   ========================================= */
+
+.itens-cozinha {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid var(--coz-borda);
+}
+
+.item-cozinha {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--coz-borda);
+}
+
+.quantidade-item-cozinha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 30px;
+    padding: 6px;
+    background: var(--coz-fundo);
+    color: var(--coz-texto);
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nome-item-cozinha {
+    padding-top: 5px;
+    color: var(--coz-texto);
+    font-size: 14px;
+    font-weight: medium;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   OBSERVACOES
+   ========================================= */
+
+.observacoes-cozinha {
+    margin-top: 14px;
+    padding: 12px;
+    background: #f5e9d4;
+    border-left: 3px solid var(--coz-preparo);
+    border-radius: 5px;
+    color: #74551f;
+}
+
+.observacoes-cozinha strong {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.observacoes-cozinha p {
+    margin: 8px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   ACOES DOS PEDIDOS
+   ========================================= */
+
+.acoes-pedido-cozinha {
+    margin-top: 16px;
+}
+
+.botao-acao-cozinha {
+    width: 100%;
+    min-height: 42px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.15s;
+}
+
+.botao-acao-cozinha:not(:disabled):hover {
+    filter: brightness(0.9);
+}
+
+.botao-iniciar-preparo {
+    background: var(--coz-recebido);
+}
+
+.botao-finalizar-preparo {
+    background: #95651f;
+}
+
+.aviso-pronto-cozinha {
+    padding: 12px;
+    background: #e1f0e5;
+    border-radius: 6px;
+    color: #28623a;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   RODAPE DA FILA
+   ========================================= */
+
+.rodape-cozinha {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+    color: var(--coz-secundario);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   ORIENTACOES OPERACIONAIS
+   ========================================= */
+
+.orientacoes-cozinha {
+    margin-top: 30px;
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--coz-borda);
+    border-radius: 8px;
+}
+
+.orientacoes-cozinha h2 {
+    margin: 0 0 20px;
+    font-size: 18px;
+}
+
+.grade-orientacoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.grade-orientacoes article {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.numero-orientacao {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--coz-verde-claro);
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.grade-orientacoes h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.grade-orientacoes p {
+    margin: 0;
+    color: var(--coz-secundario);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .quadro-cozinha {
+        gap: 12px;
+    }
+
+    .lista-cozinha {
+        padding: 10px;
+    }
+
+    .cartao-cozinha {
+        padding: 12px;
+    }
+
+    .filtros-cozinha {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+
+    .indicadores-cozinha {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .quadro-cozinha {
+        grid-template-columns: 1fr;
+    }
+
+    .coluna-cozinha {
+        min-height: 180px;
+    }
+
+    .lista-cozinha {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 14px;
+    }
+
+    .lista-cozinha > .cozinha-vazia {
+        grid-column: 1 / -1;
+    }
+
+    .grade-orientacoes {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .indicadores-cozinha {
+        gap: 10px;
+    }
+
+    .indicador-cozinha {
+        padding: 14px;
+    }
+
+    .indicador-cozinha strong {
+        font-size: 25px;
+    }
+
+    .cabecalho-fila {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .cabecalho-fila h2 {
+        font-size: 20px;
+    }
+
+    .filtros-cozinha {
+        grid-template-columns: 1fr;
+        padding: 14px;
+    }
+
+    .lista-cozinha {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-cozinha {
+        padding: 16px;
+    }
+
+    .orientacoes-cozinha {
+        padding: 18px;
+    }
+
+    .rodape-cozinha {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .indicador-cozinha {
+        padding: 12px;
+    }
+
+    .indicador-cozinha span {
+        font-size: 12px;
+    }
+
+    .indicador-cozinha strong {
+        font-size: 22px;
+    }
+
+    .cabecalho-coluna {
+        padding: 14px;
+    }
+
+    .lista-cozinha {
+        padding: 10px;
+    }
+
+    .cartao-cozinha {
+        padding: 12px;
+    }
+
+    .marca-cozinha {
+        font-size: 9px;
+    }
+}
