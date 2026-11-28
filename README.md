@@ -15,7 +15,7 @@ Sistema web desenvolvido para auxiliar restaurantes e lanchonetes no gerenciamen
 | Informação | Descrição |
 |---|---|
 | Projeto | Sistema de Gestão de Restaurante |
-| Disciplina | Fábrica de Software |
+| Disciplina | IMERSÃO PROFISSIONAL: PROJETO DE SOFTWARE  |
 | Professora | Sabine Cassol |
 | Ano letivo | 2026 |
 | Entrega final | 27/11/2026 |
